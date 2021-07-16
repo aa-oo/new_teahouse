@@ -1,0 +1,138 @@
+.hm-friend-information-card {
+  margin-top: 5rpx;
+  display: flex;
+  /* margin:0 auto; */
+  align-items: center;
+  /* align-content: center; */
+  flex-direction: column;
+  /* justify-content: flex-start; */
+  /* width: 700rpx; */
+  /* height: 311.69rpx; */
+  /* height: 400rpx; */
+}
+
+.box1 {
+  margin-top: 25rpx;
+  display: flex;
+  /* align-self: center; */
+  flex-direction: column;
+
+  /* align-items: center; */
+  /* flex-direction: row; */
+  /* justify-content:center; */
+  /* border-radius: 38.96rpx; */
+  border-radius: 28rpx;
+  border: 1rpx solid rgba(209, 213, 223, 0.5);
+  box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+  background-color: #ffffff;
+  /* width: 720.78rpx; */
+  width: 700rpx;
+  height: 330rpx;
+  /* height: 233.77rpx; */
+}
+.title{
+	margin-top: 30rpx;
+	margin-left: 30rpx;
+	margin-bottom: 30rpx;
+	font-size:20px;
+}
+.mid{
+	display: flex;
+	align-items: center;
+	/* justify-content: center; */
+	margin-left: 30rpx;
+}
+
+.primary {
+  margin-top:10rpx;
+  border-radius: 58.44rpx;
+  width: 116.88rpx;
+  height: 116.88rpx;
+  overflow: hidden;
+}
+/* .name{
+	font-size: 20rpx;
+} */
+
+.side {
+	margin-top: -10rpx;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 29.22rpx;
+  height: 116.88rpx;
+}
+
+.namClass {
+ /* margin-top: -20rpx; */
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  width: 451.95rpx;
+  height: 42.86rpx;
+}
+.name{
+	margin-top: -30rpx;
+	font-size: 30rpx;
+	line-height: 40rpx;
+}
+.bot{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 25rpx;
+	margin-left: 30rpx;
+	font-size: 30rpx;
+	line-height: 40rpx;
+}
+.bottext{
+	margin-left: -25rpx;
+	padding:0 ;
+}
+.botbtn{
+	font-size:28rpx ;
+	text-align: center;
+	margin-right: 30rpx;
+	margin-top: -15rpx;
+	background-color: #81B991;
+	width: 200rpx;
+	height: 70rpx;
+	line-height: 70rpx;
+	border-radius: 10rpx;
+	color:white;
+}
+/* 
+.name {
+  opacity: 1;
+  margin-left: 9.74rpx;
+  max-width: 372.08rpx;
+  height: 42.86rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 42.86rpx;
+  white-space: nowrap;
+  color: #ffffff;
+  font-size: 35.06rpx;
+  font-weight: 400;
+} */
+
+/* .titleImg {
+  margin-top: 1.95rpx;
+  margin-left: 416.88rpx;
+  width: 35.06rpx;
+  height: 7.79rpx;
+}
+
+.address {
+  opacity: 1;
+  max-width: 492.86rpx;
+  height: 46.75rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 46.75rpx;
+  white-space: nowrap;
+  color: #ffffff;
+  font-size: 31.17rpx;
+  font-weight: 400;
+}
+ */

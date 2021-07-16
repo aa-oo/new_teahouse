@@ -1,0 +1,23 @@
+
+.titletop{
+	margin-top:30rpx;
+	display: flex;
+	justify-content: center;
+}
+.titleicon{
+	width: 70rpx;
+	height:70rpx ;
+	margin-left: -80rpx;
+	margin-top: 12rpx;
+}
+.titleinput{
+	width: 90% ;/* margin-top:50rpx;padding-bottom: 2%; */ 
+	padding:20rpx 10rpx;
+	border-radius: 12rpx;
+	border:1px solid darkgrey; 
+	
+}
+.titlecard{
+	height: 250rpx;
+	margin-top:-25rpx;
+}

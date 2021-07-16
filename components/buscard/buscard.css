@@ -1,0 +1,28 @@
+.buscardImg{
+	border-radius: 110rpx;
+	width: 220rpx;
+	height: 220rpx;
+	overflow: hidden;
+	position: absolute;
+	top:-50rpx;
+	right:25rpx;
+}
+/* .buscardright{
+	position: relative;
+} */
+.buscardicon{
+	width: 40rpx;
+	height: 40rpx;
+	margin-left: 20rpx;
+	/* line-height: 40rpx; */
+/* 	vertical-align:center; */
+	margin-bottom: -10rpx;
+}
+.titletext{
+	margin-left: 20rpx;
+	font-size: 29rpx;
+}
+.context{
+	margin-top: 10rpx;
+	margin-left: 30rpx;
+}

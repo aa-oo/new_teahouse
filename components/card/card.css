@@ -1,0 +1,46 @@
+.hm-friend-information-card {
+  margin-top: 30rpx;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+
+}
+
+.box1 {
+  margin-top: 25rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 28rpx;
+  border: 1rpx solid rgba(209, 213, 223, 0.5);
+  box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+  background-color: #ffffff;
+  width: 700rpx;
+  height: 290rpx;
+  color: #3f6a4b;
+
+}
+.title{
+	margin-top: 30rpx;
+	margin-left: 30rpx;
+	margin-bottom: 30rpx;
+}
+.content{
+	display: flex;
+	align-items: center;
+	margin-left: 30rpx;
+	font-size: 34rpx;
+	
+}
+.guild{
+	/* overflow: hidden; */
+	 -webkit-line-clamp: 3;
+	 text-overflow: ellipsis;
+	 display: -webkit-box;
+	 -webkit-box-orient: vertical;
+	overflow: hidden;
+	line-height: 50rpx;
+	padding-right:10px;
+}
+
+

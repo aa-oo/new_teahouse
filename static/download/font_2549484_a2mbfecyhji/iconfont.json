@@ -1,0 +1,79 @@
+{
+  "id": "2549484",
+  "name": "teaHouse",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2589280",
+      "name": "男",
+      "font_class": "abc",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "11885741",
+      "name": "男",
+      "font_class": "nan",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "14157001",
+      "name": "女",
+      "font_class": "nv",
+      "unicode": "e69a",
+      "unicode_decimal": 59034
+    },
+    {
+      "icon_id": "17605420",
+      "name": "招募",
+      "font_class": "zhaomu",
+      "unicode": "e80f",
+      "unicode_decimal": 59407
+    },
+    {
+      "icon_id": "17605436",
+      "name": "分类",
+      "font_class": "fenlei",
+      "unicode": "e811",
+      "unicode_decimal": 59409
+    },
+    {
+      "icon_id": "17605437",
+      "name": "报告",
+      "font_class": "baogao",
+      "unicode": "e812",
+      "unicode_decimal": 59410
+    },
+    {
+      "icon_id": "17605459",
+      "name": "提醒",
+      "font_class": "tixing",
+      "unicode": "e813",
+      "unicode_decimal": 59411
+    },
+    {
+      "icon_id": "17605487",
+      "name": "查找",
+      "font_class": "chazhao",
+      "unicode": "e817",
+      "unicode_decimal": 59415
+    },
+    {
+      "icon_id": "17605492",
+      "name": "我的",
+      "font_class": "wode",
+      "unicode": "e818",
+      "unicode_decimal": 59416
+    },
+    {
+      "icon_id": "17685491",
+      "name": "女",
+      "font_class": "nv1",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    }
+  ]
+}
