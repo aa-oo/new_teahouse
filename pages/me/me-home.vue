@@ -3,9 +3,9 @@
 		<view class="metop">
 			<view class="hreeng1">
 				<view class="hreengtop"></view>	
-				<view class="hreengname">尚虹霖</view>
+				<view class="hreengname" >尚虹霖</view>
 				<view class="hreengwallat"><b>名片夹</b></view>
-				<image class="hreengicon" style="" src="../../static/icon/all.png" />
+				<image class="hreengicon" style="" src="../../static/icon/all.png" @click="gosettings"/>
 				<view class="hreenggrape">积分：200</view>
 			</view>
 		</view>
@@ -121,7 +121,17 @@
 						// });
 					}
 				},
-				
+				gosettings() {
+					uni.redirectTo({
+						url:'./mesetting'
+					})
+					console.log(1111);
+				},
+				addtea(){
+					uni.redirectTo({
+						url:'../built-tea-house/teatable'
+					})
+				}
 			},
 		filters: {
 			fontNumber (date) {

@@ -1,7 +1,8 @@
 <template>
-	<view class="">
+	<view class="mesetbody">
 		这是消息页
 		<button @click="golog"> 登录页面</button>
+		
 	</view>
 </template>
 
@@ -18,4 +19,5 @@
 </script>
 
 <style>
+	
 </style>

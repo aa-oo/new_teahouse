@@ -54,6 +54,13 @@
 			}
 		},
 		{
+			"path": "pages/built-tea-house/newarticals",
+			"style": {
+				"navigationBarTitleText": "写文章",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
 			"path": "pages/me/me-home",
 			"style": {
 				// "navigationBarTitleText": "",

@@ -1,0 +1,46 @@
+<template>
+	<view>
+		
+		<view class="mesetting1">编辑信息 <text style="float:right">></text></view>
+		<view class="mesetblank"></view>
+		<view class="mesetting1">写文章  <text style="float:right">></text></view>
+		<view class="mesetblank"></view>
+		<view class="mesetting1" style="border-bottom: 1px solid #DCDCDC;">帮助与反馈  <text style="float:right">></text></view>
+		<view class="mesetting1">关于茶馆  <text style="float:right">></text></view>
+		<view class="mesetblank"></view>
+		<view class="mesetting2">退出登录</view>
+	</view>
+</template>
+
+<script>
+</script>
+
+<style>
+	.mesetbody{
+		background-color:#DCDCDC ;
+	}
+	.mesetting1{
+		padding:5px 18px;
+		height:30px;
+		font-size:30rpx;
+		height:30px;
+		/* border:1px solid red; */
+		background-color: #FFFFFF;
+		line-height:30px;
+	}
+	.mesetblank{
+		width:100%;
+		height:8px;
+		background-color: #DCDCDC;
+	}
+	.mesetting2{
+		padding:5px 18px;
+		height:30px;
+		font-size:30rpx;
+		height:30px;
+		background-color: #FFFFFF;
+		text-align: center;
+		line-height:30px;
+		border-bottom: 1px solid #DCDCDC;
+	}
+</style>

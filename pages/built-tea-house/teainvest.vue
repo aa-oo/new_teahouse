@@ -65,7 +65,7 @@
 		margin:3px auto;
 		height:300rpx;
 		width:90%;
-		margin-top:30px;
+		padding-top:30px;
 		/* border:1px solid red; */
 	}
 	.teainmid{

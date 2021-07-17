@@ -5,7 +5,7 @@
 			<view class="optpeople">
 				<view class="optpeo" >
 					<view class="optpeo1"></view>
-					<view class="optpeo2">名称</view>
+					<view class="optpeo2" @click="gotopeople">名称</view>
 				</view>
 				<view class="optpeo" >
 					<view class="optpeo1"></view>
@@ -42,7 +42,7 @@
 		<view class="optionbottom">
 			<view class="optionbottom1">
 				<text class="optionbottext1">茶屋文摘</text>
-				<text class="optionbottext2">more+</text>
+				<text class="optionbottext2" @click="gotonewartical">write+</text>
 			</view>
 			<view class="optionbottom2">
 				<view class="optbotartical" @click="gotoartical">
@@ -107,7 +107,18 @@
 				  uni.navigateTo({
 				  	url:'./investdoc'
 				  });
+			  },
+			  gotopeople(){
+				  uni.navigateTo({
+				  	url:'../home/business-card/business-card'
+				  });
+			  },
+			  gotonewartical(){
+				  uni.navigateTo({
+				  	url:'./newarticals'
+				  });
 			  }
+				  
 		  }
 	}
 </script>
