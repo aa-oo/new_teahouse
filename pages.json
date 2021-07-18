@@ -79,6 +79,19 @@
 			}
 		},
 		{
+			"path": "pages/message/start-msg",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/message/msg-list/msg-list",
+			"style": {
+				"navigationBarTitleText": "消息详情",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "",
@@ -148,7 +161,7 @@
 			},
 			{
 				"text": "消息",
-				"pagePath": "pages/message/msg",
+				"pagePath": "pages/message/start-msg",
 				"iconPath": "static/icon/tixing.png",
 				"selectedIconPath": "./static/icon/tixing-copy.png"
 			},
