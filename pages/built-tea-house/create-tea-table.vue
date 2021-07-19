@@ -7,24 +7,27 @@
 			</view>
 			<view class="tablehold">
 				<form @submit="formSubmit" @reset="formReset">
+					<!-- <view class="tabinput1"> -->
+					    <view class="tabtitle1" @click="chooseimage"><text>添加照片</text>
+						<image v-for="(item,index) in images" :key="index" :src="item" @click="previewPictures(item)"></image>
+						</view>
+					    <!-- <button class="tabpic" type="primary" @click="uploadPictures">上传图片</button> -->
+					    		<!--  -->
+					    
+					<!-- </view> -->
 				    <view class="tabinput1">
-				        <view class="tabtitle">发起人</view>
+				        <!-- <view class="tabtitle">发起人</view> -->
 				        <input class="teainput" name="input" disabled placeholder="尚虹霖" />
 				    </view> 
 				    <view class="tabinput1">
-				        <view class="tabtitle">茶桌名称</view>
-				        <input class="teainput" name="input" maxlength="10" placeholder="最长10个字" />
+				        <!-- <view class="tabtitle">茶桌名称</view> -->
+				        <input class="teainput" name="input" maxlength="15" placeholder="茶桌名称(2~15个字)" />
 				    </view> 
 					<view class="tabinput2">
-					    <view >茶桌介绍</view>
-					    <textarea class="teainput1" v-model="txt" placeholder="最多50个字"></textarea>
+					    <!-- <view >茶桌介绍</view> -->
+					    <textarea class="teainput1" maxlength="50" placeholder="茶桌简介(最多40个字)"></textarea>
 					</view> 
-					<view class="tabinput2">
-					    <view class="tabtitle1" >茶桌封面</view>
-					    <button class="tabpic" type="primary" @click="uploadPictures">上传图片</button>
-					    		<image v-for="(item,index) in images" :key="index" :src="item" @click="previewPictures(item)"></image>
-					    
-					</view> 
+					
 					
 					
 				                <view class="uni-form-item uni-column" style="margin-top: 20px;">
@@ -89,6 +92,28 @@
 						current:item,
 						urls:this.images
 					})
+				},
+				chooseimage(){
+					uni.chooseImage({
+										count: 1, //默认9
+										sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+										sourceType: ['album'], //从相册选择、摄像头
+										success: function(res) {
+											console.log(JSON.stringify(res.tempFilePaths));
+											 uni.previewImage({
+											            urls: res.tempFilePaths,
+											            longPressActions: {
+											                itemList: ['发送给朋友', '保存图片', '收藏'],
+											                success: function(data) {
+											                    console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+											                },
+											                fail: function(err) {
+											                    console.log(err.errMsg);
+											                }
+											            }
+											        });
+										}
+									});
 				}
 				
 	        }
@@ -98,18 +123,18 @@
 <style>
 	.tablebody{
 		width:95%;
-		margin:20rpx auto;
-		border:1px solid #81b991;
+		margin:0px auto;
+		margin-top:10px;
 		height:100%;
 		display: flex;
 		/* align-items: center; */
 		/* align-content: center; */
 		flex-direction: column;
-		border-radius: 10rpx;
-		box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+		/* border-radius: 10rpx;
+		box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5); */
 	}
 	.ttabletext{
-		margin-top:5%;
+		/* margin-top:5%; */
 		margin-left:5%;
 		font-size:40rpx;
 		/* border:1px solid red; */
@@ -142,20 +167,27 @@
 		/* text-align: right; */
 	}
 	.teainput{
-		border:0.5px solid green;
-		width:50%;
+		border-bottom:1px solid #dadada;
+		width:90%;
+		padding:10rpx;
 	}
 	.teainput1{
-		border:0.5px solid green;
-		width:78%;
-		margin-top:10px;
-		height:80px;
+		border-bottom:1px solid #dadada;
+		width:90%;
+		height:65px;
+		padding:10rpx;
 	}
 	.tabtitle1{
-		width:180rpx;
-		float:left;
-		height:40px;
-		line-height:40px;
+		width:90px;
+		border:1px solid #dadada;
+		margin:0px auto;
+		height:90px;
+		line-height:90px;
+		text-align:center;
+		border-radius: 50%;;
+		margin-bottom:10px;
+		margin-top:-20px;
+		color:#808080;
 	}
 	.tabpic{
 		font-size:28rpx ;

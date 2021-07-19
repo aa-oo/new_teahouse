@@ -9,7 +9,7 @@
 		{
 			"path": "pages/built-tea-house/create-tea-table",
 			"style": {
-				"navigationBarTitleText": "创建茶屋",
+				"navigationBarTitleText": "新建茶屋",
 				"navigationBarTextStyle": "white"
 			}
 		},
@@ -70,6 +70,13 @@
 							//"bounce": "none", //关闭反弹效果
 							"titleNView": false//禁用原生导航栏
 							}
+			}
+		},
+		{
+			"path": "pages/me/mesetting",
+			"style": {
+				"navigationBarTitleText": "设置",
+				"navigationBarTextStyle": "white"
 			}
 		},
 		{

@@ -98,10 +98,9 @@
 		/* text-align: right; */
 	}
 	.linput{
-		/* width:80%; */
-		font-size:38rpx;
+		font-size:37rpx;
 		background-color: #c9e1d0;
-		padding:5rpx 10rpx;
+		padding:10rpx 10rpx;
 		border-radius: 10rpx;
 	}
 	.logbutton{

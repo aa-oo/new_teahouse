@@ -32,7 +32,7 @@
 			<view v-show="tab_current === 1">
 				<div class="hm-friend-information-card">
 					<view v-for="item in productList">
-						<view class="box1" style="height:300rpx ;margin-top: 45rpx;position: relative">
+						<view class="box1" style="height:250rpx ;margin-top: 30rpx;position: relative">
 							<view class="buscardright"><button class="msgadd" type="default" @click="addfriend">添加</button></view>
 							<view class="buscardleft">
 								<view class="context1">
@@ -111,7 +111,6 @@ export default {
 			}
 		},
 		addfriend(){
-			
 		}
 	},
 	filters: {

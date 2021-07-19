@@ -49,7 +49,7 @@
 		font-size:40rpx;
 	}
 	.newarticalnext{
-		border-bottom:2px solid black;
+		border-bottom:2px solid #dadada;
 		height:10px;
 		/* overflow: hidden; */
 		margin:0px auto;

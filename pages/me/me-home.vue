@@ -122,10 +122,9 @@
 					}
 				},
 				gosettings() {
-					uni.redirectTo({
+					uni.navigateTo({
 						url:'./mesetting'
 					})
-					console.log(1111);
 				},
 				addtea(){
 					uni.redirectTo({

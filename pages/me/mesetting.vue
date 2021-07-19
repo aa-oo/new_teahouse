@@ -1,18 +1,36 @@
 <template>
 	<view>
 		
-		<view class="mesetting1">编辑信息 <text style="float:right">></text></view>
+		<view class="mesetting1">编辑信息 <text style="float:right" @click="siginin">></text></view>
 		<view class="mesetblank"></view>
-		<view class="mesetting1">写文章  <text style="float:right">></text></view>
+		<view class="mesetting1">写文章  <text style="float:right" @click="writein">></text></view>
 		<view class="mesetblank"></view>
 		<view class="mesetting1" style="border-bottom: 1px solid #DCDCDC;">帮助与反馈  <text style="float:right">></text></view>
 		<view class="mesetting1">关于茶馆  <text style="float:right">></text></view>
 		<view class="mesetblank"></view>
-		<view class="mesetting2">退出登录</view>
+		<view class="mesetting2" @click="backout">退出登录</view>
 	</view>
 </template>
 
 <script>
+	export default{
+		
+		methods:{
+			siginin(){
+				// console.log("还没做这个")
+			},
+			writein(){
+				uni.navigateTo({
+					url:'../built-tea-house/newarticals'
+				})
+			},
+			backout(){
+				uni.navigateTo({
+					url:'../index/login'
+				})
+			}
+		}
+	}
 </script>
 
 <style>
@@ -31,7 +49,7 @@
 	.mesetblank{
 		width:100%;
 		height:8px;
-		background-color: #DCDCDC;
+		background-color: #e1e1e1;
 	}
 	.mesetting2{
 		padding:5px 18px;
@@ -41,6 +59,6 @@
 		background-color: #FFFFFF;
 		text-align: center;
 		line-height:30px;
-		border-bottom: 1px solid #DCDCDC;
+		border-bottom: 1px solid #dadada;
 	}
 </style>
