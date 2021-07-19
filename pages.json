@@ -145,6 +145,16 @@
 				"navigationBarTitleText": "创建用户",
 				"navigationBarTextStyle": "white"
 			}
+		},
+		{
+		    "path" : "pages/me/me-buscard",
+		    "style": {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": " aaa",
+				"navigationBarBackgroundColor": "#81b991",
+		    	"navigationStyle": "custom"
+		    }
+		    
 		}
     ],
 	"tabBar": {

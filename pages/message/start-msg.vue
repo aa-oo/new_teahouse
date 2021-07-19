@@ -52,7 +52,22 @@
 					</view>
 				</div>
 			</view>
-			<view v-show="tab_current === 2"></view>
+			<view v-show="tab_current === 2">
+				<div class="hm-friend-information-card">
+					<view v-for="item in productList">
+						<view class="box1" style="height:230rpx ;margin-top: 30rpx;position: relative">
+							<view class="buscardright"><button class="msgadd" type="default" @click="addfriend">同意</button></view>
+							<view class="buscardleft">
+								<view class="context1" style="margin-top:30rpx ;">
+									<text class="" style="font-size:22px;" >Easter</text>
+									
+								</view>
+								<view class="context"><text class="titletext" style="margin-left: 0;">请求加入：dt分公司的故事</text></view>
+							</view>
+						</view>
+					</view>
+				</div>
+			</view>
 		</view>
 	</view>
 </template>
