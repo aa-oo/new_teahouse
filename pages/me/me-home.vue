@@ -197,10 +197,10 @@
 		flaot:left;
 	}
 	.hreengwallat{
-		font-size:30rpx;
+		font-size:28rpx;
 		color:#4dbc5d;
 		background-color: #FFFDEF;
-		margin-top:30rpx;
+		margin-top:35rpx;
 		position:absolute;
 		margin-left:50%;
 		flaot:left;

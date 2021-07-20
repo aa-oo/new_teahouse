@@ -1,13 +1,19 @@
 <template>
 	<view>
 		<view class="signbody">
-			<view class="signtext">
-				<text class="signtext1">头像</text>
-				<!-- <image class="tableicon" src="../../static/icon/namecard-fill.png" /> -->
-			</view>
+			
 			<view class="tablehold">
 				<form @submit="formSubmit" @reset="formReset">
 					<view class="uni-form-item uni-column" style="margin-bottom:20rpx;">
+						<view class="signtext">
+								<text class="signtext1">头像</text>
+								<view class="signtext2">
+									<text>上传照片</text>
+								</view>
+				<!-- <image class="tableicon" src="../../static/icon/namecard-fill.png" /> -->
+						</view>
+						
+						
 					    <view class="title" style="float:left;width:180rpx;">性别</view>
 					    <radio-group name="radio">
 					        <label>
@@ -20,7 +26,7 @@
 					</view>
 				    <view class="signinput1">
 				        <view class="signtitle">昵称</view>
-				        <input class="singinput" name="input" placeholder="请输入昵称"  />
+				        <input class="singinput" name="input" maxlength="10" placeholder="请输入昵称(2~10个字)"  />
 				    </view> 
 					<view class="signinput1">
 					    <view class="signtitle">密码</view>
@@ -73,11 +79,11 @@
 					     <view class="signtitle">微信号</view>
 					     <input class="singinput" name="input" placeholder="请输入为微信号"  />
 					 </view> 
-					<view class="">
-					    <view >需求</view>
-					    <textarea class="singinput1" v-model="txt" placeholder="请输入您的需求,50个字以内."></textarea>
+					<view ><!-- class="signinput1" -->
+					    <view class="signtitle" >需求</view>
+					    <textarea class="singinput1" maxlength="50" placeholder="请输入您的需求(50个字以内)"></textarea>
 					</view> 
-					<!-- <view class="tabinput2">
+					<!-- <view class="tabinput2">v-model="txt" 
 					    <view class="tabtitle1" >茶桌封面</view>
 					    <button class="tabpic" type="primary" @click="uploadPictures">上传图片</button>
 					    		<image v-for="(item,index) in images" :key="index" :src="item" @click="previewPictures(item)"></image>
@@ -193,17 +199,32 @@
 		flex-direction: column;
 		border-radius: 10rpx;
 		box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+		margin-top:20px;
 	}
 	.signtext{
 		margin-top:5%;
-		margin-left:5%;
 		font-size:30rpx;
 		/* border:1px solid red; */
 		display: flex;
 		justify-content:space-between;
-		height:100rpx;
-		line-height:100rpx;
+		height:60px;
+		line-height:60rpx;
+		flex-direction: row;
 	}
+	.signtext2{
+		font-size:14px;
+		width:70px;
+		border:1px solid #dadada;
+		margin:0px auto;
+		height:70px;
+		line-height:70px;
+		text-align:center;
+		border-radius: 50%;;
+		margin-bottom:10px;
+		margin-top:-20px;
+		color:#808080;
+		margin-left:19%;
+		}
 	.tablehold{
 		/* border:1px solid blue; */
 		margin-top:3%;
@@ -219,7 +240,8 @@
 		flex-direction: row;
 		font-size:30rpx;
 		/* border:1px solid yellow; */
-		height:70rpx;
+		height:40px;
+		/* line-height:70px; */
 		/* overflow: hidden; */
 	}
 	.signtitle{
@@ -232,10 +254,10 @@
 		width:50%;
 	}
 	.singinput1{
-		border:0.5px solid green;
-		width:78%;
-		margin-top:10px;
-		height:80px;
+		/* border:0.5px solid green; */
+		width:65%;
+		margin-left:26%;
+		height:70px;
 	}
 	.tabtitle1{
 		width:180rpx;
