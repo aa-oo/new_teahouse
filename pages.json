@@ -150,7 +150,7 @@
 		    "path" : "pages/me/me-buscard",
 		    "style": {
 				"navigationBarTextStyle": "white",
-				"navigationBarTitleText": " aaa",
+				"navigationBarTitleText": " 创客茶馆",
 				"navigationBarBackgroundColor": "#81b991",
 		    	"navigationStyle": "custom"
 		    }
