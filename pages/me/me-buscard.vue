@@ -2,8 +2,8 @@
 	<view class="">
 		<view class="status_bar"><!-- 这里是状态栏 --></view>
 		<uni-nav-bar left-icon="back" left-text="" right-text="" title="" @clickLeft="back" style="background-color: #81b991;">
-			<view style="margin-left: 10rpx;">好友名片</view>
-			<view style="margin-left: 150rpx;">收藏名片</view>
+			<view style="margin-left: 10rpx;" @click="flag=true">好友名片</view>
+			<view style="margin-left: 150rpx;" @click="flag=false">收藏名片</view>
 
 			<!-- <view slot="left" style="margin-left: 150rpx;">好友名片</view>
 			    <view slot="right" style="margin-right: 100rpx;">收藏名片</view> -->
@@ -12,63 +12,86 @@
 			<input class="titleinput" type="text" placeholder="" />
 			<image class="titleicon" style="" src="../../static/icon/search.png" />
 		</view>
-
-		<div class="hm-friend-information-card">
+		<view class="" v-show="flag">
+		<div class="hm-friend-information-card" >
 			<view v-for="item in productList">
-				<view class="box1" style="height: 290rpx;" >
+				<view class="box1" style="height: 270rpx;width: 700rpx;display: flex;flex-direction: row;flex-wrap: nowrap;">
 					<view class="box2" style="display: flex;flex-direction: row;">
-						
-				
-					<!-- <view class="title"><text>维基媒体基金会</text></view> -->
-					<view class="slide-left" style="margin: auto 10rpx;"><image class="primary" :src="item.image_src" style="width:150rpx;height: 150rpx;border-radius: 50% ;" /></view>
+						<!-- <view class="title"><text>维基媒体基金会</text></view> -->
+						<view class="slide-left" style="margin: auto 10rpx;">
+							<image class="primary" :src="item.image_src" style="width:130rpx;height: 130rpx;border-radius: 50% ;" />
+						</view>
 
-					<view class="side-right" >
-						<view class="buscardleft" style="margin-left: 10rpx;">
-							<view class="context1">
-								<text class="" style=" font-size:35rpx;" >Easter</text>
-								<text class="titletext" style="font-size:18rpx;padding:0.1px 10px;">上海</text>
-								<image class="buscardicon" src="../../static/icon/nv1.png" />
-							</view>
-							<view class="context" style="margin-top: 5rpx;">
-								<image class="buscardicon" style="margin-left: 0;" src="../../static/icon/company.png" />
-								<text class="titletext" style="font-size:18rpx;margin-top: 0;">国家电网公司</text>
-							</view>
-							<view class="context" style="margin-top: 0;"><text class="titletext" style="margin-left: 0;font-size: 20rpx;">行业：电子商务</text></view>
-							<view class="context2" style="margin-top: 0;line-height: 35rpx;">
-								<text class="titletext" style="margin-left: 0;font-size:20rpx;">
-									需求：
-									<span >{{ xuqiu | fontxuqiu }}</span>
-								</text>
+						<view class="side-right">
+							<view class="buscardleft" style="margin-left: 5rpx;">
+								<view class="context1" style="margin-left: 5rpx;">
+									<text class="" style=" font-size:35rpx;">Easter</text>
+									<text class="titletext" style="font-size:18rpx;padding:0.1px 10px;">上海</text>
+									<image class="buscardicon" src="../../static/icon/nv1.png" />
+								</view>
+								<view class="context" style="margin-top: 5rpx;margin-left: 5rpx;">
+									<image class="buscardicon" style="margin-left: 0;" src="../../static/icon/company.png" />
+									<text class="titletext" style="font-size:18rpx;margin-top: 0;">国家电网公司</text>
+								</view>
+								<view class="context" style="margin-top: 0;margin-left: 5rpx;">
+									<text class="titletext" style="margin-left: 0;font-size: 20rpx;">行业：电子商务</text>
+								</view>
+								<view class="context2" style="margin-top: 0;margin-left: 5rpx;line-height: 35rpx;">
+									<text class="titletext" style="margin-left: 0;font-size:20rpx;">
+										需求：
+										<span>{{ xuqiu | fontxuqiu }}</span>
+									</text>
+								</view>
 							</view>
 						</view>
 					</view>
+					<button type="default" class="collect-buscard">删除好友</button>
 				</view>
-					</view>
+				
 			</view>
 		</div>
-
-		<!-- <div class="hm-friend-information-card" >
+		</view>
+		
+		<view class="" v-show="!flag">
+		<div class="hm-friend-information-card" >
 			<view v-for="item in productList">
-				<view class="box1" style="height:300rpx ;margin-top: 45rpx;position: relative" >
-					<view class="buscardright"><image class="buscardImg" :src="item.image_src" /></view>
-					<view class="buscardleft">
-						<view class="context1">
-							<text class="" style=" border-bottom: 1px solid #81B991;font-size:22px;" @click="gobusCard">Easter</text>
-							<text class="titletext" style="font-size:16px;padding:0.1px 10px;">上海</text>
-							<image class="buscardicon" src="../../static/icon/nv1.png" />
+				<view class="box1" style="height: 270rpx;width: 700rpx;display: flex;flex-direction: row;flex-wrap: nowrap;">
+					<view class="box2" style="display: flex;flex-direction: row;">
+						<!-- <view class="title"><text>维基媒体基金会</text></view> -->
+						<view class="slide-left" style="margin: auto 10rpx;">
+							<image class="primary" :src="item.image_src" style="width:130rpx;height: 130rpx;border-radius: 50% ;" />
 						</view>
-						<view class="context">
-							<image class="buscardicon" style="margin-left: 0;" src="../../static/icon/company.png" />
-							<text class="titletext"style="font-size:16px;">国家电网公司</text>
-						</view>
-						<view class="context"><text class="titletext" style="margin-left: 0;">行业：电子商务</text></view>
-						<view class="context2">
-							<text class="titletext" style="margin-left: 0;">需求：<span>{{xuqiu | fontxuqiu}}</span></text>
+		
+						<view class="side-right">
+							<view class="buscardleft" style="margin-left: 5rpx;">
+								<view class="context1" style="margin-left: 5rpx;">
+									<text class="" style=" font-size:35rpx;">Easter</text>
+									<text class="titletext" style="font-size:18rpx;padding:0.1px 10px;">上海</text>
+									<image class="buscardicon" src="../../static/icon/nv1.png" />
+								</view>
+								<view class="context" style="margin-top: 5rpx;margin-left: 5rpx;">
+									<image class="buscardicon" style="margin-left: 0;" src="../../static/icon/company.png" />
+									<text class="titletext" style="font-size:18rpx;margin-top: 0;">国家电网公司</text>
+								</view>
+								<view class="context" style="margin-top: 0;margin-left: 5rpx;">
+									<text class="titletext" style="margin-left: 0;font-size: 20rpx;">行业：电子商务</text>
+								</view>
+								<view class="context2" style="margin-top: 0;margin-left: 5rpx;line-height: 35rpx;">
+									<text class="titletext" style="margin-left: 0;font-size:20rpx;">
+										需求：
+										<span>{{ xuqiu | fontxuqiu }}</span>
+									</text>
+								</view>
+							</view>
 						</view>
 					</view>
+					<button type="default" class="collect-buscard">收藏名片</button>
+					<button type="default" class="collect-buscard">取消收藏</button>
 				</view>
+				
 			</view>
-		</div> -->
+		</div>
+		</view>
 	</view>
 </template>
 <script>
@@ -80,7 +103,8 @@ export default {
 			title: 1,
 			teadetail: 'wikimedia是一项全球运动，其使命是将免费的教育内容带给世界。wikimedia是一项全球运动，其使命是将免费的教育内容带给世界。',
 			xuqiu: '每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。边框的间隔大一倍。',
-			productList: []
+			productList: [],
+			flag:true
 		};
 	},
 	components: {
@@ -105,6 +129,10 @@ export default {
 			uni.navigateBack({
 				delta: 1
 			});
+		},
+		gofriend(){
+		
+	
 		}
 	},
 	filters: {
@@ -138,5 +166,10 @@ export default {
 .status_bar {
 	height: var(--status-bar-height);
 	width: 100%;
+}
+.collect-buscard{
+	width: 100rpx;
+	font-size: 30rpx;
+	line-height: 70rpx;
 }
 </style>
