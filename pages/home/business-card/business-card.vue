@@ -20,11 +20,11 @@
 						</view>
 						<view class="context"><text class="titletext" style="margin-left: 0;">行业 :&emsp;电子商务</text></view>
 						<!-- <view class="context"><text class="titletext" style="margin-left: 0;">需求 :&emsp;电子商务</text></view> -->
-						<view class="context" style="margin-bottom: 20rpx;margin-top:15rpx;">
-							<text class="titletext" style="margin-left: 0;">特长：</text>
+						<view class="context" style="margin-bottom: 20rpx;margin-top:1rpx;">
+							<text class="titletext" style="margin-left: 0;margin-top:-10px;">特长：</text>
 							<text class="titletextadd">数据挖掘</text>
 							<text class="titletextadd">网站开发</text>
-							<text class="titletextadd" style="font-size: 25rpx;">+</text>
+							<text class="titletextadd">前端</text>
 						</view>
 					</view>
 				</view>
@@ -146,12 +146,11 @@ export default {
 .titletextadd {
 	display: inline-block;
 	text-align: center;
-	width: 135rpx;
+	margin-top:5px;
 	margin-left: 15rpx;
 	font-size: 25rpx;
 	background-color: #d2e6d7;
-	padding-top: 15rpx;
-	padding-bottom: 15rpx;
+	padding: 13rpx 15rpx;
 	border-radius: 7rpx;
 }
 .buscardBom{

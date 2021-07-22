@@ -14,6 +14,7 @@
 		    
 		    <textarea class="newartical3"  placeholder="从这里开始写正文"></textarea>
 		</view> 
+		 <button form-type="submit" class="tableadd">提交</button>
 	</view>
 </template>
 
@@ -62,5 +63,19 @@
 		margin:0px auto;
 		margin-top:10px;
 		/* border-bottom:2px solid black; */
+	}
+	.tableadd{
+		font-size:28rpx ;
+		text-align: center;
+		color:white;
+		background-color: #81B991;
+		width:90%;
+		/* margin-right:50rpx; */
+		height: 70rpx;
+		line-height: 70rpx;
+		border-radius: 10rpx;
+		/* margin-left:-5rpx; */
+		margin-top:10px;
+		margin-bottom:15px;
 	}
 </style>
