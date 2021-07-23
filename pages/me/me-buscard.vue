@@ -2,11 +2,9 @@
 	<view class="">
 		<view class="status_bar"><!-- 这里是状态栏 --></view>
 		<uni-nav-bar left-icon="back" left-text="" right-text="" title="" @clickLeft="back" style="background-color: #81b991;">
-			<view style="margin-left: 10rpx;" @click="flag=true">好友名片</view>
-			<view style="margin-left: 150rpx;" @click="flag=false">收藏名片</view>
+			<view style="margin-left: 10rpx;" :class="{onshow:flag,noshow:!flag}" @click="flag=true"><span class="onshowtext" style="margin-top: -15rpx;">好友名片</span></view>
+			<view style="margin-left: 150rpx;" :class="{onshow:!flag,noshow:flag}" @click="flag=false">收藏名片</view>
 
-			<!-- <view slot="left" style="margin-left: 150rpx;">好友名片</view>
-			    <view slot="right" style="margin-right: 100rpx;">收藏名片</view> -->
 		</uni-nav-bar>
 		<view class="titletop">
 			<input class="titleinput" type="text" placeholder="" />
@@ -172,4 +170,17 @@ export default {
 	font-size: 30rpx;
 	line-height: 70rpx;
 }
+.onshow{
+	background-color: #0066CC;
+	height: 80rpx;
+	border-radius: 12rpx;
+	vertical-align: middle;
+
+	
+}
+/* .onshowtext{
+	vertical-align: middle;
+	line-height: 50rpx;
+	margin-top: -15rpx;
+} */
 </style>
