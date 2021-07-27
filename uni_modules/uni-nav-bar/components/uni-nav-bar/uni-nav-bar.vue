@@ -91,7 +91,7 @@ export default {
 		},
 		color: {
 			type: String,
-			default: '#000000'
+			default: '#81b991'
 		},
 		backgroundColor: {
 			type: String,

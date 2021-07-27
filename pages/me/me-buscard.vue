@@ -2,8 +2,8 @@
 	<view class="">
 		<view class="status_bar"><!-- 这里是状态栏 --></view>
 		<uni-nav-bar left-icon="back" left-text="" right-text="" title="" @clickLeft="back" style="background-color: #81b991;">
-			<view style="margin-left: 10rpx;" :class="{onshow:flag,noshow:!flag}" @click="flag=true"><span class="onshowtext" style="margin-top: -15rpx;">好友名片</span></view>
-			<view style="margin-left: 150rpx;" :class="{onshow:!flag,noshow:flag}" @click="flag=false">收藏名片</view>
+			<view style="margin-left: 10rpx;" :class="{onshow:flag,noshow:!flag}" @click="flag=true"><text class="onshowtext">好友名片</text></view>
+			<view style="margin-left: 150rpx;" :class="{onshow:!flag,noshow:flag}" @click="flag=false"><text>收藏名片</text></view>
 
 		</uni-nav-bar>
 		<view class="titletop">
@@ -43,7 +43,7 @@
 							</view>
 						</view>
 					</view>
-					<button type="default" class="collect-buscard">删除好友</button>
+					<button type="default" class="collect-buscard"style="background-color: #F95454;color:#FFFDEF">删除好友</button>
 				</view>
 				
 			</view>
@@ -83,8 +83,8 @@
 							</view>
 						</view>
 					</view>
-					<button type="default" class="collect-buscard">收藏名片</button>
-					<button type="default" class="collect-buscard">取消收藏</button>
+					<button type="default" class="collect-buscard" style="background-color: #F0AD4E;color:#FFFDEF">添加好友</button>
+					<button type="default" class="collect-buscard" style="background-color: #F95454;color:#FFFDEF">取消收藏</button>
 				</view>
 				
 			</view>
@@ -171,16 +171,23 @@ export default {
 	line-height: 70rpx;
 }
 .onshow{
-	background-color: #0066CC;
-	height: 80rpx;
+	background-color: #FFFFFF;
+	height:20px;
 	border-radius: 12rpx;
-	vertical-align: middle;
-
+	line-height:20px;
+	color:#81b991;
+	padding:5px 5px;
+	margin-bottom:-5px;
+	/* vertical-align: middle; */
+}
+.onshowtext{
 	
 }
-/* .onshowtext{
-	vertical-align: middle;
-	line-height: 50rpx;
-	margin-top: -15rpx;
-} */
+.noshow{
+	/* background-color: #FFFFFF; */
+	height:60rpx;
+	color:#FFFFFF;
+	border-radius: 12rpx;
+	/* vertical-align: middle; */
+}
 </style>

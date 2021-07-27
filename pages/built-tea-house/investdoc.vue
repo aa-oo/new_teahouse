@@ -12,8 +12,8 @@
 					</picker>
 				</view>
 				<view class="indocinput">
-				    <view class="indoctitle">昵称：</view>
-				    <input class="singinput" name="input" placeholder="请输入昵称"  />
+				    <view class="indoctitle">金额：</view>
+				    <input class="singinput" name="input" placeholder="请输入金额"  />
 				</view> 
 				<view class="indocinput">
 				    <view class="indoctitle" style="width:85px;"> 出生年月：</view>
@@ -146,12 +146,13 @@
 	.indetailtop{
 		width:96%;
 		background-color:#d4e7d9;
-		height:1350rpx;
+		height:730px;
 		margin:0rpx auto;
 		border-radius: 10rpx;
 		margin-top:3%;
 		position: absolute;
 		margin-left: 2%;;
+		margin-bottom:10px;
 	}
 	.indetailtop1{
 		padding-top:20rpx;
