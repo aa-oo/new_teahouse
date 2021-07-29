@@ -133,7 +133,8 @@ export default {
 		},
 		addtea() {
 			uni.navigateTo({
-				url:'../../built-tea-house/teatable'
+				// url:'../../built-tea-house/teatable'
+				url:'../../chat/view/pangugle-chat'
 			})
 		}
 		

@@ -155,6 +155,15 @@
 		    	"navigationStyle": "custom"
 		    }
 		    
+		},
+		{
+		    "path" : "pages/chat/view/pangugle-chat",
+		    "style": {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": " 聊天",
+				"navigationBarBackgroundColor": "#81b991"
+		    }
+		    
 		}
     ],
 	"tabBar": {
