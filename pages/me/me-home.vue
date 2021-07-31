@@ -9,6 +9,9 @@
 				<view class="hreenggrape">积分：200</view>
 			</view>
 		</view>
+		<view style=" display:flex; justify-content: center;">
+			<image src="../../static/广告.jpg" mode="aspectFill" class="rounded "></image>
+		</view>
 		<view class="menext">
 			<uni-segmented-control
 				:current="tab_current"
@@ -227,5 +230,12 @@
 		margin-left:85%;
 		/* top:-40rpx; */
 		/* right:35rpx; */
+	}
+	.rounded{
+		height:170rpx; 
+		width:95%;
+		border-radius: 10px;
+		margin:0px auto;
+		margin-top:10px;
 	}
 </style>

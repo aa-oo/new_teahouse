@@ -23,5 +23,7 @@
 	  src: url('https://at.alicdn.com/t/font_2549484_3e7qkavf2a3.woff2?t=1621003566080') format('woff2');
 	       http:url('https://at.http:alicdn.com/t/font_2549484_3e7qkavf2a3.woff?t=1621003566080') format('woff'),
 	       url('https://at.alicdhttp:n.com/t/font_2549484_3e7qkavf2a3.ttf?t=1621003566080') format('truetype');
-	}
+	};
+	@import "./common/uni.css";
+	
 </style>

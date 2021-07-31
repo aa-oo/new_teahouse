@@ -1,7 +1,8 @@
 <template>
 	<view>
 		
-		<view class="mesetting1">编辑信息 <text style="float:right" @click="siginin">></text></view>
+		<view class="mesetting1" style="border-bottom: 1px solid #DCDCDC;" @click="siginin">账号与安全 <text style="float:right">></text></view>
+		<view class="mesetting1" @click="siginin1">编辑信息 <text style="float:right" >></text></view>
 		<view class="mesetblank"></view>
 		<view class="mesetting1">写文章  <text style="float:right" @click="writein">></text></view>
 		<view class="mesetblank"></view>
@@ -17,7 +18,14 @@
 		
 		methods:{
 			siginin(){
-				// console.log("还没做这个")
+				uni.navigateTo({
+					url:'passwordchange'
+				})
+			},
+			siginin1(){
+				uni.navigateTo({
+					url:'userinfo'
+				})
 			},
 			writein(){
 				uni.navigateTo({

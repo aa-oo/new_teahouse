@@ -80,6 +80,20 @@
 			}
 		},
 		{
+			"path": "pages/me/passwordchange",
+			"style": {
+				"navigationBarTitleText": "账号与安全",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/me/userinfo",
+			"style": {
+				"navigationBarTitleText": "修改资料",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
 			"path": "pages/message/msg",
 			"style": {
 				"navigationBarTitleText": "消息页"
@@ -161,7 +175,16 @@
 		    "style": {
 				"navigationBarTextStyle": "white",
 				"navigationBarTitleText": " 聊天",
-				"navigationBarBackgroundColor": "#81b991"
+				"navigationBarBackgroundColor": "#81b991",
+				"app-plus":{
+					"titleNView":{
+						"buttons":[{
+							"type":"menu",
+							"fontWeight":"bold",
+							"width":"47px"
+						}]
+					}
+				}
 		    }
 		    
 		}
