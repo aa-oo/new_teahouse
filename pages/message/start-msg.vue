@@ -59,8 +59,7 @@
 							<view class="buscardright"><button class="msgadd" type="default" @click="addfriend">同意</button></view>
 							<view class="buscardleft">
 								<view class="context1" style="margin-top:30rpx ;">
-									<text class="" style="font-size:22px;" >Easter</text>
-									
+									<text class="" style="font-size:22px;" >Easter</text>	
 								</view>
 								<view class="context"><text class="titletext" style="margin-left: 0;">请求加入：dt分公司的故事</text></view>
 							</view>
@@ -108,7 +107,7 @@ export default {
 		// },
 		jumpToTargetView(item) {
 			uni.navigateTo({
-				url: './msg-list/msg-list'
+				url: 'msg-list/msg-list'
 			});
 		},
 		onClickItem(e) {
