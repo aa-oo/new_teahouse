@@ -339,7 +339,7 @@ $list-item-pd: $uni-spacing-col-lg $uni-spacing-row-lg;
 }
 
 .uni-list-item__extra {
-	// width: 25%;
+	width:50%;
 	/* #ifndef APP-NVUE */
 	display: flex;
 	/* #endif */
