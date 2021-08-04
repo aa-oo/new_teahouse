@@ -107,7 +107,7 @@ export default {
 		// },
 		jumpToTargetView(item) {
 			uni.navigateTo({
-				url: 'msg-list/msg-list'
+				url: '../chat/view/pangugle-chat'
 			});
 		},
 		onClickItem(e) {

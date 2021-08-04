@@ -4,7 +4,7 @@
 		
 			<template v-slot:default="{ item }">
 				<view>
-				<!-- 	<div class="hm-friend-information-card">
+					<div class="hm-friend-information-card">
 						<view class="box1" style="height: 270rpx;width: 700rpx;display: flex;flex-direction: row;flex-wrap: nowrap;">
 							<view class="box2" style="display: flex;flex-direction: row;">
 								<view class="slide-left" style="margin: auto 10rpx;">
@@ -35,7 +35,7 @@
 								</view>
 							</view>
 						</view>
-					</div> -->
+					</div>
 				</view>
 			</template>
 		</t-slide>
@@ -55,30 +55,24 @@ export default {
 			dataList: []
 		};
 	},
-	// onLoad: {
-	// 	uni.request({
-	// 		url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
-	// 		success: res => {
-	// 			this.dataList = res.data.message;
-	// 			console.log("2"+this.dataList);
-	// 		}
-	// 	});
-	// 	console.log("1"+this.dataList);
-	// 	this.$nextTick(() => {
-	// 		this.$refs.slide.assignment(this.dataList);
-	// 		console.log("1"+this.dataList);
-	// 	});
-	// },
+	onLoad() {
+		this.getteaHouse();
+		console.log("1"+this.dataList);
+		this.$nextTick(() => {
+			this.$refs.slide.assignment(this.dataList);
+			console.log("1"+this.dataList);
+		});
+	},
 	methods: {
-		// getteaHouse() {
-		// 	uni.request({
-		// 		url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
-		// 		success: res => {
-		// 			this.dataList = res.data.message;
-		// 			console.log("2"+this.dataList);
-		// 		}
-		// 	});
-		// },
+		getteaHouse() {
+			uni.request({
+				url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
+				success: res => {
+					this.dataList = res.data.message;
+					console.log("2"+this.dataList);
+				}
+			});
+		},
 		back() {
 			uni.navigateBack({
 				delta: 1
