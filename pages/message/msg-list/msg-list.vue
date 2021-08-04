@@ -55,21 +55,20 @@ export default {
 			dataList: []
 		};
 	},
-	onLoad: {
-		// this.getteaHouse();
-		uni.request({
-			url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
-			success: res => {
-				this.dataList = res.data.message;
-				console.log("2"+this.dataList);
-			}
-		});
-		console.log("1"+this.dataList);
-		this.$nextTick(() => {
-			this.$refs.slide.assignment(this.dataList);
-			console.log("1"+this.dataList);
-		});
-	},
+	// onLoad: {
+	// 	uni.request({
+	// 		url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
+	// 		success: res => {
+	// 			this.dataList = res.data.message;
+	// 			console.log("2"+this.dataList);
+	// 		}
+	// 	});
+	// 	console.log("1"+this.dataList);
+	// 	this.$nextTick(() => {
+	// 		this.$refs.slide.assignment(this.dataList);
+	// 		console.log("1"+this.dataList);
+	// 	});
+	// },
 	methods: {
 		// getteaHouse() {
 		// 	uni.request({

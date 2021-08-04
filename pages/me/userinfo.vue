@@ -1,35 +1,39 @@
 <template>
 	<view>
-		<uni-list-item title="头像">
-			<view slot="footer" class="listclass" @click="changeUserpic">
+		<uni-list-item title="头像" style="display:flex; align-items: center;padding-top:10px;">
+			<view slot="footer" class="listclass" @click="changeUserpic" >
 			<image :src="userpic" class="touxiang"></image>
-			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
+			<image class="hreengicons" src="../../static/icon/change.png"/>
 			</view>
 		</uni-list-item>
 		<uni-list-item title="昵称">
 			<view slot="footer" class="listclass">
-			<text>hreeng</text>
+			<input v-model="username" class="usertext" maxlength="10" @blur="endBlur(username)"/>
 			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
 			</view>
 		</uni-list-item>
 		<uni-list-item title="性别">
-			<view slot="footer" class="listclass">
-			<text>男</text>
-			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
+			<view slot="footer" class="listclass" @click="sexchange()">
+			<text>{{sextext}}</text>
+			<image class="hreengicons" style="" src="../../static/icon/change.png"/>
 			</view>
 		</uni-list-item>
+		<picker mode="date" @change="ondatachange" v-model="birthday">
 		<uni-list-item title="出生年月">
 			<view slot="footer" class="listclass">
-			<text>1999-04-17</text>
+			<text>{{birthday}}</text>
 			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
 			</view>
 		</uni-list-item>
-		<uni-list-item title="城市">
-			<view slot="footer" class="listclass">
-			<text>河北保定</text>
+		</picker>
+		<pickerAddress @change="citychange">
+		<uni-list-item title="城市" >
+			<view slot="footer" class="cityclass">
+			<text>{{city}}</text>
 			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
 			</view>
 		</uni-list-item>
+		</pickerAddress>
 		<uni-list-item title="行业">
 			<view slot="footer" class="listclass">
 			<text>计算机科学与技术</text>
@@ -38,38 +42,38 @@
 		</uni-list-item>
 		<uni-list-item title="公司">
 			<view slot="footer" class="listclass">
-			<text>华北电力大学</text>
-			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
+			<input v-model="company" class="usertext"  @blur="endBlur(company)"/>
+			<image class="hreengicons" style="" src="../../static/icon/change.png" />
 			</view>
 		</uni-list-item>
 		<uni-list-item title="职位">
 			<view slot="footer" class="listclass">
-			<text>研究生</text>
-			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
+			<input v-model="position" class="usertext"  @blur="endBlur(position)"/>
+			<image class="hreengicons" style="" src="../../static/icon/change.png"/>
 			</view>
 		</uni-list-item>
 		<uni-list-item title="邮箱">
 			<view slot="footer" class="listclass">
-			<text>635306159@qq.com</text>
-			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
+			<input v-model="email" class="usertext"  @blur="endBlur(email)"/>
+			<image class="hreengicons" style="" src="../../static/icon/change.png"/>
 			</view>
 		</uni-list-item>
 		<uni-list-item title="手机号">
 			<view slot="footer" class="listclass">
-			<text>17325226235</text>
-			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
+			<input v-model="phone" class="usertext"  @blur="endBlurphone(phone)"/>
+			<image class="hreengicons" style="" src="../../static/icon/change.png"/>
 			</view>
 		</uni-list-item>
 		<uni-list-item title="需求">
 			<view slot="footer" class="listclass">
-			<text>{{xuqiu | fontxuqiu}}</text>
-			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
+			<input v-model="xuqiu" class="usertext" maxlength="50" @blur="endBlur(xuqiu)"/>
+			<image class="hreengicons" style="" src="../../static/icon/change.png"/>
 			</view>
 		</uni-list-item>
 		<uni-list-item title="特长">
 			<view slot="footer" class="listclass">
 			<text>男</text>
-			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
+			<image class="hreengicons" style="" src="../../static/icon/change.png"/>
 			</view>
 		</uni-list-item>
 		
@@ -81,15 +85,26 @@
 </template>
 
 <script>
+	const sexarray=['男','女'];
 	import uniListItem from '../../components/uni-ui/uni-list-item/uni-list-item.vue';
+	import pickerAddress from '../../components/pickeraddress/pickeraddress.vue';
 	export default{
 		components:{
 			uniListItem,
+			pickerAddress
 		},
 		data(){
 			return{
 				xuqiu:'需要抱大腿大腿大腿大腿大腿大腿大腿大腿',
-				userpic:'../../static/hm-friend-information-card/images/img_24031_0_1.png'
+				userpic:'../../static/hm-friend-information-card/images/img_24031_0_1.png',
+				username:'hreeng',
+				company:'华北电力大学',
+				position:'研究生',
+				email:'635306159@qq.com',
+				phone:'17325225001',
+				sex:0,
+				birthday:'2019-02-04',
+				city:'河北保定',
 			}
 		},
 		filters: {
@@ -111,11 +126,72 @@
 					sizeType:['compressed'],
 					sourceType:["album","camera"],
 					success: (res)=> {
-						console.log(res)
+						console.log(res);
+						this.userpic = res.tempFilePaths[0];
 					}
 				  })
-			  }
-		  }
+			  },
+			  endBlur(item){
+				  if(item.length < 3 ){
+						uni.showToast({
+							title:'昵称在2~10个字范围内',
+							icon:'none'
+						})
+						// uni.showModal({
+						// 	title: '昵称在2~10个字范围内',
+						// });
+						return false;
+				  	}
+					return true;
+			  },
+			  endBlurphone(reg_tel){
+				  if (reg_tel === '') {
+				  		callback1(new Error('手机号不可为空'));
+				  	} 
+				  else {
+				  		if (reg_tel !== '') {
+				  			 var reg=/^1[3456789]\d{9}$/;
+				  			if(!reg.test(reg_tel)){
+				  			    callback(new Error('请输入有效的手机号码'));
+				  			 }
+				  		}
+				  	}
+				  	function callback1(Error){
+				  		console.log("name",Error);
+				  			 uni.showToast({
+				  				title: '手机号码不能为空',
+								icon:'none'
+				  			});
+				  	}
+				  	function callback(Error){
+				  			         console.log("name",Error);
+				  			  		 uni.showToast({
+				  			  		 	title: '请输入有效的手机号码',
+										icon:'none'
+				  			  		 });
+				  			  		 
+				  	}
+			  },
+			  sexchange(){
+				  uni.showActionSheet({
+				      itemList:sexarray,
+				      success:(res)=>{
+						  this.sex = res.tapIndex;
+				      },
+				  });
+			  },
+			  ondatachange(e){
+				  this.birthday = e.detail.value;
+			  },
+			  citychange(data) {
+			   		this.city = data.data.join('')
+			  },
+		  },
+		  computed: {
+		  	sextext() {
+		  		return sexarray[this.sex]
+		  	}
+		  },
 	}
 </script>
 
@@ -147,5 +223,12 @@
 		width:30rpx;
 		height:30rpx;
 		padding-left: 15px;
+	}
+	.usertext{
+		text-align: right;
+	}
+	.cityclass{
+		align-items: right !important;
+		
 	}
 </style>

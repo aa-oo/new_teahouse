@@ -12,6 +12,10 @@
 			></uni-segmented-control>
 			<view class="content">
 				<view v-show="tab_current === 0">
+					<view class="titletop">
+						<input class="titleinput" type="text" placeholder="" />
+						<image class="titleicon" style="" src="../../../static/icon/search.png" />
+					</view>
 					<div class="hm-friend-information-card">
 						<view v-for="item in productList">
 							<view class="box1">
@@ -38,9 +42,13 @@
 				</view>
 			</view>
 			<view v-show="tab_current === 1">
+				<view class="titletop">
+					<input class="titleinput" type="text" placeholder="" />
+					<image class="titleicon" style="" src="../../../static/icon/search.png" />
+				</view>
 				<div class="hm-friend-information-card" >
 					<view v-for="item in productList">
-						<view class="box1" style="height:300rpx ;margin-top: 45rpx;position: relative" >
+						<view class="box1" style="height:300rpx ;margin-top:25rpx;position: relative" >
 							<view class="buscardright"><image class="buscardImg" :src="item.image_src" /></view>
 							<view class="buscardleft">
 								<view class="context1">
