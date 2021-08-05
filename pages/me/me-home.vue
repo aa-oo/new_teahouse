@@ -6,7 +6,7 @@
 				<view class="hreengname" >尚虹霖</view>
 				<view class="hreengwallat" @click="gobuscard"><b>名片夹</b></view>
 				<image class="hreengicon" style="" src="../../static/icon/all.png" @click="gosettings"/>
-				<view class="hreenggrape">积分：200</view>
+				<view class="hreenggrape" @click="grades">积分：200</view>
 			</view>
 		</view>
 		<view style=" display:flex; justify-content: center;">
@@ -138,6 +138,12 @@
 					uni.navigateTo({
 						url:'./me-buscard'
 					})
+				},
+				grades(){
+					uni.showToast({
+						title: '积分功能暂未开启。',
+						icon:'none'
+					});
 				}
 			},
 		filters: {

@@ -6,8 +6,8 @@
 		<view class="mesetblank"></view>
 		<view class="mesetting1"> 写文章 <text style="float:right" @click="writein">></text></view>
 		<view class="mesetblank"></view>
-		<view class="mesetting1" style="border-bottom: 1px solid #DCDCDC;"> 帮助与反馈 <text style="float:right">></text></view>
-		<view class="mesetting1"> 关于茶馆 <text style="float:right">></text></view>
+		<view class="mesetting1" style="border-bottom: 1px solid #DCDCDC;" @click="helpone"> 帮助与反馈 <text style="float:right">></text></view>
+		<view class="mesetting1" @click="helpone"> 关于茶馆 <text style="float:right">></text></view>
 		<view class="mesetblank"></view>
 		<view class="mesetting2" @click="backout">退出登录</view>
 	</view>
@@ -36,6 +36,12 @@
 				uni.navigateTo({
 					url:'../index/login'
 				})
+			},
+			helpone(){
+				uni.showToast({
+					title: '该功能暂未开启',
+					icon:'none'
+				});
 			}
 		}
 	}

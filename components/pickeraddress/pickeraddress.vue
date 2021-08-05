@@ -1,6 +1,7 @@
 <template>
-	<picker @change="bindPickerChange" @columnchange="columnchange" :range="array" range-key="name" :value="value" mode="multiSelector" style="display:flex;justify-content: space-between;">
+	<picker @change="bindPickerChange" @columnchange="columnchange" :range="array" range-key="name" :value="value" mode="multiSelector" >
 		<slot></slot>
+		<!-- style="display:flex;justify-content: space-between;" -->
 	</picker>
 </template>
 

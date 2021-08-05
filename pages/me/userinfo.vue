@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<uni-list-item title="头像" style="display:flex; align-items: center;padding-top:10px;">
+		<uni-list-item title="头像" >
 			<view slot="footer" class="listclass" @click="changeUserpic" >
 			<image :src="userpic" class="touxiang"></image>
 			<image class="hreengicons" src="../../static/icon/change.png"/>
@@ -9,7 +9,7 @@
 		<uni-list-item title="昵称">
 			<view slot="footer" class="listclass">
 			<input v-model="username" class="usertext" maxlength="10" @blur="endBlur(username)"/>
-			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
+			<image class="hreengicons" style="" src="../../static/icon/change.png" />
 			</view>
 		</uni-list-item>
 		<uni-list-item title="性别">
@@ -22,22 +22,22 @@
 		<uni-list-item title="出生年月">
 			<view slot="footer" class="listclass">
 			<text>{{birthday}}</text>
-			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
+			<image class="hreengicons" style="" src="../../static/icon/change.png"/>
 			</view>
 		</uni-list-item>
 		</picker>
-		<pickerAddress @change="citychange">
+		<pickerAddress @change="citychange" v-model="city">
 		<uni-list-item title="城市" >
 			<view slot="footer" class="cityclass">
 			<text>{{city}}</text>
-			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
+			<image class="hreengicons" style="" src="../../static/icon/change.png" />
 			</view>
 		</uni-list-item>
 		</pickerAddress>
 		<uni-list-item title="行业">
 			<view slot="footer" class="listclass">
 			<text>计算机科学与技术</text>
-			<image class="hreengicons" style="" src="../../static/icon/change.png" @click="gosettings"/>
+			<image class="hreengicons" style="" src="../../static/icon/change.png"/>
 			</view>
 		</uni-list-item>
 		<uni-list-item title="公司">
@@ -54,7 +54,7 @@
 		</uni-list-item>
 		<uni-list-item title="邮箱">
 			<view slot="footer" class="listclass">
-			<input v-model="email" class="usertext"  @blur="endBlur(email)"/>
+			<input v-model="email" class="usertext"  @blur="endBluremail(email)"/>
 			<image class="hreengicons" style="" src="../../static/icon/change.png"/>
 			</view>
 		</uni-list-item>
@@ -186,6 +186,17 @@
 			  citychange(data) {
 			   		this.city = data.data.join('')
 			  },
+			  endBluremail(data){
+				  let rule= /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+				  if(!rule.test(data)){
+					  uni.showToast({
+					  	title: '请输入有效邮箱',
+					  	icon:'none'
+					  });
+					  return false;
+				  }
+				  return true;
+			  }
 		  },
 		  computed: {
 		  	sextext() {
@@ -227,8 +238,8 @@
 	.usertext{
 		text-align: right;
 	}
-	.cityclass{
-		align-items: right !important;
-		
+	.cityclass{ 
+		display:flex;
+		align-items: center;
 	}
 </style>

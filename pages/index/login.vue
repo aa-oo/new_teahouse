@@ -6,13 +6,25 @@
 			    <!-- <view class="logtitle">账号</view> -->
 			    <input class="linput" name="userName" @input="userNameInput" type="number" maxlength="11" placeholder="请输入手机号" confirm-type="done" confirm-hold="true"/>
 			</view> 
-			<view class="logput1" style="margin-top:20rpx;">
+			<view class="logput1" style="margin-top:15px;">
 			    <!-- <view class="logtitle">密码</view> -->
 			    <input class="linput" name="password" password maxlength="10" placeholder="请输入密码"confirm-type="done" confirm-hold="true" />
 			</view>
 			<button class="logbutton" @click="sublog" type="" :disabled="isAble">登录</button>
-			<view class="nolog"  @click="subsign">没有账号，立即注册</view>
+			<view class="nolog"><span>验证码登录</span><span style="padding:0 8px;">|</span><span  @click="subsign">注册新用户</span></view>
+			
 		</view>
+		    <view class="nolog" style="align-items: center; margin-top:20px;">
+				<view style="height:1rpx;background-color:#dddddd ;width:100rpx;"></view>
+				<view style="padding:0 5px; color:#dddddd">社交账号登陆</view>
+				<view style="height:1rpx;background-color:#dddddd ;width:100rpx;"></view>
+			</view>
+			<view class="nolog" style="align-items: center;width:100%; ">
+				<view class="shejiao1"><image class="shejiao" src="../../static/weixin.png"></image></view>
+				<view class="shejiao1"><image class="shejiao" style="width:45px;height:45px;" src="../../static/qq.png" @click="weibo"> </image></view>
+				<view class="shejiao1"><image class="shejiao" src="../../static/weiboo.png" @click="weibo"></image></view>
+			</view>
+			<view class="nolog"><span>注册即代表同意</span><span  @click="subsign" style="color:#007AFF">《创客茶馆APP用户协议》</span></view>
 	</view>
 </template>
 
@@ -24,7 +36,12 @@
 				userNameInp : '',
 				userNameLen : '',
 				loadFlag : false,
+				statusBarHeight:0,
 			}
+		},
+		onLoad() {
+			let{statusBarHeight}=uni.getSystemInfoSync()
+			this.statusBarHeight=statusBarHeight;
 		},
 		methods:{
 			userNameInput(e){
@@ -55,6 +72,12 @@
 				uni.navigateTo({
 					url:'./signin'
 				})
+			},
+			weibo(){
+				uni.showToast({
+					title: '该功能暂未开通',
+					icon:'none'
+				});
 			}
 		}
 	}
@@ -76,16 +99,19 @@
 	}
 	.logolog{
 		/* border:1px solid red; */
-		margin-top:-35%;
+		/* margin-top:-10%; */
 	}
 	.logoImg{
 		width:420rpx;
 		height:320rpx;
 	}
+	.loginput{
+		width:80%;
+		margin:0px auto;
+	}
 	.logput1{
 		dispaly:flex;
 		flex-direction: row;
-		font-size:40rpx;
 		margin-top:10%;
 		height:70rpx;
 		/* overflow: hidden; */
@@ -98,9 +124,9 @@
 		/* text-align: right; */
 	}
 	.linput{
-		font-size:37rpx;
+		font-size:20px;
 		background-color: #c9e1d0;
-		padding:10rpx 10rpx;
+		padding:8px 10px;
 		border-radius: 10rpx;
 	}
 	.logbutton{
@@ -115,10 +141,22 @@
 		border-radius: 10rpx;
 	}
 	.nolog{
-		text-decoration: underline;
-		font-size:25rpx;
+		display: flex;
+		justify-content: center;
+		font-size:14px;
 		color:#f3f9f5;
-		float:right;
-		margin-top:30rpx;
+		/* float:right; */
+		margin-top:30px;
+	}
+	.shejiao{
+		width:40px;
+		height:40px;
+	}
+	.shejiao1{
+		width:20%;
+		/* border:1px solid red; */
+		display:flex;
+		justify-content: center;
+		align-items: center;
 	}
 </style>

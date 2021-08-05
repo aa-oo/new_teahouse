@@ -319,6 +319,8 @@ $list-item-pd: $uni-spacing-col-lg $uni-spacing-row-lg;
 	flex-direction: column;
 	justify-content: space-between;
 	overflow: hidden;
+	// align-items: flex-end;
+	justify-content: center;
 }
 
 .uni-list-item__content--center {
@@ -329,6 +331,8 @@ $list-item-pd: $uni-spacing-col-lg $uni-spacing-row-lg;
 	font-size: $uni-font-size-base;
 	color: #3b4144;
 	overflow: hidden;
+	display:flex;
+	align-items: flex-end;
 }
 
 .uni-list-item__content-note {
