@@ -178,10 +178,12 @@
 				"navigationBarBackgroundColor": "#81b991",
 				"app-plus":{
 					"titleNView":{
+						"autoBackButton":false,
 						"buttons":[{
 							"type":"menu",
 							"fontWeight":"bold",
 							"width":"47px"
+							// "fontSrc":"pages/built-tea-house/tableoption"
 						}]
 					}
 				}

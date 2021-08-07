@@ -72,7 +72,7 @@
 		color:#376042;
 	}
 	.indetailtop3{
-		margin-top:60px;
+		margin-top:20px;
 		margin-left:5%;
 		/* position: absolute; */
 		font-size: 33rpx;

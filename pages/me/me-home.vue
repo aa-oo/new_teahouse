@@ -141,7 +141,7 @@
 				},
 				grades(){
 					uni.showToast({
-						title: '积分功能暂未开启。',
+						title: '积分功能暂未开启',
 						icon:'none'
 					});
 				}

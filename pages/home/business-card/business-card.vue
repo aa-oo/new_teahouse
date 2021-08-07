@@ -21,7 +21,7 @@
 						<view class="context"><text class="titletext" style="margin-left: 0;">行业 :&emsp;电子商务</text></view>
 						<!-- <view class="context"><text class="titletext" style="margin-left: 0;">需求 :&emsp;电子商务</text></view> -->
 						<view class="context" style="margin-bottom: 20rpx;margin-top:1rpx;">
-							<text class="titletext" style="margin-left: 0;margin-top:-10px;">特长：</text>
+							<text class="titletext" style="margin-left: 0;margin-top:-10px;">标签：</text>
 							<text class="titletextadd">数据挖掘</text>
 							<text class="titletextadd">网站开发</text>
 							<text class="titletextadd">前端</text>
@@ -44,18 +44,21 @@
 						手机号：<span style="color:#81b991">112345678901</span>
 					</view>
 					<view class="context" style="margin-bottom: 25rpx;font-size:30rpx;">
-						微信号：<span style="color:#81b991">112345678901</span>
+						邮&emsp;箱：<span style="color:#81b991;">635306159@163.com</span>
 					</view>
 					</view>
 				</div>
 				<div class="hm-friend-information-card">
 					<view class="box2" style="margin-top: 15rpx;position: relative;">
-					<view class="context">
+						<view class="context" style="font-size: 35rpx;padding: 5rpx;font-weight: 600;">
+							需求服务
+						</view>
+					<!-- <view class="context">
 						<text style="width: 240rpx;">出生年月:</text><text style="margin-left:20rpx;">2020/11/11</text>
-					</view>
-					<view class="context" style="display: flex;">
+					</view> -->
+					<!-- <view class="context" style="display: flex;">
 						<text style="width: 240rpx;">我的标签:</text><text class="contexttext">前端工程师，计算机图像处理，去模糊处理，人工智能</text>
-					</view>
+					</view> -->
 					<view class="need" >
 						<view class="" style="margin:15rpx 30rpx;">
 							需求:

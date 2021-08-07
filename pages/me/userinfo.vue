@@ -66,17 +66,19 @@
 		</uni-list-item>
 		<uni-list-item title="需求">
 			<view slot="footer" class="listclass">
-			<input v-model="xuqiu" class="usertext" maxlength="50" @blur="endBlur(xuqiu)"/>
+			<input v-model="xuqiu" class="usertext" maxlength="50" @blur="endxq(xuqiu)"/>
 			<image class="hreengicons" style="" src="../../static/icon/change.png"/>
 			</view>
 		</uni-list-item>
-		<uni-list-item title="特长">
+		<uni-list-item title="技能">
 			<view slot="footer" class="listclass">
-			<text>男</text>
+			<input v-model="jineng" class="usertext" maxlength="50" @blur="endjn(jineng)"/>
 			<image class="hreengicons" style="" src="../../static/icon/change.png"/>
 			</view>
 		</uni-list-item>
-		
+		<view class="tags">
+			<view class="tag1">+标签</view>
+		</view>
 		<view class="uni-btn-v">
 		    <button class="passwordch">完成</button>
 		    <!-- <button type="default" form-type="reset">Reset</button>@click="submit()" -->
@@ -105,6 +107,7 @@
 				sex:0,
 				birthday:'2019-02-04',
 				city:'河北保定',
+				jineng:'必填'
 			}
 		},
 		filters: {
@@ -196,6 +199,26 @@
 					  return false;
 				  }
 				  return true;
+			  },
+			  endxq(item){
+				  if(item.length < 1 ){
+				  		uni.showToast({
+				  			title:'需求不能为空',
+				  			icon:'none'
+				  		})
+				  	return false;
+				  	}
+				return true;
+			  },
+			  endjn(item){
+				  if(item.length < 1 ){
+				    		uni.showToast({
+				    			title:'技能不能为空',
+				    			icon:'none'
+				    		})
+				    	return false;
+				    	}
+				  return true;
 			  }
 		  },
 		  computed: {
@@ -240,6 +263,24 @@
 	}
 	.cityclass{ 
 		display:flex;
+		align-items: center;
+	}
+	.tags{
+		width:100%;
+		display:flex;
+		flex-direction: row;
+		border-top:2px solid #eaeaec;
+		align-content:flex-start;
+	}
+	.tag1{
+		margin-top:10px;
+		margin-left:10px;
+		width:70px;
+		height:30px;
+		border-radius: 20px;
+		border:1px solid #81B991;		color:#81B991;
+		display:flex;
+		justify-content: center;
 		align-items: center;
 	}
 </style>

@@ -1,7 +1,9 @@
 <template>
 	<view>
 		<view class="teainvestop">
-			茶屋投资实际操作会涉及合规处理,并且一般资金都会比较大。我们希望您先与该茶屋房主进行一对一沟通确认后再进行投资，同时我们也希望您可以进行线下投资既保证了被投资人的真实性，有保证了资金的安全性。交易包括了签订合同、第三方资金托管、股权交易等。
+			<text>茶屋投资实际操作会涉及合规处理,并且一般资金都会比较大。我们希望您先与该茶屋房主进行一对一沟通确认后再进行投资，同时我们也希望您可以进行线下投资既保证了被投资人的真实性，有保证了资金的安全性。</text>
+			<br/>
+			<text style="padding-left:33px;">交易包括了签订合同、第三方资金托管、股权交易等。</text>
 		</view>
 		<view class="teainmid" >联系房主</view>
 		<view class="investbox1" style="height:300rpx ;margin-top: 45rpx;position: relative" >
@@ -66,6 +68,7 @@
 		height:300rpx;
 		width:90%;
 		padding-top:30px;
+		text-indent:33px;
 		/* border:1px solid red; */
 	}
 	.teainmid{

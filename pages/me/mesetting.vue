@@ -4,8 +4,10 @@
 		<view class="mesetting1" style="border-bottom: 1px solid #DCDCDC;" @click="siginin">账号与安全 <text style="float:right">></text></view>
 		<view class="mesetting1" @click="siginin1"> 编辑信息 <text style="float:right" >></text></view>
 		<view class="mesetblank"></view>
-		<view class="mesetting1"> 写文章 <text style="float:right" @click="writein">></text></view>
+		<view class="mesetting1"@click="writein"> 写文章 <text style="float:right" >></text></view>
 		<view class="mesetblank"></view>
+		<view class="mesetting1" style="border-bottom: 1px solid #DCDCDC;" @click="clear"> 清除缓存 
+					<text style="float:right;font-size:14px;color:#81838d">{{currentSize | format}}</text></view>
 		<view class="mesetting1" style="border-bottom: 1px solid #DCDCDC;" @click="helpone"> 帮助与反馈 <text style="float:right">></text></view>
 		<view class="mesetting1" @click="helpone"> 关于茶馆 <text style="float:right">></text></view>
 		<view class="mesetblank"></view>
@@ -15,7 +17,20 @@
 
 <script>
 	export default{
-		
+		data(){
+			return{
+				currentSize:0,
+			}
+		},
+		onLoad() {
+			let res = uni.getStorageInfoSync()
+			this.currentSize=res.currentSize;
+		},
+		filters: {
+			format: function(value) {
+				return value>1024? (value/1024).toFixed(2)+'Mb' : value.toFixed(2)+'Kb';
+			}
+		},
 		methods:{
 			siginin(){
 				uni.navigateTo({
@@ -42,6 +57,26 @@
 					title: '该功能暂未开启',
 					icon:'none'
 				});
+			},
+			clear(){
+				uni.showModal({
+					title:'提示',
+					content:'是否清除所有缓存？',
+					confirmText:'是',
+					cancelText:'否',
+					success:res=> {
+						if(res.confirm){
+							uni.clearStorageSync();
+							let res = uni.getStorageInfoSync()
+							this.currentSize=res.currentSize;
+							uni.showToast({
+								title: '清除成功',
+								icon:'none'
+							});
+						}
+					}
+					
+				})
 			}
 		}
 	}

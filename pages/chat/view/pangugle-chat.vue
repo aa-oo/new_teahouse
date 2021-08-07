@@ -196,6 +196,11 @@
 				
 			};
 		},
+		onNavigationBarButtonTap() {
+			uni.navigateTo({
+				url:'../../built-tea-house/tableoption'
+			})
+		},
 		onLoad(option) {
 			this.getMsgList();
 			//语音自然播放结束
@@ -580,7 +585,7 @@
 			},
 			discard(){
 				return;
-			}
+			},
 		}
 	}
 </script>
