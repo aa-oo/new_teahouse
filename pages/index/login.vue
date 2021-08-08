@@ -21,8 +21,11 @@
 			    <input class="linput" name="userName" @input="userNameInput"v-model="phone" type="number" maxlength="11" placeholder="请输入手机号" confirm-type="done" confirm-hold="true"/>
 			</view> 
 			<view class="logput1" style="margin-top:15px;" ><!-- style="width:70%" -->
-			    <input class="linput" name="password"  placeholder="请输入验证码" v-model="code"confirm-type="done" confirm-hold="true" />
-				<view class="logtitle" @click="getcode()">{{codetime>0 ? codetime+'秒后重发':'获取验证码'}}</view>
+				<view class="phonoe-code" >
+					 <input class="linput" name="password"  placeholder="请输入验证码" v-model="code"confirm-type="done" confirm-hold="true" />
+				     <view class="logtitle" @click="getcode()">{{codetime>0 ? codetime+'秒后重发':'获取验证码'}}</view>
+				</view>
+			   
 			</view>
 			<button class="logbutton" @click="sublog" type="" :disabled="isAble">登录</button>
 		</view>
@@ -185,25 +188,33 @@
 		/* border:1px solid yellow; */
 		margin-top:5%;
 	}
-	.logtitle{
-		dispaly: flex;
-		justify-content: center;
-		align-items: center;
+	.phonoe-code{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
 		background-color: #f3f9f5;
 		color:#549f6a;
+		border-radius: 10rpx;
+	}
+	.logtitle{
+/* 		dispaly: flex;
+		justify-content: center;
+		align-items: center;
+		align-content: center; */
+		margin: auto 0;
+		padding-left: 8rpx;
 		width:80px;
 		/* float:right;
 		margin-top:-14%; 
 		height:43px; */
 		font-size:14px;
-		border-radius: 10rpx;
+		/* border-radius: 10rpx; */
 		/* box-shadow:-1px 0px 5px #888888; */
 	}
 	.linput{
 		font-size:20px;
 		background-color: #c9e1d0;
 		padding:8px 10px;
-		border-radius: 10rpx;
 	}
 	.logbutton{
 		font-size:35rpx ;
