@@ -77,7 +77,8 @@
 			</view>
 		</uni-list-item>
 		<view class="tags">
-			<view class="tag1">+标签</view>
+			<view class="tag1" @click="addtag">+标签</view>
+			<view v-for="(items,index) in tags" class="tag2" :key="index">{{items}}<b style="padding-left:5px" @click="cleartag(index)">×</b></view>
 		</view>
 		<view class="uni-btn-v">
 		    <button class="passwordch">完成</button>
@@ -107,7 +108,8 @@
 				sex:0,
 				birthday:'2019-02-04',
 				city:'河北保定',
-				jineng:'必填'
+				jineng:'必填',
+				tags:['前端','数据挖掘','uni-app','数字孪生技术','计算机图形学']
 			}
 		},
 		filters: {
@@ -219,6 +221,18 @@
 				    	return false;
 				    	}
 				  return true;
+			  },
+			  cleartag(ind){
+				  let arr= this.tags[ind];
+				  this.tags=this.tags.filter(function (value, index, array) {
+						return value != arr;
+					})
+			  },
+			  addtag(){
+				  uni.showToast({
+				  	title:'不会做这个功能',
+				  	icon:'none'
+				  })
 			  }
 		  },
 		  computed: {
@@ -268,7 +282,8 @@
 	.tags{
 		width:100%;
 		display:flex;
-		flex-direction: row;
+		/* flex-direction: row; */
+		flex-wrap: wrap;
 		border-top:2px solid #eaeaec;
 		align-content:flex-start;
 	}
@@ -279,6 +294,18 @@
 		height:30px;
 		border-radius: 20px;
 		border:1px solid #81B991;		color:#81B991;
+		display:flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.tag2{
+		margin-top:10px;
+		margin-left:10px;
+		padding:0px 10px;
+		height:30px;
+		border-radius: 20px;
+		border:1px solid #81B991;
+		color:#81B991;
 		display:flex;
 		justify-content: center;
 		align-items: center;

@@ -1,14 +1,14 @@
 <script>
 	export default {
-		onLaunch: function() {  
-			console.log('App Lanch')
-		},
-		onShow: function() {
-			console.log('App Show')
-		},
-		onHide: function() {
-			console.log('App Hide')
-		},
+		// onLaunch: function() {  
+		// 	console.log('App Lanch')
+		// },
+		// onShow: function() {
+		// 	console.log('App Show')
+		// },
+		// onHide: function() {
+		// 	console.log('App Hide')
+		// },
 		globalData:{
 			tabindex:0
 		}
