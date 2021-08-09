@@ -229,9 +229,8 @@
 					})
 			  },
 			  addtag(){
-				  uni.showToast({
-				  	title:'不会做这个功能',
-				  	icon:'none'
+				  uni.navigateTo({
+				  	url:'./tagchoose'
 				  })
 			  }
 		  },

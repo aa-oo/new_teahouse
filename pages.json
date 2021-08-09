@@ -94,6 +94,13 @@
 			}
 		},
 		{
+			"path": "pages/me/tagchoose",
+			"style": {
+				"navigationBarTitleText": "我的标签",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
 			"path": "pages/message/msg",
 			"style": {
 				"navigationBarTitleText": "消息页"
