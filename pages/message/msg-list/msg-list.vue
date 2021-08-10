@@ -3,7 +3,7 @@
 		<t-slide ref="slide" @edit="edit" @del="del" @itemClick="itemClick">
 		
 			<template v-slot:default="{ item }">
-				<view>
+			<!-- 	<view>
 					<div class="hm-friend-information-card">
 						<view class="box1" style="height: 270rpx;width: 700rpx;display: flex;flex-direction: row;flex-wrap: nowrap;">
 							<view class="box2" style="display: flex;flex-direction: row;">
@@ -36,7 +36,7 @@
 							</view>
 						</view>
 					</div>
-				</view>
+				</view> -->
 			</template>
 		</t-slide>
 	</view>
