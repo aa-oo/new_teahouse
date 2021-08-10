@@ -97,7 +97,10 @@
 			"path": "pages/me/tagchoose",
 			"style": {
 				"navigationBarTitleText": "我的标签",
-				"navigationBarTextStyle": "white"
+				"navigationBarTextStyle": "white",
+				"app-plus":{
+					"animationType":"slide-in-bottom"
+				}
 			}
 		},
 		{
