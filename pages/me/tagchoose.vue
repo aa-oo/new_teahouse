@@ -5,6 +5,13 @@
 			<view><b class="context">√</b></view>
 			<!-- :class="{none: i===index}" -->
 		</view>
+		<!-- <uniListItem  title="列表右侧显示角标" :show-badge="true" badge-text="12" >
+					nihao
+				</uniListItem>
+				<uniListItem title="列表右侧显示 switch"  :show-switch="true"  @switchChange="switchChange" >
+					hihihihi
+				</uniListItem> -->
+
 		<view class="uni-btn-v">
 			<button class="passwordch">完成</button>
 			<!-- <button type="default" form-type="reset">Reset</button>@click="submit()" -->
@@ -13,7 +20,11 @@
 </template>
 
 <script>
-export default {
+	import uniListItem from '@/components/uni-ui/uni-list/uni-list.vue';
+	export default {
+		components:{
+					uniListItem,
+				},
 	data() {
 		return {
 			tags: [
@@ -81,8 +92,8 @@ export default {
 .context {
 	padding-right: 15px;
 	color: #008000;
+	/* color:#FFFFFF; */
 }
-
 .passwordch {
 	font-size: 28rpx;
 	text-align: center;
@@ -96,5 +107,8 @@ export default {
 	// margin-left:-5rpx;
 	margin-top: 20px;
 	margin-bottom: 15px;
+}
+.context1 {
+	/* color:#008000; */
 }
 </style>
