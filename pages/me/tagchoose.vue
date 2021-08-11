@@ -2,7 +2,7 @@
 	<view>
 		<view class="tagchoos" v-for="(items, index) in tags" @click="addtag(items, index)" :class="{ subl: items.isSelect }">
 			<view class="tagtext">{{ items.tagsName }}</view>
-			<view><b class="context">√</b></view>
+			<view class="context"><b>√</b></view>
 			<!-- :class="{none: i===index}" -->
 		</view>
 		<!-- <uniListItem  title="列表右侧显示角标" :show-badge="true" badge-text="12" >
@@ -75,7 +75,7 @@
 <style lang="scss">
 .subl {
 	.context {
-		color: red;
+		background-color:#81b991;
 	}
 }
 .tagchoos {
@@ -90,9 +90,17 @@
 	color: #1d1d1f;
 }
 .context {
-	padding-right: 15px;
-	color: #008000;
-	/* color:#FFFFFF; */
+	// color: #008000;
+	margin-right:20px;
+	height:25px;
+	width:25px;
+	background-color:#eaeaec;
+	color:#FFFFFF;
+	font-size: 16px;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	border-radius:50%;
 }
 .passwordch {
 	font-size: 28rpx;
