@@ -30,11 +30,11 @@
 			tags: [
 				{ isSelect: false, tagsName: '前端' },
 				{ isSelect: false, tagsName: '人工智能' },
-				{ isSelect: false, tagsName: '前端1' },
-				{ isSelect: false, tagsName: '人工智能1' },
-				{ isSelect: false, tagsName: '人工智能12' },
-				{ isSelect: false, tagsName: '人工智能11' },
-				{ isSelect: false, tagsName: '人工智能10' }
+				{ isSelect: false, tagsName: '后端' },
+				{ isSelect: false, tagsName: '数字孪生' },
+				{ isSelect: false, tagsName: '计算机图形学' },
+				{ isSelect: false, tagsName: '医学影像处理' },
+				{ isSelect: false, tagsName: '物联网' }
 			],
 			intotag: []
 			// ishave:false,

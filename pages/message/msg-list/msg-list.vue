@@ -3,7 +3,7 @@
 		<t-slide ref="slide" @edit="edit" @del="del" @itemClick="itemClick">
 		
 			<template v-slot:default="{ item }">
-			<!-- 	<view>
+				<view>
 					<div class="hm-friend-information-card">
 						<view class="box1" style="height: 270rpx;width: 700rpx;display: flex;flex-direction: row;flex-wrap: nowrap;">
 							<view class="box2" style="display: flex;flex-direction: row;">
@@ -36,7 +36,7 @@
 							</view>
 						</view>
 					</div>
-				</view> -->
+				</view>
 			</template>
 		</t-slide>
 	</view>
@@ -52,16 +52,21 @@ export default {
 			title: 1,
 			teadetail: 'wikimedia是一项全球运动，其使命是将免费的教育内容带给世界。wikimedia是一项全球运动，其使命是将免费的教育内容带给世界。',
 			xuqiu: '每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。边框的间隔大一倍。',
-			dataList: []
+			dataList: [],
+			dass:'',
 		};
 	},
 	onLoad() {
 		this.getteaHouse();
-		console.log("1"+this.dataList);
-		this.$nextTick(() => {
-			this.$refs.slide.assignment(this.dataList);
-			console.log("1"+this.dataList);
+		setTimeout( o =>{
+			console.log(this.dataList);
+			console.log(22222);
+			this.$nextTick(() => {
+				this.$refs.slide.assignment(this.dataList);
+				console.log(this.dataList);
+				console.log(33333);
 		});
+		},500);
 	},
 	methods: {
 		getteaHouse() {
@@ -69,9 +74,11 @@ export default {
 				url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
 				success: res => {
 					this.dataList = res.data.message;
-					console.log("2"+this.dataList);
+					console.log(this.dataList);
+					console.log(11111)
 				}
 			});
+			console.log('先输出这个。')
 		},
 		back() {
 			uni.navigateBack({
@@ -99,6 +106,7 @@ export default {
 			});
 		}
 	},
+	
 	filters: {
 		fontNumber(date) {
 			const length = date.length;

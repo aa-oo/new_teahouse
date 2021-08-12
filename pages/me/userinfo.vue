@@ -61,6 +61,12 @@
 		<uni-list-item title="手机号">
 			<view slot="footer" class="listclass">
 			<input v-model="phone" class="usertext"  @blur="endBlurphone(phone)"/>
+			<image class="hreengicons" src="../../static/icon/change.png"/>
+			</view>
+		</uni-list-item>
+		<uni-list-item title="是否隐藏手机号">
+			<view slot="footer" class="listclass" @click="endBlurmmphone()">
+			<text>{{phonetext}}</text>
 			<image class="hreengicons" style="" src="../../static/icon/change.png"/>
 			</view>
 		</uni-list-item>
@@ -80,8 +86,8 @@
 			<view class="tag1" @click="addtag">+标签</view>
 			<view v-for="(items,index) in tags" class="tag2" :key="index">{{items}}<b style="padding-left:5px" @click="cleartag(index)">×</b></view>
 		</view>
-		<view class="uni-btn-v">
-		    <button class="passwordch">完成</button>
+		<view style="padding-bottom:10px;">
+		    <button class="passwordch" @click="submitchange">完成</button>
 		    <!-- <button type="default" form-type="reset">Reset</button>@click="submit()" -->
 		</view>
 	</view>
@@ -89,6 +95,7 @@
 
 <script>
 	const sexarray=['男','女'];
+	const phonearray=['否','是'];
 	import uniListItem from '../../components/uni-ui/uni-list-item/uni-list-item.vue';
 	import pickerAddress from '../../components/pickeraddress/pickeraddress.vue';
 	export default{
@@ -105,6 +112,7 @@
 				position:'研究生',
 				email:'635306159@qq.com',
 				phone:'17325225001',
+				mmphone:0,
 				sex:0,
 				birthday:'2019-02-04',
 				city:'河北保定',
@@ -177,6 +185,15 @@
 				  			  		 
 				  	}
 			  },
+			  endBlurmmphone(){
+			  	uni.showActionSheet({
+			  	    itemList:phonearray,
+			  	    success:(res)=>{
+						console.log(res)
+			  			this.mmphone = res.tapIndex;
+			  	    },
+			  	});
+			  },
 			  sexchange(){
 				  uni.showActionSheet({
 				      itemList:sexarray,
@@ -237,7 +254,10 @@
 		  computed: {
 		  	sextext() {
 		  		return sexarray[this.sex]
-		  	}
+		  	},
+			phonetext(){
+				return phonearray[this.mmphone]
+			}
 		  },
 	}
 </script>

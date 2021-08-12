@@ -79,12 +79,10 @@
 				</div>
 			</view>
 			<view class="buscardBombutton">
-				<view class="buttonadd" @click="addFriend">
-					添加好友
-				</view>
-				<view class="buttonadd" @click="collectCard">
-					收藏名片
-				</view>
+				<view class="buttonadd" @click="addFriend" v-show="!isfriend">添加好友</view>
+				<view class="buttonadd" style="background-color:#F95454 ;" @click="addFriend" v-show="isfriend">删除好友</text></view>
+				<view class="buttonadd" style="background-color:#F0AD4E ;"@click="collectCard" v-show="!iscollect">收藏名片</view>
+				<view class="buttonadd" style="background-color:#1365ff;" @click="collectCard" v-show="iscollect">取消收藏</view>
 			</view>
 		</view>
 	</view>
@@ -95,7 +93,9 @@ export default {
 	data() {
 		return {
 			productList: [],
-			collected:false
+			collected:false,
+			isfriend:false,
+			iscollect:false,
 		};
 	},
 	onLoad() {
@@ -225,5 +225,8 @@ export default {
 	border: 1px solid black;
 	background-color: #eeeeee;
 	font-size: 29rpx;
+}
+.dele{
+	background-color: #F95454;
 }
 </style>

@@ -8,7 +8,7 @@
 			    <input class="linput" name="userName" @input="userNameInput" type="number" v-model="usercode"  maxlength="11" placeholder="请输入手机号" confirm-type="done" confirm-hold="true"/>
 			</view> 
 			<view class="logput1" style="margin-top:15px;">
-			    <input class="linput" name="password" password maxlength="10"v-model="password" placeholder="请输入密码"confirm-type="done" confirm-hold="true" />
+			    <input class="linput" name="password" password  v-model="password" placeholder="请输入密码" confirm-type="done" confirm-hold="true" />
 			</view>
 			<button class="logbutton" @click="sublog" :disabled="isAble">登录</button>
 		</view>
@@ -78,8 +78,9 @@
 		},
 		computed:{
 			disabled(){
-				if((this.usercode ==='' ||password ==='')&&(this.phone===''|| this.code==='')){
+				if((this.usercode === '' || password === '')||(this.phone === ''|| this.code === '')){
 					return true;
+					// 
 				}
 				return false;
 			}
@@ -96,18 +97,21 @@
 					}
 				},
 			sublog(e){
-				this.loadFlag = true;
-				this.isAble = true;
-				var _this = this;
-				setTimeout(function(){
-					// uni.hideLoading()
-					uni.showToast({
-						title: "正在登录中..."
+				// this.loadFlag = true;
+				// this.isAble = true;
+				// var _this = this;
+				// setTimeout(function(){
+				// 	// uni.hideLoading()
+				// 	uni.showToast({
+				// 		title: "正在登录中..."
+				// 	});
+				// 	_this.loadFlag = false;
+				// 	_this.isAble = false;
+				// 	},2000)
+				uni.showToast({
+						title: 'denglu',
+						icon:'none'
 					});
-					_this.loadFlag = false;
-					_this.isAble = false;
-					},2000)
-				
 			},
 			subsign() {
 				// uni.navigateTo({
@@ -128,8 +132,8 @@
 				this.status= ! this.status;
 				this.usercode ='';
 				this.password ='';
-				this.phone='';
-				this.code='';
+				this.phone ='';
+				this.code ='';
 			},
 			getcode(){
 				console.log(111)
@@ -202,12 +206,12 @@
 		align-items: center;
 		align-content: center; */
 		margin: auto 0;
-		padding-left: 8rpx;
+		padding-left:15rpx;
 		width:80px;
 		/* float:right;
 		margin-top:-14%; 
 		height:43px; */
-		font-size:14px;
+		font-size:25rpx;
 		/* border-radius: 10rpx; */
 		/* box-shadow:-1px 0px 5px #888888; */
 	}
