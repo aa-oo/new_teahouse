@@ -106,12 +106,18 @@
 		{
 			"path": "pages/message/msg",
 			"style": {
-				"navigationBarTitleText": "消息页"
+				"navigationBarTextStyle": "white",
+				
+				"navigationBarBackgroundColor": "#81b991",
+				"navigationStyle": "custom"
 			}
 		},
 		{
 			"path": "pages/message/start-msg",
 			"style": {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": " 创客茶馆",
+				"navigationBarBackgroundColor": "#81b991",
 				"navigationStyle": "custom"
 			}
 		},

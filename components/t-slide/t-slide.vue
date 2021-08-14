@@ -26,31 +26,18 @@
 			//单行高度
 			height:{
 				type : Number,
-				default:120
+				default:270
 			},
 			//按钮宽度
 			btnWidth: {
 				type : Number,
-				default:200
+				default:100
 			},
 			//按钮数组
 			btnArr: {
 				type : Array,
 				default:function () {
-				return [
-					{
-						name:'编辑',
-						background:'#00aaff',
-						color:'#fff',
-						events:'edit'
-					},
-					{
-						name:'删除',
-						background:'#ff5500',
-						color:'#fff',
-						events:'del'
-					}
-				]
+				return []
 			  }
 			},
 		},
@@ -140,16 +127,17 @@
 
 <style lang="scss" scoped>
 .t-slide-box{
-	border-bottom-width:1rpx;
-	border-bottom-style:solid;
-	border-bottom-color:#ececec;
+	// border-bottom-width:1rpx;
+	// border-bottom-style:solid;
+	// border-bottom-color:#ececec;
+	margin-bottom: 20rpx;
 }
 .t-slide-area{
 	flex:1;
 }
 .t-slide-view{
 	flex:1;
-	height: 120rpx;
+	// height: 120rpx;
 }
 .t-touch-item {
 	font-size:24rpx;
@@ -159,7 +147,7 @@
 	flex:1;
 	flex-direction:row;
 	justify-content: space-between;
-	height: 120rpx;
+	// height: 120rpx;
 	overflow: hidden;
 }
 .t-slide-content {
@@ -169,7 +157,11 @@
 	transition-duration:0.3s;
 } 
 .t-slide-btn { 
-	font-weight: bold;
+
+	width: 100rpx;
+	margin-top: 24rpx;
+	height: 270rpx;
+	// font-weight: bold;
 	/*  #ifdef APP-PLUS||H5||MP  */
 	display: flex;
 	/*  #endif  */
@@ -180,9 +172,12 @@
 	color: #fff;
 	transition-property: transform;
 	transition-duration:0.3s;
+	border-radius: 15rpx;
 }
 .t-slide-btn-text{
-	font-size: 24rpx;
-	color: #000;
+	
+	width: 20rpx;
+	font-size: 30rpx;
+	line-height: 70rpx;
 } 
 </style>

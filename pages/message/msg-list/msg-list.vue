@@ -1,16 +1,16 @@
 <template>
 	<view class="t-wrap">
-		<t-slide ref="slide" @edit="edit" @del="del" @itemClick="itemClick">
+		<t-slide ref="slide" :btnArr="btnArr1" @edit="edit" @del="del" @itemClick="itemClick">
 		
 			<template v-slot:default="{ item }">
 				<view>
-					<div class="hm-friend-information-card">
+				<!-- 	<div class="hm-friend-information-card">
 						<view class="box1" style="height: 270rpx;width: 700rpx;display: flex;flex-direction: row;flex-wrap: nowrap;">
 							<view class="box2" style="display: flex;flex-direction: row;">
 								<view class="slide-left" style="margin: auto 10rpx;">
 									<image class="primary" :src="item.image_src" style="width:130rpx;height: 130rpx;border-radius: 50% ;" />
 								</view>
-
+					
 								<view class="side-right">
 									<view class="buscardleft" style="margin-left: 5rpx;">
 										<view class="context1" style="margin-left: 5rpx;">
@@ -35,7 +35,8 @@
 								</view>
 							</view>
 						</view>
-					</div>
+					</div> -->
+					<manage-friend :friendList="item"></manage-friend>
 				</view>
 			</template>
 		</t-slide>
@@ -43,17 +44,37 @@
 </template>
 
 <script>
-import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue';
+import manageFriend from '@/components/manage-friend.vue';
 import tSlide from '@/components/t-slide/t-slide.vue';
 export default {
-	components: { tSlide, uniSegmentedControl },
+	components: {tSlide, manageFriend },
 	data() {
 		return {
-			title: 1,
-			teadetail: 'wikimedia是一项全球运动，其使命是将免费的教育内容带给世界。wikimedia是一项全球运动，其使命是将免费的教育内容带给世界。',
-			xuqiu: '每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。边框的间隔大一倍。',
+			
 			dataList: [],
 			dass:'',
+			btnArr1:[
+					{
+						name:'删除好友',
+						background:'rgb(240, 173, 78)',
+						color:'#fff',
+						events:'edit'
+					}
+				],
+				btnArr2:[
+						{
+							name:'添加好友',
+							background:'rgb(240, 173, 78)',
+							color:'#fff',
+							events:'edit'
+						},
+						{
+							name:'取消收藏',
+							background:'rgb(249, 84, 84)',
+							color:'#fff',
+							events:'del'
+						}
+					],
 		};
 	},
 	onLoad() {
@@ -84,8 +105,7 @@ export default {
 			uni.navigateBack({
 				delta: 1
 			});
-		},
-		//点击单行
+		},//点击单行
 		itemClick(data) {
 			console.log('点击', data);
 		},
@@ -105,35 +125,8 @@ export default {
 				icon: 'none'
 			});
 		}
-	},
-	
-	filters: {
-		fontNumber(date) {
-			const length = date.length;
-			if (length > 50) {
-				var str = '';
-				str = date.substring(0, 50) + '...';
-				return str;
-			} else {
-				return date;
-			}
-		},
-		fontxuqiu(date) {
-			const length = date.length;
-			if (length > 38) {
-				var str = '';
-				str = date.substring(0, 38) + '...';
-				return str;
-			} else {
-				return date;
-			}
-		}
 	}
+	
 };
 </script>
 
-<style>
-@import '../../home/teaHouse/start.response.css';
-@import '../../home/teaHouse/business-card.css';
-@import '../../home/teaHouse/titlecard.css';
-</style>
