@@ -34,7 +34,7 @@
 									<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">4</text>
 									<text class="bottext">茶友</text>
 									<!-- 已收到<text class="bottext">3000</text>,来自<text class="bottext">4</text>茶友 -->
-									<text class="botbtn" @click="addtea" >+加入茶桌</text>
+									<text class="botbtn" @click="addtea(item.goods_id)" >+加入茶桌</text>
 								</view>
 							</view>
 						</view>
@@ -139,10 +139,11 @@ export default {
 				url:'../business-card/business-card'
 			})
 		},
-		addtea() {
+		addtea(id) {
+			console.log(id)
 			uni.navigateTo({
-				// url:'../../built-tea-house/teatable'
-				url:'../../chat/view/pangugle-chat'
+				 url:'../../built-tea-house/teatable?tea_id='+id
+				// url:'../../chat/view/pangugle-chat'
 			})
 		}
 		

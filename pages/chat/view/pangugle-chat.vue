@@ -198,7 +198,7 @@
 		},
 		onNavigationBarButtonTap() {
 			uni.navigateTo({
-				url:'../../built-tea-house/tableoption'
+				url:'../../home/business-card/business-card'
 			})
 		},
 		onLoad(option) {
