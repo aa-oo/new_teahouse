@@ -9,7 +9,7 @@
 		<view class="mesetting1" style="border-bottom: 1px solid #DCDCDC;" @click="clear"> 清除缓存 
 					<text style="float:right;font-size:14px;color:#81838d">{{currentSize | format}}</text></view>
 		<view class="mesetting1" style="border-bottom: 1px solid #DCDCDC;" @click="helpone"> 帮助与反馈 <text style="float:right">></text></view>
-		<view class="mesetting1" @click="helpone"> 关于茶馆 <text style="float:right">></text></view>
+		<view class="mesetting1" @click="abouttea"> 关于茶馆 <text style="float:right">></text></view>
 		<view class="mesetblank"></view>
 		<view class="mesetting2" @click="backout">退出登录</view>
 	</view>
@@ -54,9 +54,14 @@
 			},
 			helpone(){
 				uni.showToast({
-					title: '该功能暂未开启',
+					title: '请联系shl635306159@163.com',
 					icon:'none'
 				});
+			},
+			abouttea(){
+				uni.navigateTo({
+					url:'./aboutteas'
+				})
 			},
 			clear(){
 				uni.showModal({

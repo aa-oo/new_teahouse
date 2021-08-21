@@ -24,7 +24,7 @@
 				    </view> 
 					<view style="margin-left:15px;">
 					    <!-- <view >茶桌介绍</view> -->
-					    <textarea class="teainput1" maxlength="40" placeholder="茶桌简介(最多40个字)"></textarea>
+					    <textarea class="teainput1" maxlength="40" v-model="textarea" @blur="endBlurtext(textarea)" placeholder="茶桌简介(最多40个字)"></textarea>
 					</view> 
 					
 					
@@ -44,7 +44,7 @@
 				                
 				                
 				                <view class="uni-btn-v">
-				                    <button form-type="submit" class="tableadd">立即创建</button>
+				                    <button @click="submit" class="tableadd">立即创建</button>
 				                    <!-- <button type="default" form-type="reset">Reset</button> -->
 				                </view>
 			</view>
@@ -63,7 +63,8 @@
 	            return {
 					"txt":" ",
 					item:'../../static/icon/camera.png',
-					tabname:''
+					tabname:'',
+					textarea:''
 
 	            }
 	        },
@@ -81,16 +82,27 @@
 				},
 				endBlur(item){
 					if(item.length < 3 ){
-											uni.showToast({
-												title:'茶桌名称在2~15个字范围内',
-												icon:'none'
-											})
-											// uni.showModal({
-											// 	title: '昵称在2~10个字范围内',
-											// });
-											return false;
+							uni.showToast({
+								title:'茶桌名称在2~15个字范围内',
+								icon:'none'
+							})
+							return false;
 						}
-										return true;
+					return true;
+				},
+				endBlurtext(item){
+					if(item.length < 1 ){
+						uni.showToast({
+							title:'茶桌简介在1~40个字范围内',
+							icon:'none'
+						})
+						return false;
+					}
+					return true;
+				},
+				submit(){
+					this.endBlur(this.tabname);
+					this.endBlurtext(this.textarea);
 				}
 				
 	        }

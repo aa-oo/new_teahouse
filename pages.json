@@ -94,6 +94,13 @@
 			}
 		},
 		{
+			"path": "pages/me/aboutteas",
+			"style": {
+				"navigationBarTitleText": "关于茶馆",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
 			"path": "pages/me/tagchoose",
 			"style": {
 				"navigationBarTitleText": "我的标签",

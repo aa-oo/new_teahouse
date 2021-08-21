@@ -9,8 +9,9 @@
 				style-type="text"
 				active-color="#81b991"
 				background-color="#81b991"
+				
 			></uni-segmented-control>
-			<view class="content">
+			<view class="content" >
 				<view v-show="tab_current === 0">
 					<view class="titletop">
 						<input class="titleinput" type="text" placeholder="" />
@@ -54,7 +55,8 @@
 								<view class="context1">
 									<text class="" style=" border-bottom: 1px solid #81B991;font-size:22px;" @click="gobusCard">Easter</text>
 									<text class="titletext" style="font-size:16px;padding:0.1px 10px;">上海</text>
-									<image class="buscardicon" src="../../../static/icon/nv1.png" />
+									<image v-if="sexchoose" class="buscardicon" src="../../../static/icon/nv1.png" />
+									<image v-if="!sexchoose" class="buscardicon" src="../../../static/icon/女.png" />
 								</view>
 								<view class="context">
 									<image class="buscardicon" style="margin-left: 0;" src="../../../static/icon/company.png" />
@@ -103,7 +105,8 @@ export default {
 				username: '',
 				password: '',
 				path: ''
-			}
+			},
+			sexchoose:false,
 		};
 	},
 	onLoad() {
