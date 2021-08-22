@@ -23,46 +23,45 @@
 		</view>
 		<!-- 我的选项卡 -->
 		<view class="menextnew">
-			<scroll-view scroll-x style=" width:100%; white-space: nowrap; border-bottom: 1px solid #FFFFFF;">
-				<view v-for="(item,index) in tabbars" :key="index" :id="'tab'+index" style="display: inline-block !important;padding:20rpx 20rpx;padding-top:30rpx;height:50rpx;" :class="tabindex===index?'fontcolor':''"
-				@click="changtab(index)" :scroll-into-view="scoreInto" scroll-with-animation>
+			<scroll-view scroll-x style=" width:100%; white-space: nowrap; border-bottom: 2px solid #b9b9b9;box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);">
+				<view v-for="(item,index) in tabbars" :key="index" :id="'tab'+index" style="display: inline-block !important;padding:20rpx 20rpx;padding-top:30rpx;height:50rpx;margin-left:3%"
+				 :class="tabindex===index?'fontcolor':''" @click="changtab(index)" :scroll-into-view="scoreInto" scroll-with-animation>
 				{{item.name}}</view>
 			</scroll-view>
 			 
-			<swiper :duration="150" :current="tabindex" @change="onchangetab" :style="'height'+scrollH+'px;'">
+			<swiper :duration="150" :current="tabindex" @change="onchangetab" :style="'height:'+scrollH+'px;'">
 				<!-- <swiper-item v-for="(item,index) in tabbars" :key="index">
 					<view class="swiper-item">{{item.name}}</view>
 				</swiper-item> -->
-				<swiper-item >
-					<scroll-view scroll-y="true" :style="'height'+scrollH+'px;'" >
+				<swiper-item  >
+					<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'" >
 						<view>
-						<div class="hm-friend-information-card">
-							<view v-for="item in productList">
-								<view class="box1">
-									<view class="title"><text>维基媒体基金会</text></view>
-									<view class="mid">
-										<image class="primary" :src="item.image_src" />
-										<view class="side">
-											<view class="namClass"><text class="name">{{teadetail | fontNumber}}</text></view>
-											<!-- <text class="address">{{ item.goods_id }}</text> -->
+							<div class="hm-friend-information-card">
+								<view v-for="item in productList">
+									<view class="box1">
+										<view class="title"><text>维基媒体基金会</text></view>
+										<view class="mid">
+											<image class="primary" :src="item.image_src" />
+											<view class="side">
+												<view class="namClass"><text class="name">{{teadetail | fontNumber}}</text></view>
+											</view>
+										</view>
+										<view class="bot">
+											<text>已收到</text>
+											<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">3000</text>
+											<text class="bottext"><span>&yen</span>，来自</text>
+											<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">4</text>
+											<text class="bottext">茶友</text>
+											<text class="botbtn" @click="addtea" >进入茶桌</text>
 										</view>
 									</view>
-									<view class="bot">
-										<text>已收到</text>
-										<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">3000</text>
-										<text class="bottext"><span>&yen</span>，来自</text>
-										<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">4</text>
-										<text class="bottext">茶友</text>
-										<!-- 已收到<text class="bottext">3000</text>,来自<text class="bottext">4</text>茶友 -->
-										<text class="botbtn" @click="addtea" >进入茶桌</text>
-									</view>
 								</view>
-							</view>
-						</div></view>
+							</div>
+						</view>
 					</scroll-view>
 				</swiper-item>
 				<swiper-item >
-					<scroll-view scroll-y="true" :style="'height'+scrollH+'px;'" >
+					<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'" >
 					<view>
 						<div class="hm-friend-information-card" >
 							<view v-for="item in productList">
@@ -72,7 +71,6 @@
 										<image class="primary" :src="item.image_src" />
 										<view class="side">
 											<view class="namClass"><text class="name">{{teadetail | fontNumber}}</text></view>
-											<!-- <text class="address">{{ item.goods_id }}</text> -->
 										</view>
 									</view>
 									<view class="bot">
@@ -81,13 +79,13 @@
 										<text class="bottext"><span>&yen</span>，来自</text>
 										<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">53</text>
 										<text class="bottext">茶友</text>
-										<!-- 已收到<text class="bottext">3000</text>,来自<text class="bottext">4</text>茶友 -->
 										<text class="botbtn" @click="addtea" >进入茶桌</text>
 									</view>
 								</view>
 							</view>
 						</div>
-					</view></scroll-view>
+					</view>
+					</scroll-view>
 				</swiper-item>
 			</swiper>
 		</view>
@@ -194,7 +192,7 @@
 			this.getteaHouse();
 			uni.getSystemInfo({
 				success:res=>{
-					this.scrollH =res.windowHeight - uni.upx2px(50);
+					this.scrollH =res.windowHeight - uni.upx2px(600);
 					console.log(this.scrollH)
 				}
 			})
@@ -379,6 +377,6 @@
 	},
 	.fontcolor{
 		color:#4dbc5d;
-		border-bottom: 2px solid #81b991;
+		border-bottom:3px solid #4dbc5d;
 	}
 </style>
