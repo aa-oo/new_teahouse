@@ -1,6 +1,52 @@
 <template>
 	<view class="">
-		<view class="status_bar"><!-- 这里是状态栏 --></view>
+		<!-- <scroll-view scroll-x style=" width:100%; white-space: nowrap; border-bottom: 1px solid #ffffff;box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);background-color:#81b991 ;color:#f5f5f7">
+			<view v-for="(item,index) in tabbars" :key="index" :id="'tab'+index" style="display: inline-block !important;padding:auto 60rpx;margin-top:30rpx;margin-left:15%;height:65rpx;text-align: center;"
+			 @click="changtab(index)" :scroll-into-view="scoreInto" scroll-with-animation>
+			<text :class="tabindex===index?'fontcolor':''" style="padding:10rpx 30rpx;border-radius:5px;">{{item.name}}</text></view>
+		</scroll-view>
+		
+		<swiper :duration="150" :current="tabindex" @change="onchangetab" :style="'height:'+scrollH+'px;'">
+			<swiper-item>
+				<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'">
+					<view>
+						<view class="t-wrap">
+							<t-slide ref="slide" :btnArr="btnArr1" @edit="edit" @del="del" @itemClick="itemClick">
+								<template v-slot:default="{ item }">
+									<view>
+									<manage-friend :friendList="item"></manage-friend>
+									</view>
+								</template>
+							</t-slide>
+						</view>
+					</view>
+				</scroll-view>
+			</swiper-item>
+			<swiper-item>
+				<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'">
+					<view>
+						<view class="t-wrap">
+							<t-slide ref="slide" :btnArr="btnArr2" @edit="edit" @del="del" @itemClick="itemClick">
+								<template v-slot:default="{ item }">
+									<view>
+									<manage-friend :friendList="item"></manage-friend>
+									</view>
+								</template>
+							</t-slide>
+						</view>
+					</view>
+				</scroll-view>
+			</swiper-item>
+		</swiper> -->
+		
+		
+		
+		
+		
+		
+		
+		<!-- 这里是状态栏 -->
+		<view class="status_bar"></view>
 		<uni-nav-bar left-icon="back" left-text="" right-text="" title="" @clickLeft="back" style="background-color: #81b991;">
 			<view style="margin-left: 10rpx;" :class="{ onshow: flag, noshow: !flag }" @click="flag = true"><text class="onshowtext" style="font-size:30rpx;">好友名片</text></view>
 			<view style="margin-left: 150rpx;" :class="{ onshow: !flag, noshow: flag }" @click="flag = false"><text style="font-size:30rpx;">收藏名片</text></view>
@@ -27,7 +73,6 @@
 					<template v-slot:default="{ item }">
 						<view>
 						<manage-friend :friendList="item"></manage-friend>
-					
 						</view>
 					</template>
 				</t-slide>
@@ -74,6 +119,15 @@ export default {
 							events:'del'
 						}
 					],
+			scrollH:600,
+			scoreInto:'',
+			tabbars:[{
+				name:"好友名片",
+			},{
+				name:"收藏名片",
+			}
+			],
+			tabindex:0,
 		};
 	},
 	components: {
@@ -93,6 +147,12 @@ export default {
 				console.log(33333);
 			});
 		}, 500);
+		uni.getSystemInfo({
+			success:res=>{
+				this.scrollH =res.windowHeight - uni.upx2px(100);
+				console.log(this.scrollH)
+			}
+		})
 	},
 	methods: {
 		getteaHouse() {
@@ -130,6 +190,16 @@ export default {
 				title: '编辑ID--' + data.goods_id,
 				icon: 'none'
 			});
+		},
+		changtab(index){
+			if(this.tabindex ===index){
+				return;
+			}
+			this.tabindex =index;
+			this.scoreInto='tab'+index;
+		},
+		onchangetab(e){
+			this.changtab(e.detail.current)
 		}
 	}
 	
@@ -166,4 +236,9 @@ export default {
 	margin-bottom: 10rpx;
 	/* vertical-align: middle; */
 }
+.fontcolor{
+		color:#81b991;
+		background-color:#f5f5f7;
+		font-weight:500;
+	}
 </style>

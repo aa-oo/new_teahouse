@@ -290,6 +290,8 @@
 		height:280rpx;
 		background-image:url(../../static/backsolo.png);
 		position:relative;
+		background-size: 100% auto;
+		background-position: center;
 	}
 	.hreeng1{
 		/* border:1px solid red; */

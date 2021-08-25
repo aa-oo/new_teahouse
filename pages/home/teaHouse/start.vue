@@ -4,7 +4,7 @@
 		<scroll-view scroll-x style=" width:100%; white-space: nowrap; border-bottom: 1px solid #ffffff;box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);background-color:#81b991 ;color:#f5f5f7">
 			<view v-for="(item,index) in tabbars" :key="index" :id="'tab'+index" style="display: inline-block !important;padding:auto 60rpx;margin-top:30rpx;margin-left:13%;height:65rpx;text-align: center;"
 			 @click="changtab(index)" :scroll-into-view="scoreInto" scroll-with-animation>
-			<text :class="tabindex===index?'fontcolor':''" style="padding:10rpx 30rpx;;border-radius:5px;">{{item.name}}</text></view>
+			<text :class="tabindex===index?'fontcolor':''" style="padding:10rpx 30rpx;border-radius:5px;">{{item.name}}</text></view>
 		</scroll-view>
 		
 		<swiper :duration="150" :current="tabindex" @change="onchangetab" :style="'height:'+scrollH+'px;'">

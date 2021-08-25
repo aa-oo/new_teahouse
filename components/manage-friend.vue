@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<div class="hm-friend-information-card">
-			<view class="box1" style="height: 270rpx;width: 700rpx;display: flex;flex-direction: row;flex-wrap: nowrap;">
+			<view class="box1" style="height: 260rpx;width: 700rpx;display: flex;flex-direction: row;flex-wrap: nowrap;">
 				<view class="box2" style="display: flex;flex-direction: row;">
 					<view class="slide-left" style="margin: auto 10rpx;">
 						<image class="primary" :src="friendList.image_src" style="width:130rpx;height: 130rpx;border-radius: 50% ;" />
@@ -9,20 +9,20 @@
 
 					<view class="side-right">
 						<view class="buscardleft" style="margin-left: 5rpx;">
-							<view class="context1" style="margin-left: 5rpx;">
-								<text class="" style=" font-size:35rpx;">Easter</text>
-								<text class="titletext" style="font-size:18rpx;padding:0.1px 10px;">上海</text>
+							<view class="context1" style="margin-left: 5rpx;margin-top:20rpx;font-size:48rpx;">
+								<text class="" style=" font-size:38rpx;">Easter</text>
+								<text class="titletext" style="font-size:28rpx;padding:0.1px 10px;">上海</text>
 								<image class="buscardicon" src="../static/icon/nv1.png" />
 							</view>
-							<view class="context" style="margin-top: 5rpx;margin-left: 5rpx;">
+							<view class="context" style="margin-top: 5rpx;margin-left: 5rpx;" >
 								<image class="buscardicon" style="margin-left: 0;" src="../static/icon/company.png" />
-								<text class="titletext" style="font-size:18rpx;margin-top: 0;">国家电网公司</text>
+								<text class="titletext" style="font-size:28rpx;margin-top: 0;">国家电网公司</text>
 							</view>
 							<view class="context" style="margin-top: 0;margin-left: 5rpx;">
-								<text class="titletext" style="margin-left: 0;font-size: 20rpx;">行业：电子商务</text>
+								<text class="titletext" style="margin-left: 0;font-size: 28rpx;">行业：电子商务</text>
 							</view>
-							<view class="context2" style="margin-top: 0;margin-left: 5rpx;line-height: 35rpx;">
-								<text class="titletext" style="margin-left: 0;font-size:20rpx;">
+							<view class="context2" style="margin-top: 0;margin-left: 5rpx;line-height:40rpx;">
+								<text class="titletext" style="margin-left: 0;font-size:28rpx;">
 									需求：
 									<span>{{ xuqiu | fontxuqiu }}</span>
 								</text>
@@ -64,9 +64,9 @@ export default {
 		},
 		fontxuqiu(date) {
 			const length = date.length;
-			if (length > 38) {
+			if (length > 30) {
 				var str = '';
-				str = date.substring(0, 38) + '...';
+				str = date.substring(0, 30) + '...';
 				return str;
 			} else {
 				return date;
