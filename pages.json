@@ -123,6 +123,7 @@
 			"path": "pages/message/start-msg",
 			"style": {
 				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh":true,
 				"navigationBarTitleText": " 创客茶馆",
 				"navigationBarBackgroundColor": "#81b991",
 				"navigationStyle": "custom"

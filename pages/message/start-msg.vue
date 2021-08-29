@@ -11,7 +11,7 @@
 			<swiper-item>
 				<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'">
 					<view>
-						<view class="uni-list">
+						<!-- <view class="uni-list">
 							<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item, index) in dataList" @click="jumpToTargetView(item)">
 								<view class="uni-media-list ">
 									<view class="uni-media-list-logo">
@@ -23,7 +23,15 @@
 									</view>
 								</view>
 							</view>
-						</view>
+						</view> -->
+						<template v-if="dataList.length > 0">
+							<block v-for="(item,index) in dataList" :key="index">
+								<msg-list :item="item" :index="index"></msg-list>
+							</block>
+						</template>
+						<template v-else>
+							<none></none>
+						</template>
 					</view>
 				</scroll-view>
 			</swiper-item>
@@ -151,10 +159,38 @@
 </template>
 <script>
 import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue';
-
+import msgList from '@/components/msg-list.vue';
+import none from '@/components/none.vue';
+const demo = [{
+			userimg:'../../static/img/im/face/face_11.jpg',
+				username:'曹怡',
+				updatetime:'16:45',
+				message:'今天下午去万达广场,咱们去唱KTV吧!',
+				noread:5,
+			},{
+				userimg:'../../static/img/im/face/face_11.jpg',
+				username:'邓家佳',
+				updatetime:'12:40',
+				message:'今天下午去万达广场,咱们去唱KTV吧!',
+				noread:3,
+			},{
+				userimg:'../../static/img/im/face/face_11.jpg',
+				username:'王天怡',
+				updatetime:'7:10',
+				message:'Flex布局将成为未来布局的首选方案。本文介绍Flex布局的语法。',
+				noread:7,
+			},{
+				userimg:'../../static/img/im/face/face_11.jpg',
+				username:'李毅佳',
+				updatetime:'1:20',
+				message:'今天下午去万达广场,咱们去唱KTV吧!',
+				noread:0,
+			}];
 export default {
 	components: {
-		uniSegmentedControl
+		uniSegmentedControl,
+		msgList,
+		none,
 	},
 	data() {
 		return {
@@ -184,7 +220,7 @@ export default {
 	},
 	onLoad() {
 		//this.getteaHouse()
-		this.dataList = [{ title: '张三', content: '在哪里啊？' }, { title: '李四', content: '天气怎么这么热啊？' }, { title: '王五', content: '什么情况？' }];
+		// this.dataList = [{ title: '张三', content: '在哪里啊？' }, { title: '李四', content: '天气怎么这么热啊？' }, { title: '王五', content: '什么情况？' }];
 		uni.getSystemInfo({
 			success:res=>{
 				this.scrollH =res.windowHeight - uni.upx2px(120);
@@ -199,6 +235,10 @@ export default {
 				console.log(this.productList);
 			}
 		});
+		this.dataList=demo;
+	},
+	onPullDownRefresh() {
+		this.refresh();
 	},
 	methods: {
 		// getteaHouse(){
@@ -210,6 +250,12 @@ export default {
 		// 		}
 		// 	});
 		// },
+		refresh(){
+			setTimeout(()=>{
+				this.dataList = demo;
+				uni.stopPullDownRefresh();
+			},1000)
+		},
 		jumpToTargetView(item) {
 			uni.navigateTo({
 				url: '../chat/view/pangugle-chat'
@@ -453,4 +499,12 @@ export default {
 		background-color:#f5f5f7;
 		font-weight:500;
 	}
+.text-ellipsis{
+	/* #ifndef APP-PLUS-NVUE	 */
+	overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+	/* #endif */
+	/* #ifdef APP-PLUS-NVUE	 */
+	lines:1;
+	/* #endif */
+}
 </style>
