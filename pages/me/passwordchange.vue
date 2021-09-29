@@ -25,6 +25,9 @@
 				return this.oldpassword == '' || this.newpassword == '' || this.renewpassword == '';
 			}
 		},
+		onLoad() {
+			console.log(this.$store.state.token);
+		},
 		methods:{
 			check(){
 				if(this.newpassword !== this.renewpassword){
@@ -40,7 +43,33 @@
 				if(!this.check()){
 					return;
 				}
-				console.log('提交成功')
+				uni.request({
+					url:'/api/user/changePassword',
+					method:'POST',
+					header:{
+						'content-type':"application/json",
+						'authorization':this.$store.state.token,
+					},
+					data: {
+					    password:this.newpassword,
+					},
+					success: res => {
+						console.log(res);
+						console.log(this.newpassword)
+						uni.showToast({
+							title:'修改密码成功',
+							icon:'none'
+						})
+						// this.productList = res.data.items;
+						// console.log(this.articalList);
+					},
+					fail:res =>{
+						uni.showToast({
+							title:'接口请求失败，稍后再试试',
+							icon:'none'
+						})
+					}
+				})
 			}
 		}
 	}

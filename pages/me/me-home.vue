@@ -1,16 +1,16 @@
 <template>
 	<view >
 		<view class="metop">
-			<view class="hreeng1" v-if="loginsta">
+			<view class="hreeng1" v-if="loginStatus">
 				<view class="hreengtop">
-					<image class="hreengtop1" src="../../static/img/im/face/face_11.jpg"></image>
+					<image class="hreengtop1" :src="avator"></image>
 				</view>	
-				<view class="hreengname" >尚虹霖</view>
+				<view class="hreengname" >{{user.name}}</view>
 				<view class="hreengwallat" @click="gobuscard"><b>名片夹</b></view>
-				<image class="hreengicon" style="" src="../../static/icon/all.png" @click="gosettings"/>
-				<view class="hreenggrape" @click="grades">积分：200</view>
+				<image class="hreengicon" src="../../static/icon/all.png" @click="gosettings"/>
+				<view class="hreenggrape" @click="grades">积分：{{user.account}}</view>
 			</view>
-			<view class="hreeng1" v-if="!loginsta">
+			<view class="hreeng1" v-if="!loginStatus">
 				<view class="hreenglogin" @click="golog">手机登录</view>
 			</view>
 		</view>
@@ -158,6 +158,7 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex'
 	export default{
 		data() {
 			return {
@@ -178,7 +179,6 @@
 				tab_current: 0,
 				disk_list: [],
 				showPass: false,
-				loginsta: true,
 				form_network_disk: {
 					username: '',
 					password: '',
@@ -186,6 +186,19 @@
 				},
 				scoreInto:'',
 			};
+		},
+		computed:{
+			...mapState({
+				loginStatus:state=>state.loginStatus,
+				user:state=>state.user,
+				//写法二
+				// user:function(state){
+				// 	return this.str+':'+state.user;
+				// }
+			}),
+			avator(){
+				return this.user.headPhoto ? this.user.headPhoto : '../../static/默认头像.png'
+			}
 		},
 		onLoad() {
 			// console.log(getApp().globalData.tabindex);

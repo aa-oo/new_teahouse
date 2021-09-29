@@ -2,6 +2,7 @@
 	<view>
 		
 		<view class="mesetting1" style="border-bottom: 1px solid #DCDCDC;" @click="siginin">账号与安全 <text style="float:right">></text></view>
+		<view class="mesetting1" style="border-bottom: 1px solid #DCDCDC;" @click="phone">手机号绑定 <text style="float:right">></text></view>
 		<view class="mesetting1" @click="siginin1"> 编辑信息 <text style="float:right" >></text></view>
 		<view class="mesetblank"></view>
 		<view class="mesetting1"@click="writein"> 写文章 <text style="float:right" >></text></view>
@@ -48,9 +49,21 @@
 				})
 			},
 			backout(){
-				uni.navigateTo({
-					url:'../index/login'
-				})
+				uni.showModal({
+					content: '是否要退出登录？',
+					success:(res)=>{
+						if (res.confirm) {
+							this.$store.commit('logout')
+							// uni.navigateTo({
+							// 	url:'../index/login'
+							// })
+							uni.navigateBack({
+								delta:1
+							})
+						}
+					}
+				});
+				
 			},
 			helpone(){
 				uni.showToast({

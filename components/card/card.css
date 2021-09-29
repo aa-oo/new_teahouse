@@ -27,21 +27,31 @@
 	margin-bottom: 30rpx;
 }
 .content{
-	display: flex;
-	align-items: center;
-	margin-left: 30rpx;
+	/* display: flex; */
+	/* align-items: center; */
+	width:90%;
+	margin:0 auto;
 	font-size: 34rpx;
-	
+	height:150rpx;
+	/* border:1px solid #0077AA; */
 }
 .guild{
-	/* overflow: hidden; */
-	 -webkit-line-clamp: 3;
-	 text-overflow: ellipsis;
-	 display: -webkit-box;
-	 -webkit-box-orient: vertical;
+	 /* display: -webkit-box; */
+	 /* -webkit-line-clamp:4; *//* 1，2一起用只能显示几行 */
+	 /* text-overflow: ellipsis; */ /* 多余文字省略号代替 */
+	 /* -webkit-box-orient: vertical; */
 	overflow: hidden;
-	line-height: 50rpx;
-	padding-right:10px;
+	line-height:50rpx;
+	padding:0 10rpx;
+	/* border:1px solid red; */
 }
-
+.contents{
+	height:150rpx;
+	width:90%;
+	/* border:1px solid red; */
+	display:flex;
+	flex-wrap: wrap-reverse;
+	overflow:hidden;
+	margin:0px auto;
+}
 

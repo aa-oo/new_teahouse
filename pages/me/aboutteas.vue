@@ -29,9 +29,10 @@
 		
 		
 	</view>
-	    <view style="width:100%;background-color:#81B991;display:flex;flex-direction: column;font-size:28rpx;color:#f5f5f7;align-items: center;height:120rpx;justify-content: center;">
+	    <view style="width:100%;background-color:#81B991;display:flex;flex-direction: column;font-size:28rpx;color:#f5f5f7;
+		align-items: center;height:120rpx;justify-content: center;position:fixed;bottom:0px;">
 			<view >版权所有&copy;华北电力大学Dre@mTech工作组</view>
-		    <view >管理员信箱联系：shl635306159@163.com</view>
+		    <view >管理员邮箱联系：shl635306159@163.com</view>
 		</view>
 	    
 	</view>

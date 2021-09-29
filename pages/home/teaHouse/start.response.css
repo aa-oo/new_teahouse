@@ -49,6 +49,8 @@
   width: 116.88rpx;
   height: 116.88rpx;
   overflow: hidden;
+ /* max-height:100%;
+  max-width:100%; */
 }
 /* .name{
 	font-size: 20rpx;

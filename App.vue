@@ -1,8 +1,9 @@
 <script>
 	export default {
-		// onLaunch: function() {  
-		// 	console.log('App Lanch')
-		// },
+		onLaunch: function() {  
+			// console.log('App Lanch')
+			this.$store.commit('initUser')
+		},
 		// onShow: function() {
 		// 	console.log('App Show')
 		// },
@@ -11,7 +12,7 @@
 		// },
 		globalData:{
 			tabindex:0
-		}
+		},
 	}
 </script>
 

@@ -1,24 +1,26 @@
 <template>
-	<view>
+	<view >
 		<!-- 名该片 -->
-		<view class="buscardTop">
+		<view class="buscardTop" >
 			<div class="hm-friend-information-card">
-				<view class="box2" style="margin-top: 45rpx;position: relative">
-					<view class="buscardright"><image class="buscardImg" :src="productList[1].image_src" />
+				<view class="box2" style="margin-top: 45rpx;position: relative"  >
+					<view class="buscardright"><image class="buscardImg" :src="peopledetail.headPhoto" />
 						<!-- <view v-if="collected" class="collectcard" >已收藏</view> -->
 					</view>
 					<view class="buscardleft">
 						<view class="context">
-							<text class=""style="font-size:22px;">Easter</text>
-							<text class="titletext"style="font-size:16px;padding:0.1px 10px;">上海</text>
-							<image class="buscardicon" src="../../../static/icon/nv1.png" />
+							<text class=""style="font-size:22px;">{{ peopledetail.name }}</text>
+							<text class="titletext"style="font-size:16px;padding:0.1px 10px;">{{peopledetail.address}}</text>
+							<!-- <image class="buscardicon" src="../../../static/icon/nv1.png" /> -->
+							<image v-if="peopledetail.gender ==='男'" class="buscardicon" style="width:50rpx;height:50rpx" src="../../../static/icon/nv1.png" />
+							<image  v-if="peopledetail.gender ==='女'" class="buscardicon" src="../../../static/icon/女.png" />
 							<!-- <image class="buscardicon" src="../../../static/icon/nv.png" /> -->
 						</view>
 						<view class="context">
 							<image class="buscardicon" style="margin-left: 0;" src="../../../static/icon/company.png" />
-							<text class="titletext">国家电网公司</text>
+							<text class="titletext">{{peopledetail.company}}</text>
 						</view>
-						<view class="context"><text class="titletext" style="margin-left: 0;">行业 :&emsp;电子商务</text></view>
+						<view class="context"><text class="titletext" style="margin-left: 0;">行业 :&emsp;{{peopledetail.work}}</text></view>
 						<!-- <view class="context"><text class="titletext" style="margin-left: 0;">需求 :&emsp;电子商务</text></view> -->
 						<view class="context" style="margin-bottom: 20rpx;margin-top:1rpx;">
 							<text class="titletext" style="margin-left: 0;margin-top:-10px;">标签：</text>
@@ -30,7 +32,7 @@
 				</view>
 			</div>
 		</view>
-		<view class="buscardBom">
+		<view class="buscardBom" >
 			<view class="buscardBomtitle">
 				<text style="	border-bottom:1px solid #81b991 ;padding-bottom: 5rpx;">个人信息</text>
 			</view>
@@ -41,10 +43,10 @@
 						联系方式
 					</view>
 					<view class="context" style="font-size:30rpx;" >
-						手机号：<span style="color:#81b991">112345678901</span>
+						手机号：<span style="color:#81b991">{{peopledetail.privatePhone?'电话信息已隐藏':peopledetail.phone}}</span>
 					</view>
 					<view class="context" style="margin-bottom: 25rpx;font-size:30rpx;">
-						邮&emsp;箱：<span style="color:#81b991;">635306159@163.com</span>
+						邮&emsp;箱：<span style="color:#81b991;">{{peopledetail.email}}</span>
 					</view>
 					</view>
 				</div>
@@ -64,7 +66,7 @@
 							需求:
 						</view>
 						<view class="" style="margin-left: 30rpx;margin-right: 20rpx;color: #82878a;margin-bottom: 25rpx;" >
-							1-了解国内互联网最新动态2-知识分享类内容分发形式3-社群高效高能的组织形式4-认识同频的国内外华人朋友
+							{{peopledetail.need}}
 						</view>
 					</view>
 					<view class="skill" >
@@ -72,7 +74,7 @@
 							技能:
 						</view>
 						<view class="" style="margin-left: 30rpx;margin-right: 20rpx;color: #82878a;margin-bottom: 25rpx;" >
-							1-企业管理咨询、管理培训2-企业人才开发、培训体系搭建3-个人学习能力提升、职业生涯规划4-全世界跑马拉松比赛、环球旅行
+							{{peopledetail.skill}}
 						</view>
 					</view>
 					</view>
@@ -92,15 +94,23 @@
 export default {
 	data() {
 		return {
-			productList: [],
+			peopledetail: [],
 			collected:false,
 			isfriend:false,
 			iscollect:false,
+			peopleid:'',
+			strength:[],
 		};
 	},
-	onLoad() {
+	onLoad(e) {
+		if(e.detail){
+			this.peopleid = JSON.parse(e.detail)
+			console.log(this.peopleid)
+		}
 		// console.log(getApp().globalData.tabindex);
+		console.log(this.$store.state.token)
 		this.getbusinessCard();
+		// var author= JSON.stringify(this.$store.state.token)
 		// uni.setNavigationBarTitle({
 		//     title:'个人信息'
 		// })
@@ -108,19 +118,31 @@ export default {
 	methods: {
 		getbusinessCard() {
 			uni.request({
-				url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
+				url:'/api/user/info',
+				method:'POST',
+				header:{
+					'content-type':"application/json",
+					'authorization':this.$store.state.token,
+				},
+				data: {
+				    userId:this.peopleid,
+					name:''
+				},
 				success: res => {
-					this.productList = res.data.message;
-					console.log(this.productList);
+					console.log('名片详细信息如下');
+					console.log(res)
+					this.peopledetail = res.data.obj;
+					console.log(this.peopledetail)
+					
 				}
 			});
+		},
+		addFriend(){},
+		collectCard(){
+		// this.collected=true
+			console.log("11")
 		}
 	},
-	addFriend(){},
-	collectCard(){
-		// this.collected=true
-		console.log("11")
-	}
 };
 </script>
 

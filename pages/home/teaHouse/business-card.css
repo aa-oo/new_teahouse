@@ -1,11 +1,12 @@
 .buscardImg{
 	border-radius: 10rpx;
-	width: 200rpx;
-	height: 100rpx;
+	width: 180rpx;
+	height: 180rpx;
 	overflow: hidden;
 	position: absolute;
 	top:20rpx;
 	right:35rpx;
+	border-radius:50%;
 }
 .buscardright{
 	/* position: relative; */

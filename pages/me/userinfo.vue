@@ -139,8 +139,26 @@
 					sizeType:['compressed'],
 					sourceType:["album","camera"],
 					success: (res)=> {
-						console.log(res);
+						// console.log(res);
 						this.userpic = res.tempFilePaths[0];
+						uni.uploadFile({
+						            url: '/api/user/headPhoto',
+						            filePath: res.tempFilePaths[0],
+						            name: 'picturePath',
+						            header:{
+						            	'content-type':"application/json",
+						            	'authorization':this.$store.state.token,
+						            },
+						            success: (uploadFileRes) => {
+						                if(uploadFileRes.statusCode !==200){
+											return uni.showToast({
+												title: '上传头像失败',
+												icon:'none'
+											});
+										}
+										let data =JSON.parse(uploadFileRes.data)
+						            }
+						});
 					}
 				  })
 			  },

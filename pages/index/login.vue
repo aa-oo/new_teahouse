@@ -4,21 +4,21 @@
 		<!-- 手机号登录 -->
 		<template v-if="!status">
 		<view class="loginput">
-			<view class="logput1">
-			    <input class="linput" name="userName" @input="userNameInput" type="number" v-model="usercode"  maxlength="11" placeholder="请输入手机号" confirm-type="done" confirm-hold="true"/>
+			<view class="logput1"><!-- @input="userNameInput" -->
+			    <input class="linput" name="userName"  type="number" v-model="usercode"  maxlength="11" placeholder="请输入手机号" confirm-type="done" confirm-hold="true"/>
 			</view> 
 			<view class="logput1" style="margin-top:15px;">
 			    <input class="linput" name="password" password  v-model="password" placeholder="请输入密码" confirm-type="done" confirm-hold="true" />
 			</view>
-			<button class="logbutton" @click="sublog" :disabled="isAble">登录</button>
+			<button class="logbutton" @click="sublog" :disabled="disabled" :loading="loading">{{loading ? '登录中...' : '登录'}}</button>
 		</view>
 		</template>	
 		<!-- 手机验证码登录 -->
 		<template v-else>
 		<view class="loginput">
 			<view class="logput1">
-			    <!-- <view >+86</view> -->
-			    <input class="linput" name="userName" @input="userNameInput"v-model="phone" type="number" maxlength="11" placeholder="请输入手机号" confirm-type="done" confirm-hold="true"/>
+			    <!-- <view >+86</view>   @input="userNameInput" -->
+			    <input class="linput" name="userName" v-model="phone" type="number" maxlength="11" placeholder="请输入手机号" confirm-type="done" confirm-hold="true"/>
 			</view> 
 			<view class="logput1" style="margin-top:15px;" ><!-- style="width:70%" -->
 				<view class="phonoe-code" >
@@ -27,7 +27,7 @@
 				</view>
 			   
 			</view>
-			<button class="logbutton" @click="sublog" type="" :disabled="isAble">登录</button>
+			<button class="logbutton" @click="sublog" :disabled="disabled" >登录</button>
 		</view>
 		</template>	
 		
@@ -59,7 +59,7 @@
 		},
 		data() {
 			return {
-				isAble: true,
+				// isAble: true,
 				userNameInp : '',
 				userNameLen : '',
 				loadFlag : false,
@@ -70,6 +70,7 @@
 				phone:'',
 				code:'',
 				codetime:0,
+				loading:false,
 			}
 		},
 		onLoad() {
@@ -78,40 +79,86 @@
 		},
 		computed:{
 			disabled(){
-				if((this.usercode === '' || password === '')||(this.phone === ''|| this.code === '')){
+				if((this.usercode === '' || this.password === '') &&
+				(this.phone === ''|| this.code === '')){
 					return true;
-					// 
 				}
 				return false;
 			}
 		},
 		methods:{
-			userNameInput(e){
-					// console.log(e);
-					this.userNameInp = e.target.value;
-					this.userNameLen = e.target.cursor;
-					if(this.userNameLen>0){
-						this.isAble = false
-					}else{
-						this.isAble = true
-					}
-				},
-			sublog(e){
-				// this.loadFlag = true;
-				// this.isAble = true;
-				// var _this = this;
-				// setTimeout(function(){
-				// 	// uni.hideLoading()
-				// 	uni.showToast({
-				// 		title: "正在登录中..."
-				// 	});
-				// 	_this.loadFlag = false;
-				// 	_this.isAble = false;
-				// 	},2000)
-				uni.showToast({
-						title: 'denglu',
+			// userNameInput(e){
+			// 		this.userNameInp = e.target.value;
+			// 		this.userNameLen = e.target.cursor;
+			// 		if(this.userNameLen>0){
+			// 			this.isAble = false
+			// 		}else{
+			// 			this.isAble = true
+			// 		}
+			// 	},
+			sublog(){
+				this.loading=true;
+				uni.request({
+					url:'/api/login',
+					method:'POST',
+					header:{
+						'content-type':"application/json",
+					},
+					data: {
+						password:this.password,
+						phone:this.usercode,
+					},
+					success: res => {
+						//修改vuex的state
+						console.log(res);
+						this.loading=false;
+						if(res.statusCode==500){
+							uni.showToast({
+								title: '账号或密码错误',
+								icon:'none'
+							});
+							this.usercode='';
+							this.password='';
+							return;
+						}
+						else if(res.statusCode==200){
+							if(res.data.state==200){
+								this.$store.commit('Login',res.data.obj.user);
+								this.$store.commit('Token',res.data.obj.token);
+								console.log("个人token如下所示")
+								console.log(res.data.obj.token)
+							//持久化存储
+							// 提示和跳转
+								uni.navigateBack({
+									delta:1,
+								});
+								uni.showToast({
+									title: '登陆成功',
+									icon:'none'
+								});
+							}
+							else{
+								uni.showToast({
+									title:'账号或密码错误',
+									icon:'none'
+								});
+								this.usercode='';
+								this.password='';
+								return;
+							}
+							
+						}
+						
+						// this.productList = res.data.items;
+					},
+					fail:res=>{
+						this.loading=false;
+						uni.showToast({
+						title: '该用户不存在',
 						icon:'none'
-					});
+								});
+					}
+				});
 			},
 			subsign() {
 				// uni.navigateTo({
