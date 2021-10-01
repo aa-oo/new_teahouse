@@ -4,7 +4,7 @@
 		<view class="buscardTop" >
 			<div class="hm-friend-information-card">
 				<view class="box2" style="margin-top: 45rpx;position: relative"  >
-					<view class="buscardright"><image class="buscardImg" :src="peopledetail.headPhoto" />
+					<view class="buscardright" ><image style="margin-top:-10rpx;" class="buscardImg" :src="peopledetail.headPhoto" />
 						<!-- <view v-if="collected" class="collectcard" >已收藏</view> -->
 					</view>
 					<view class="buscardleft">
@@ -22,11 +22,9 @@
 						</view>
 						<view class="context"><text class="titletext" style="margin-left: 0;">行业 :&emsp;{{peopledetail.work}}</text></view>
 						<!-- <view class="context"><text class="titletext" style="margin-left: 0;">需求 :&emsp;电子商务</text></view> -->
-						<view class="context" style="margin-bottom: 20rpx;margin-top:1rpx;">
+						<view class="context" style="margin-bottom: 20rpx;margin-top:10rpx;">
 							<text class="titletext" style="margin-left: 0;margin-top:-10px;">标签：</text>
-							<text class="titletextadd">数据挖掘</text>
-							<text class="titletextadd">网站开发</text>
-							<text class="titletextadd">前端</text>
+							<text class="titletextadd" v-for="item in strength">{{strength.length === 0 ? '暂无标签' : item}}</text>
 						</view>
 					</view>
 				</view>
@@ -109,7 +107,8 @@ export default {
 		}
 		// console.log(getApp().globalData.tabindex);
 		console.log(this.$store.state.token)
-		this.getbusinessCard();
+		this.getbusinessCard()
+		this.isfriends()
 		// var author= JSON.stringify(this.$store.state.token)
 		// uni.setNavigationBarTitle({
 		//     title:'个人信息'
@@ -130,10 +129,33 @@ export default {
 				},
 				success: res => {
 					console.log('名片详细信息如下');
-					console.log(res)
 					this.peopledetail = res.data.obj;
 					console.log(this.peopledetail)
-					
+					for (let key in this.peopledetail.strengths){
+					  if(this.peopledetail.strengths[key].isSelect == true){
+					      let aa=this.peopledetail.strengths[key].strength
+					      this.strength.push(aa)
+					  }
+					}
+					console.log(this.strength.length)
+				}
+			});
+		},
+		isfriends(){
+			uni.request({
+				url:'/api/friend/isFriend',
+				method:'POST',
+				header:{
+					'content-type':"application/json",
+					'authorization':this.$store.state.token,
+				},
+				data: {
+				    friendId:this.peopleid,
+				},
+				success: res => {
+					console.log('是否是好友');
+					this.isfriend = res.data;
+					console.log(this.isfriend)
 				}
 			});
 		},
