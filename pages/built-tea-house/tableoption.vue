@@ -22,13 +22,13 @@
 			</view>
 			<view class="optionmid4">
 				<text>已收到</text>
-				<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">{{teaMes.invest}}</text>
-				<text class="bottext">
-					<span>&yen</span>
-					，来自
+				<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;margin-left: 10rpx;">{{teaMes.invest}}</text>
+				<text class="bottext" style="margin-left: 10rpx;">
+					<span> &yen</span>
+					，来自 
 				</text>
-				<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">{{teaMes.investNum}}</text>
-				<text class="bottext">茶友</text>
+				<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;margin-left: 10rpx;">{{teaMes.investNum}}</text>
+				<text class="bottext" style="margin-left: 10rpx;"> 茶友</text>
 				<text class="optmidxq" @click="gotodetail">详情</text>
 				<text class="optmidjl" @click="gotodoc">记录</text>
 			</view>
@@ -66,6 +66,7 @@ export default {
 			teaDel:'删除茶屋',
 			teaMes: [],
 			teaPeo:[],
+			teaArticle:[],
 			peopledetails:'',
 			teadetail: 'wikimedia是一项全球运动，其使命是将免费的教育内容带给世界。wikimedia是一项全球运动，其使命是将免费的教育内容带给世界。'
 		};
@@ -88,6 +89,7 @@ export default {
 		}
 		this.getteaPeo()
 		this.getteaMes();
+		this.getroomArticle()
 	},
 
 	methods: {
@@ -128,6 +130,27 @@ export default {
 					this.teaMes = res.data;
 					console.log('茶屋信息');
 					console.log(this.teaMes);
+				}
+			});
+		},
+		getroomArticle() {
+			uni.request({
+				url: '/api/roomPaper/getPaper',
+				method: 'GET',
+				header: {
+					'content-type': 'application/json',
+					authorization: this.$store.state.token
+				},
+				data: {
+					page: 0,
+					rows: 0,
+					roomId: this.tea_id
+				},
+				success: res => {
+					// console.log(JSON.stringify(res));
+					this.teaArticle = res.data;
+					console.log('文章信息');
+					console.log(this.teaArticle);
 				}
 			});
 		},
@@ -246,4 +269,5 @@ export default {
 
 <style>
 @import './tableoption.css';
+/* @import '../home/teaHouse/start.response.css'; */
 </style>

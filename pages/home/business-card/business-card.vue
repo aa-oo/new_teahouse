@@ -191,9 +191,9 @@ export default {
 						'authorization':this.$store.state.token,
 					},
 					data: {
-					    toId:this.peopleid,
-						message:'',
-						name:''
+					    friendId:this.peopleid,
+						// message:'',
+						// name:''
 					},
 					success: res => {
 						this.isfriend = false;

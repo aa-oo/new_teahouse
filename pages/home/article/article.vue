@@ -63,8 +63,8 @@
 			},
 			delArticle(){
 				uni.request({
-					url:'/api/paper/disable/'+this.articleid,
-					method:'POST',
+					url:'/api/paper/deletePaper/'+this.articleid,
+					method:'GET',
 					header:{
 						'content-type':"application/json",
 						'authorization':this.$store.state.token,

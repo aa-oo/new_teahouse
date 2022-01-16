@@ -34,7 +34,7 @@
 					<view class="swiper-item">{{item.name}}</view>
 				</swiper-item> -->
 				<swiper-item  >
-					<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'"  @scrolltolower="loadmore()" @scrolltoupper="loadfront()" upper-threshold='50'>
+					<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'"  @scrolltolower="loadmore()"  upper-threshold='50'>
 						<view>
 							<div class="hm-friend-information-card">
 								<view v-for="item in productList">
@@ -66,7 +66,7 @@
 				</swiper-item>
 				<swiper-item >
 					
-					<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'"  @scrolltolower="loadmore()" @scrolltoupper="loadfront()" upper-threshold='100'>
+					<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'"  @scrolltolower="loadmore()"  upper-threshold='100'>
 					<view>
 						<div class="hm-friend-information-card" >
 							<view v-for="item in teajoinList">
@@ -252,11 +252,19 @@
 						},
 						success: res => {
 							console.log("我发起的茶桌")
-							this.productList = res.data.items;
-								
-							if(this.productList.length<4){
+							console.log(res.data)
+							
+							if(this.productList.length==res.data.total){
 								this.mepage--
 							}
+							else{
+								this.productList=[...this.productList,...res.data.items]
+							}
+							
+							// this.productList = res.data.items;
+							// if(this.productList.length<4){
+							// 	this.mepage--
+							// }
 							console.log(this.productList)
 							
 							// this.getteaFriend()
@@ -281,11 +289,17 @@
 						success: res => {
 							console.log("我加入的茶桌")
 							console.log(res)
-							// this.teajoinList=[...this.teajoinList,...res.data.items]
-							this.teajoinList = res.data.items;
-							if(this.teajoinList.length<4){
+							
+							if(this.teajoinList.length==res.data.total){
 								this.joinpage--
 							}
+							else{
+								this.teajoinList=[...this.teajoinList,...res.data.items]
+							}
+							// this.teajoinList = res.data.items;
+							// if(this.teajoinList.length<4){
+							// 	this.joinpage--
+							// }
 							console.log(this.teajoinList)
 							
 							// this.getteaFriend()
@@ -360,19 +374,19 @@
 					}
 				}, 2000);
 			},
-			loadfront(){
-				console.log("loadfront")
-				if (this.tabindex==0) {
+			// loadfront(){
+			// 	console.log("loadfront")
+			// 	if (this.tabindex==0) {
 					
-					this.mepage = 1;
-					this.getteaHouse();
-				} 
-				if(this.tabindex==1) {
-					this.joinpage = 1;
-					this.getteaJoin();
-				}
+			// 		this.mepage = 1;
+			// 		this.getteaHouse();
+			// 	} 
+			// 	if(this.tabindex==1) {
+			// 		this.joinpage = 1;
+			// 		this.getteaJoin();
+			// 	}
 				
-			}
+			// }
 				
 			},
 		filters: {

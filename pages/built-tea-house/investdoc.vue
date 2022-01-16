@@ -183,7 +183,9 @@ export default {
 			});
 		},
 		sub() {
+			var that=this
 			console.log(this.investname+this.investmoney+this.date)
+			console.log(this.teaPeo[that.index-1].userId)
 			uni.request({
 				url: '/api/invest/create',
 				method: 'POST',
@@ -194,7 +196,9 @@ export default {
 				data: {
 					roomId: this.tea_id,
 					money:this.investmoney,
-					// name:this.investname,
+					createTime:this.date,
+					userId:this.teaPeo[that.index-1].userId,
+					name:this.investname,
 					
 				},
 				success: res => {

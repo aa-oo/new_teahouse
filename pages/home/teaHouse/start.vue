@@ -42,12 +42,12 @@
 									</view>
 									<view class="bot">
 										<text>已收到</text>
-										<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">{{ item.investNum }}</text>
+										<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">{{ item.invest}}</text>
 										<text class="bottext">
 											<span>&yen</span>
 											，来自
 										</text>
-										<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">{{ item.invest }}</text>
+										<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">{{ item.investNum  }}</text>
 										<text class="bottext">茶友</text>
 										<text class="botbtn" @click="addtea(item)">+加入茶桌</text>
 									</view>
@@ -275,6 +275,7 @@ export default {
 	},
 	onShow() {
 		this.getteaHouse();
+		this.getteaArticle();
 	},
 	onLoad() {
 		// console.log(getApp().globalData.tabindex);
