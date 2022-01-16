@@ -125,10 +125,13 @@
 							if(res.data.state==200){
 								this.$store.commit('Login',res.data.obj.user);
 								this.$store.commit('Token',res.data.obj.token);
-								console.log("个人token如下所示")
+								console.log("个人token如下所示111")
+								
 								console.log(res.data.obj.token)
 							//持久化存储
 							// 提示和跳转
+								
+
 								uni.navigateBack({
 									delta:1,
 								});

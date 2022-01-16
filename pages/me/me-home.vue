@@ -34,56 +34,65 @@
 					<view class="swiper-item">{{item.name}}</view>
 				</swiper-item> -->
 				<swiper-item  >
-					<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'" >
+					<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'"  @scrolltolower="loadmore()" @scrolltoupper="loadfront()" upper-threshold='50'>
 						<view>
 							<div class="hm-friend-information-card">
 								<view v-for="item in productList">
 									<view class="box1">
-										<view class="title"><text>维基媒体基金会</text></view>
+										<view class="title"><text>{{item.name}}</text></view>
 										<view class="mid">
-											<image class="primary" :src="item.image_src" />
+											<image class="primary" :src="item.photo" />
 											<view class="side">
-												<view class="namClass"><text class="name">{{teadetail | fontNumber}}</text></view>
+												<view class="namClass"><text class="name">{{item.introduce | fontNumber}}</text></view>
 											</view>
 										</view>
 										<view class="bot">
 											<text>已收到</text>
-											<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">3000</text>
+											<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">{{item.invest}}</text>
 											<text class="bottext"><span>&yen</span>，来自</text>
-											<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">4</text>
+											<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">{{item.investNum}}</text>
 											<text class="bottext">茶友</text>
-											<text class="botbtn" @click="addtea" >进入茶桌</text>
+											<text class="botbtn" @click="addtea(item)" >进入茶桌</text>
 										</view>
 									</view>
 								</view>
 							</div>
+							<!-- 上拉加载 -->
+							<view style="display:flex;align-items: center;justify-content: center;padding:20rpx;">
+								<text style="color:#9e9e9e">{{ loadmsg }}</text>
+							</view>
 						</view>
 					</scroll-view>
 				</swiper-item>
 				<swiper-item >
-					<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'" >
+					
+					<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'"  @scrolltolower="loadmore()" @scrolltoupper="loadfront()" upper-threshold='100'>
 					<view>
 						<div class="hm-friend-information-card" >
-							<view v-for="item in productList">
+							<view v-for="item in teajoinList">
 								<view class="box1">
-									<view class="title"><text>Dre@mTech工作室</text></view>
+									<view class="title"><text>{{item.name}}</text></view>
 									<view class="mid">
-										<image class="primary" :src="item.image_src" />
+										<image class="primary" :src="item.photo" />
 										<view class="side">
-											<view class="namClass"><text class="name">{{teadetail | fontNumber}}</text></view>
+											<view class="namClass"><text class="name">{{item.introduce | fontNumber}}</text></view>
 										</view>
 									</view>
 									<view class="bot">
 										<text>已收到</text>
-										<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">254530</text>
+										<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">{{item.invest}}</text>
 										<text class="bottext"><span>&yen</span>，来自</text>
-										<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">53</text>
+										<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">{{item.investNum}}</text>
 										<text class="bottext">茶友</text>
-										<text class="botbtn" @click="addtea" >进入茶桌</text>
+										<text class="botbtn" @click="addtea(item)" >进入茶桌</text>
 									</view>
 								</view>
 							</view>
 						</div>
+						<!-- 上拉加载 -->
+						<view style="display:flex;align-items: center;justify-content: center;padding:20rpx;">
+							<text style="color:#9e9e9e">{{ loadmsg }}</text>
+						</view>
 					</view>
 					</scroll-view>
 				</swiper-item>
@@ -168,6 +177,9 @@
 				teadetail:'wikimedia是一项全球运动，其使命是将免费的教育内容带给世界。wikimedia是一项全球运动，其使命是将免费的教育内容带给世界。',
 				xuqiu:'每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。边框的间隔大一倍。',
 				productList: [],
+				teajoinList:[],
+				mepage:1,
+				joinpage:1,
 				tabs: ['我发起的', '我参与的'],
 				tabbars:[{
 					name:"我发起的",
@@ -177,6 +189,7 @@
 				],
 				tabindex:0,
 				tab_current: 0,
+				loadmsg:'上拉加载更多',
 				disk_list: [],
 				showPass: false,
 				form_network_disk: {
@@ -200,9 +213,20 @@
 				return this.user.headPhoto ? this.user.headPhoto : '../../static/默认头像.png'
 			}
 		},
-		onLoad() {
-			// console.log(getApp().globalData.tabindex);
+		onShow() {
 			this.getteaHouse();
+			this.getteaJoin();
+		},
+		onPullDownRefresh() {},
+		onLoad() {
+			console.log(this.user)
+			// console.log(getApp().globalData.tabindex);
+			console.log(this.$store.state.token);
+			
+			// this.getteaHouse();
+			// this.getteaJoin();
+			
+			
 			uni.getSystemInfo({
 				success:res=>{
 					this.scrollH =res.windowHeight - uni.upx2px(600);
@@ -212,11 +236,60 @@
 		},
 		methods: {
 				getteaHouse(){
+					console.log("jinlai")
 					uni.request({
-						url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
+						url:'/api/tearoom/getCreate',
+						method:'GET',
+						header:{
+							'content-type':"application/json",
+							'authorization':this.$store.state.token,
+						},
+						data: {
+							key:'',
+							name:'',
+							page:this.mepage,
+							rows:4
+						},
 						success: res => {
-							this.productList = res.data.message;
-							console.log(this.productList);
+							console.log("我发起的茶桌")
+							this.productList = res.data.items;
+								
+							if(this.productList.length<4){
+								this.mepage--
+							}
+							console.log(this.productList)
+							
+							// this.getteaFriend()
+					
+						}
+					});
+				},
+				getteaJoin(){
+					uni.request({
+						url:'/api/tearoom/join',
+						method:'GET',
+						header:{
+							'content-type':"application/json",
+							'authorization':this.$store.state.token,
+						},
+						data: {
+							key:'',
+							name:'',
+							page:this.joinpage,
+							rows:4
+						},
+						success: res => {
+							console.log("我加入的茶桌")
+							console.log(res)
+							// this.teajoinList=[...this.teajoinList,...res.data.items]
+							this.teajoinList = res.data.items;
+							if(this.teajoinList.length<4){
+								this.joinpage--
+							}
+							console.log(this.teajoinList)
+							
+							// this.getteaFriend()
+					
 						}
 					});
 				},
@@ -239,9 +312,10 @@
 						url:'./mesetting'
 					})
 				},
-				addtea(){
-					uni.redirectTo({
-						url:'../built-tea-house/teatable'
+				addtea(item){
+					console.log(this.tabindex)
+					uni.navigateTo({
+						url:'../built-tea-house/teatable?tea_id='+item.id +'&tea_name=' +item.name+'&tab_index=' +this.tabindex
 					})
 				},
 				gobuscard(){
@@ -269,7 +343,37 @@
 				},
 				onchangetab(e){
 					this.changtab(e.detail.current)
+				},
+			
+			loadmore() {
+				this.loadmsg = '加载中...';
+				setTimeout(() => {
+					this.loadmsg = '上拉更新推荐';
+					// console.log(this.flag)
+					if (this.tabindex==0) {
+						this.mepage += 1;
+						this.getteaHouse();
+					} 
+					if(this.tabindex==1) {
+						this.joinpage += 1;
+						this.getteaJoin();
+					}
+				}, 2000);
+			},
+			loadfront(){
+				console.log("loadfront")
+				if (this.tabindex==0) {
+					
+					this.mepage = 1;
+					this.getteaHouse();
+				} 
+				if(this.tabindex==1) {
+					this.joinpage = 1;
+					this.getteaJoin();
 				}
+				
+			}
+				
 			},
 		filters: {
 			fontNumber (date) {

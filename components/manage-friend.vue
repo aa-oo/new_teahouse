@@ -4,27 +4,28 @@
 			<view class="box1" style="height: 260rpx;width: 700rpx;display: flex;flex-direction: row;flex-wrap: nowrap;">
 				<view class="box2" style="display: flex;flex-direction: row;">
 					<view class="slide-left" style="margin: auto 10rpx;">
-						<image class="primary" :src="friendList.image_src" style="width:130rpx;height: 130rpx;border-radius: 50% ;" />
+						<image class="primary" :src="friendList.headPhoto" style="width:130rpx;height: 130rpx;border-radius: 50% ;" />
 					</view>
 
 					<view class="side-right">
 						<view class="buscardleft" style="margin-left: 5rpx;">
 							<view class="context1" style="margin-left: 5rpx;margin-top:20rpx;font-size:48rpx;">
-								<text class="" style=" font-size:38rpx;">Easter</text>
-								<text class="titletext" style="font-size:28rpx;padding:0.1px 10px;">上海</text>
-								<image class="buscardicon" src="../static/icon/nv1.png" />
+								<text class="" style=" font-size:38rpx;">{{friendList.name}}</text>
+								<text class="titletext" style="font-size:28rpx;padding:0.1px 10px;">{{friendList.address}}</text>
+								<image v-if="friendList.gender ==='男'" class="buscardicon" style="width:50rpx;height:50rpx" src="../static/icon/nv1.png" />
+								<image  v-if="friendList.gender ==='女'" class="buscardicon" src="../static/icon/女.png" />
 							</view>
 							<view class="context" style="margin-top: 5rpx;margin-left: 5rpx;" >
 								<image class="buscardicon" style="margin-left: 0;" src="../static/icon/company.png" />
-								<text class="titletext" style="font-size:28rpx;margin-top: 0;">国家电网公司</text>
+								<text class="titletext" style="font-size:28rpx;margin-top: 0;">{{friendList.company}}</text>
 							</view>
 							<view class="context" style="margin-top: 0;margin-left: 5rpx;">
-								<text class="titletext" style="margin-left: 0;font-size: 28rpx;">行业：电子商务</text>
+								<text class="titletext" style="margin-left: 0;font-size: 28rpx;">行业：{{friendList.work}}</text>
 							</view>
 							<view class="context2" style="margin-top: 0;margin-left: 5rpx;line-height:40rpx;">
 								<text class="titletext" style="margin-left: 0;font-size:28rpx;">
 									需求：
-									<span>{{ xuqiu | fontxuqiu }}</span>
+									<span>{{ friendList.need | fontxuqiu }}</span>
 								</text>
 							</view>
 						</view>
@@ -39,7 +40,7 @@
 
 
 export default {
-	props:['friendList'],
+	props:['friendList',],
 	name: 'manageFriend',
 	data() {
 		return {

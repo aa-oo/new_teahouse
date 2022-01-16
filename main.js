@@ -5,6 +5,10 @@ import store from './store/index.js';
 Vue.prototype.$store = store
 Vue.config.productionTip = false
 
+//引入期请求库
+import $H from './common/request.js'
+Vue.prototype.$H=$H
+
 //权限验证
 Vue.prototype.checkAuth = (callback) =>{
 	//权限验证

@@ -38,6 +38,11 @@
 					url:'passwordchange'
 				})
 			},
+			phone(){
+				uni.navigateTo({
+					url:'phonechange'
+				})
+			},
 			siginin1(){
 				uni.navigateTo({
 					url:'userinfo'

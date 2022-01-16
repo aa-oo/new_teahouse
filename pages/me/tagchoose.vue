@@ -1,8 +1,8 @@
 <template>
 	<view>
 		<view class="tagchoos" v-for="(items, index) in tags" @click="addtag(items, index)" :class="{ subl: items.isSelect }">
-			<view class="tagtext">{{ items.tagsName }}</view>
-			<view class="context"><b>√</b></view>
+			<view class="tagtext">{{ items.strength }}</view>
+			<view  :class="[items.isSelect?'context1':'context']"><b>√</b></view>
 			<!-- :class="{none: i===index}" -->
 		</view>
 		<!-- <uniListItem  title="列表右侧显示角标" :show-badge="true" badge-text="12" >
@@ -13,33 +13,36 @@
 				</uniListItem> -->
 
 		<view class="uni-btn-v">
-			<button class="passwordch">完成</button>
+			<button class="passwordch" @click="goinfo">完成</button>
 			<!-- <button type="default" form-type="reset">Reset</button>@click="submit()" -->
 		</view>
 	</view>
 </template>
 
 <script>
+	import { mapState } from 'vuex';
 	import uniListItem from '@/components/uni-ui/uni-list/uni-list.vue';
 	export default {
 		components:{
 					uniListItem,
 				},
+				computed: {
+					...mapState({
+						
+						user: state => state.user
+					})
+				},
 	data() {
 		return {
-			tags: [
-				{ isSelect: false, tagsName: '前端' },
-				{ isSelect: false, tagsName: '人工智能' },
-				{ isSelect: false, tagsName: '后端' },
-				{ isSelect: false, tagsName: '数字孪生' },
-				{ isSelect: false, tagsName: '计算机图形学' },
-				{ isSelect: false, tagsName: '医学影像处理' },
-				{ isSelect: false, tagsName: '物联网' }
-			],
+			tags: [],
 			intotag: []
 			// ishave:false,
 			// i:null,
 		};
+	},
+	onLoad() {
+		this.tags=this.user.strengths
+		console.log(this.tags)
 	},
 	methods: {
 		addtag(items, index) {
@@ -67,6 +70,21 @@
 			}
 			this.tags = list;
 			console.log(this.intotag);
+		},
+		goinfo(){
+			var pages = getCurrentPages();
+			
+			var currPage = pages[pages.length - 1]; //当前页面
+			
+			var prevPage = pages[pages.length - 2]; //上一个页面
+			
+			
+			//直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+			// page.setData({a:'a'})改为page.$vm.a='a'
+			prevPage.$vm.userInfo.strengths=this.tags
+			uni.navigateBack({
+				delta:1,
+			})
 		}
 	}
 };
@@ -88,6 +106,18 @@
 .tagtext {
 	padding-left: 15px;
 	color: #1d1d1f;
+}
+.context1{
+	margin-right:20px;
+	height:25px;
+	width:25px;
+	background-color:#81b991;;
+	color:#FFFFFF;
+	font-size: 16px;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	border-radius:50%;
 }
 .context {
 	// color: #008000;

@@ -38,44 +38,45 @@
 				</scroll-view>
 			</swiper-item>
 		</swiper> -->
-		
-		
-		
-		
-		
-		
-		
+
 		<!-- 这里是状态栏 -->
 		<view class="status_bar"></view>
 		<uni-nav-bar left-icon="back" left-text="" right-text="" title="" @clickLeft="back" style="background-color: #81b991;">
 			<view style="margin-left: 10rpx;" :class="{ onshow: flag, noshow: !flag }" @click="flag = true"><text class="onshowtext" style="font-size:30rpx;">好友名片</text></view>
 			<view style="margin-left: 150rpx;" :class="{ onshow: !flag, noshow: flag }" @click="flag = false"><text style="font-size:30rpx;">收藏名片</text></view>
 		</uni-nav-bar>
-		<view class="titletop">
-			<input class="titleinput" type="text" placeholder="" />
-			<image class="titleicon" style="" src="../../static/icon/search.png" />
-		</view>
-		<view class="" v-show="flag">
-			<view class="t-wrap">
-				<t-slide ref="slide" :btnArr="btnArr1" @edit="edit" @del="del" @itemClick="itemClick">
-					<template v-slot:default="{ item }">
-						<view>
-						<manage-friend :friendList="item"></manage-friend>
-						</view>
-					</template>
-				</t-slide>
-			</view>
-		</view>
+
+		
+				<view class="titletop">
+					<input class="titleinput" type="text" v-model="peopleserchs" placeholder="" />
+					<image class="titleicon" style="" @click="peoplesearch" src="../../static/icon/search.png" />
+				</view>
+				<view class="" v-show="flag">
+					<view class="t-wrap">
+						<t-slide ref="slide" :btnArr="btnArr1" @edit="edit" @del="del" @itemClick="itemClick">
+							<template v-slot:default="{ item }">
+								<view><manage-friend :friendList="item"></manage-friend></view>
+							</template>
+						</t-slide>
+					</view>
+					<!-- 上拉加载 -->
+					<view style="display:flex;align-items: center;justify-content: center;padding:20rpx;">
+						<text style="color:#9e9e9e">{{ loadmsg }}</text>
+					</view>
+				</view>
+		
 
 		<view class="" v-show="!flag">
 			<view class="t-wrap">
-				<t-slide ref="slide" :btnArr="btnArr2" @edit="edit" @del="del" @itemClick="itemClick">
+				<t-slide1 ref="slide1" :btnArr="btnArr2" @edit="edit" @del="del1" @itemClick="itemClick">
 					<template v-slot:default="{ item }">
-						<view>
-						<manage-friend :friendList="item"></manage-friend>
-						</view>
+						<view><manage-friend :friendList="item"></manage-friend></view>
 					</template>
-				</t-slide>
+				</t-slide1>
+			</view>
+			<!-- 上拉加载 -->
+			<view style="display:flex;align-items: center;justify-content: center;padding:20rpx;">
+				<text style="color:#9e9e9e">{{ loadmsg }}</text>
 			</view>
 		</view>
 	</view>
@@ -84,77 +85,149 @@
 import manageFriend from '@/components/manage-friend.vue';
 import uniNavBar from '@/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar.vue';
 import tSlide from '@/components/t-slide/t-slide.vue';
+import tSlide1 from '@/components/t-slide/t-slide1.vue';
 export default {
 	data() {
 		return {
 			dataList: [],
+			friendList: [],
+			attentionList: [],
+			peopleserchs: '',
+			peopleserches: '',
+			fripage: 1,
+			attpage: 1,
+			loadmsg: '上拉加载更多',
 			dass: '',
 			flag: true,
 			//按钮数组
-			btnArr1:[
-					{
-						name:'删除好友',
-						background:'rgb(240, 173, 78)',
-						color:'#fff',
-						events:'edit'
-					},
-					{
-						name:'删除好友',
-						background:'rgb(240, 173, 78)',
-						color:'#fff',
-						events:'edit'
-					}
-				],
-				btnArr2:[
-						{
-							name:'添加好友',
-							background:'rgb(240, 173, 78)',
-							color:'#fff',
-							events:'edit'
-						},
-						{
-							name:'取消收藏',
-							background:'rgb(249, 84, 84)',
-							color:'#fff',
-							events:'del'
-						}
-					],
-			scrollH:600,
-			scoreInto:'',
-			tabbars:[{
-				name:"好友名片",
-			},{
-				name:"收藏名片",
-			}
+			btnArr1: [
+				{
+					name: '删除好友',
+					background: 'rgb(240, 173, 78)',
+					color: '#fff',
+					events: 'del'
+				}
 			],
-			tabindex:0,
+			btnArr2: [
+				{
+					name: '添加好友',
+					background: 'rgb(240, 173, 78)',
+					color: '#fff',
+					events: 'edit'
+				},
+				{
+					name: '取消收藏',
+					background: 'rgb(249, 84, 84)',
+					color: '#fff',
+					events: 'del1'
+				}
+			],
+			scrollH: 600,
+			scoreInto: '',
+			tabbars: [
+				{
+					name: '好友名片'
+				},
+				{
+					name: '收藏名片'
+				}
+			],
+			tabindex: 0
 		};
 	},
 	components: {
 		manageFriend,
 		tSlide,
+		tSlide1,
 		uniNavBar
 	},
 
 	onLoad() {
 		this.getteaHouse();
-		setTimeout(o => {
-			console.log(this.dataList);
-			console.log(22222);
-			this.$nextTick(() => {
-				this.$refs.slide.assignment(this.dataList);
-				console.log(this.dataList);
-				console.log(33333);
-			});
-		}, 500);
+		this.getteaFriend();
+		this.getteaAttention();
+		this.fresh()
 		uni.getSystemInfo({
-			success:res=>{
-				this.scrollH =res.windowHeight - uni.upx2px(100);
-				console.log(this.scrollH)
+			success: res => {
+				this.scrollH = res.windowHeight - uni.upx2px(100);
+				console.log(this.scrollH);
 			}
-		})
+		});
+	},
+	onReachBottom() {
+		this.loadmore()
+		// this.fresh()
 	},
 	methods: {
+		fresh(){
+			setTimeout(o => {
+				console.log(this.dataList);
+				console.log(22222);
+			
+				this.$nextTick(() => {
+					console.log(this.$refs);
+					this.$refs.slide.assignment(this.friendList);
+					this.$refs.slide1.assignment(this.attentionList);
+					console.log(this.dataList);
+					console.log(33333);
+				});
+			}, 500)
+		},
+		getteaFriend() {
+			uni.request({
+				// url:'/api/friend/getFriends',
+				url: '/api/user/list',
+				method: 'GET',
+				header: {
+					'content-type': 'application/json',
+					authorization: this.$store.state.token
+				},
+				data: {
+					key: this.peopleserches,
+					name: '',
+					page: this.fripage,
+					rows: 4
+				},
+				success: res => {
+					console.log('我的好友名片');
+					console.log(res);
+					console.log(this.fripage);
+					this.friendList = res.data.items;
+					if (this.friendList.length <4) {
+						this.fripage--;
+					}
+					this.fresh()
+					console.log(this.friendList);
+				}
+			});
+		},
+		getteaAttention() {
+			uni.request({
+				url: '/api/friend/getAttention',
+				method: 'GET',
+				header: {
+					'content-type': 'application/json',
+					authorization: this.$store.state.token
+				},
+				data: {
+					key: this.peopleserches,
+					name: '',
+					page:this.attpage,
+					rows: 4
+				},
+				success: res => {
+					console.log('我的收藏名片');
+					console.log(res);
+					this.attentionList = res.data.items;
+					if (this.attentionList.length < 5) {
+						this.attpage--;
+					}
+
+					console.log(this.attentionList);
+				}
+			});
+		},
+
 		getteaHouse() {
 			uni.request({
 				url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
@@ -167,9 +240,9 @@ export default {
 			console.log('先输出这个。');
 		},
 		back() {
-			uni.navigateBack({
-				delta: 1
-			});
+			uni.switchTab({
+				url:'./me-home'
+			})
 		},
 		//点击单行
 		itemClick(data) {
@@ -178,31 +251,123 @@ export default {
 		//删除
 		del(data) {
 			console.log('删除', data);
-			uni.showToast({
-				title: '删除ID--' + data.goods_id,
-				icon: 'none'
+			uni.request({
+				url: '/api/friend/endFriend',
+				method: 'POST',
+				header: {
+					'content-type': 'application/json',
+					authorization: this.$store.state.token
+				},
+				data: {
+					friendId: data.id,
+					name: ''
+				},
+				success: res => {
+					console.log('删除好友');
+					console.log(res);
+					uni.showToast({
+						title: '删除ID--' + data.id,
+						icon: 'none'
+					});
+				}
+			});
+		},
+		del1(data) {
+			console.log('删除', data);
+			uni.request({
+				url: '/api/friend/deleteAttention',
+				method: 'POST',
+				header: {
+					'content-type': 'application/json',
+					authorization: this.$store.state.token
+				},
+				data: {
+					attentionId: data.id,
+					name: ''
+				},
+				success: res => {
+					console.log('取消关注好友');
+					console.log(res);
+					uni.showToast({
+						title: '取消关注ID--' + data.goods_id,
+						icon: 'none'
+					});
+				}
 			});
 		},
 		//编辑
 		edit(data) {
 			console.log('编辑', data);
-			uni.showToast({
-				title: '编辑ID--' + data.goods_id,
-				icon: 'none'
+			uni.request({
+				url: '/api/friend/request',
+				method: 'POST',
+				header: {
+					'content-type': 'application/json',
+					authorization: this.$store.state.token
+				},
+				data: {
+					toId: this.data.id,
+					message: '',
+					name: ''
+				},
+				success: res => {
+					console.log('添加');
+					uni.showToast({
+						title: '添加ID--' + data.id,
+						icon: 'none'
+					});
+				}
 			});
 		},
-		changtab(index){
-			if(this.tabindex ===index){
+		peoplesearch() {
+			if (this.flag) {
+				if (this.peopleserchs == '') {
+					this.fripage = 1;
+					this.peopleserches = '';
+					this.getteaFriend();
+				} else {
+					this.fripage = 1;
+					this.peopleserches = this.peopleserchs;
+					this.getteaFriend();
+				}
+			} else {
+				if (this.peopleserchs == '') {
+					this.attpage = 1;
+					this.peopleserches = '';
+					this.getteaAttention();
+				} else {
+					this.attpage = 1;
+					this.peopleserches = this.peopleserchs;
+					this.getteaAttention();
+				}
+			}
+		},
+		loadmore() {
+			this.loadmsg = '加载中...';
+			setTimeout(() => {
+				this.loadmsg = '上拉更新推荐';
+				console.log(this.flag)
+				if (this.flag) {
+					this.fripage += 1;
+					this.getteaFriend();
+				} else {
+					this.attpage += 1;
+					this.getteaAttention();
+				}
+			}, 2000);
+		},
+		changtab(index) {
+			if (this.tabindex === index) {
 				return;
 			}
-			this.tabindex =index;
-			this.scoreInto='tab'+index;
+			this.tabindex = index;
+			this.scoreInto = 'tab' + index;
 		},
-		onchangetab(e){
-			this.changtab(e.detail.current)
+		onchangetab(e) {
+			this.changtab(e.detail.current);
+			console.log(this.tabindex);
 		}
 	}
-	
 };
 </script>
 <style>
@@ -236,9 +401,9 @@ export default {
 	margin-bottom: 10rpx;
 	/* vertical-align: middle; */
 }
-.fontcolor{
-		color:#81b991;
-		background-color:#f5f5f7;
-		font-weight:500;
-	}
+.fontcolor {
+	color: #81b991;
+	background-color: #f5f5f7;
+	font-weight: 500;
+}
 </style>

@@ -107,8 +107,11 @@ export default {
 		}
 		// console.log(getApp().globalData.tabindex);
 		console.log(this.$store.state.token)
-		this.getbusinessCard()
+		
 		this.isfriends()
+		this.isAttention()
+		
+		this.getbusinessCard()
 		// var author= JSON.stringify(this.$store.state.token)
 		// uni.setNavigationBarTitle({
 		//     title:'个人信息'
@@ -155,14 +158,122 @@ export default {
 				success: res => {
 					console.log('是否是好友');
 					this.isfriend = res.data;
-					console.log(this.isfriend)
+					console.log(this.isfriend)				
 				}
 			});
 		},
-		addFriend(){},
+		
+		isAttention(){
+			uni.request({
+				url:'/api/friend/isAttention',
+				method:'POST',
+				header:{
+					'content-type':"application/json",
+					'authorization':this.$store.state.token,
+				},
+				data: {
+				     attentionId:this.peopleid,
+				},
+				success: res => {
+					console.log('是否已收藏');
+					this.iscollect = res.data;
+					console.log(this.iscollect)				
+				}
+			});
+		},
+		addFriend(){
+			if(this.isfriend==true){
+				uni.request({
+					url:'/api/friend/endFriend',
+					method:'POST',
+					header:{
+						'content-type':"application/json",
+						'authorization':this.$store.state.token,
+					},
+					data: {
+					    toId:this.peopleid,
+						message:'',
+						name:''
+					},
+					success: res => {
+						this.isfriend = false;
+						console.log(this.isfriend)
+						uni.showToast({
+							title: '删除好友成功',
+							icon:'none'
+						});
+					}
+				});
+			}
+			else{
+				uni.request({
+					url:'/api/friend/request',
+					method:'POST',
+					header:{
+						'content-type':"application/json",
+						'authorization':this.$store.state.token,
+					},
+					data: {
+					    toId:this.peopleid,
+					    message:'',
+					    name:''
+					},
+					success: res => {
+						console.log('添加');
+						uni.showToast({
+							title: '已发送好友请求',
+							icon:'none'
+						});
+						// this.isfriend = true;
+						console.log(this.isfriend)				
+					}
+				});
+			}
+		},
 		collectCard(){
 		// this.collected=true
-			console.log("11")
+			if(this.iscollect==true){
+				uni.request({
+					url:'/api/friend/deleteAttention',
+					method:'POST',
+					header:{
+						'content-type':"application/json",
+						'authorization':this.$store.state.token,
+					},
+					data: {
+					    attentionId:this.peopleid,
+						name:''
+					},
+					success: res => {						
+						this.iscollect = false;
+						uni.showToast({
+							title: '取消收藏成功',
+							icon:'none'
+						});
+					}
+				});
+			}
+			else{
+				uni.request({
+					url:'/api/friend/attention',
+					method:'POST',
+					header:{
+						'content-type':"application/json",
+						'authorization':this.$store.state.token,
+					},
+					data: {
+					    attentionId:this.peopleid,
+						name:''
+					},
+					success: res => {
+						this.iscollect = true;	
+						uni.showToast({
+							title: '收藏成功',
+							icon:'none'
+						});
+					}
+				});
+			}
 		}
 	},
 };

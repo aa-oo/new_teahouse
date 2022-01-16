@@ -4,21 +4,77 @@
 			
 		</view> -->
 		<view class="newarticaltop">
-		    <input class="newartical1" name="input"maxlength="15" placeholder="请输入标题"  />
+		    <input class="newartical1" v-model="tabname" name="input"maxlength="15" @input="onInput($event, 'tabname')" placeholder="请输入标题"  />
 		</view> 
 		<view class="newarticalmid">
-		    <input class="newartical2" name="input"  disabled placeholder="尚虹霖" />
+		    <input class="newartical2" name="input"  disabled :placeholder="user.name" />
 		</view>
 		<view class="newarticalnext"></view>
 		<view class="">
 		    
-		    <textarea class="newartical3"  placeholder="从这里开始写正文"></textarea>
+		    <textarea class="newartical3" v-model="textarea" @input="onInput($event, 'textarea')" placeholder="从这里开始写正文"></textarea>
 		</view> 
-		 <button form-type="submit" class="tableadd">提交</button>
+		 <button form-type="submit" class="tableadd" @click="submit">提交</button>
 	</view>
 </template>
 
 <script>
+	import {mapState} from 'vuex'
+	export default {
+		data() {
+			return {
+				tabname: '',
+				textarea: '',
+				teaList:[]
+			};
+		},
+		computed:{
+			...mapState({
+				user:state=>state.user,
+			})
+		},
+		methods: {
+			
+			onInput(e, item) {
+				console.log(item);
+				if ('tabname' == item) {
+					this.tabname = e.detail.value;
+				} else if ('textarea' == item) {
+					this.textarea = e.detail.value;
+				}
+			},
+			submit() {
+				console.log(this.user.name)
+				uni.request({
+					url:'/api/paper/create',
+					method:'POST',
+					header:{
+						'content-type':"application/json",
+						'authorization':this.$store.state.token
+					},
+					data: {
+						content:this.textarea,
+						writerName:this.user.name,
+						name:this.tabname
+					},
+					success: res => {
+						console.log('写文章');
+						console.log(res.data)
+						if(res.statusCode==200){
+							uni.showToast({
+								title: '文章发表成功',
+								icon:'none'
+							});
+							this.textarea=''
+							this.tabname=''
+						}
+						
+					}
+				});
+			}
+		}
+	};
+	
 </script>
 
 <style>

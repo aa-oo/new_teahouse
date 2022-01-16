@@ -3,7 +3,7 @@
 		<view class="status_bar"><!-- 这里是状态栏 --></view>
 		<uni-nav-bar left-icon="back" left-text="" right-text="" title="" @clickLeft="back" style="background-color: #81b991;">
 			<view style="margin-left: 10rpx;" :class="{onshow:flag,noshow:!flag}" @click="flag=true"><text class="onshowtext" style="font-size:30rpx;">好友名片</text></view>
-			<view style="margin-left: 150rpx;" :class="{onshow:!flag,noshow:flag}" @click="flag=false"><text style="font-size:30rpx;">收藏名片</text></view>
+			<view style="margin-left: 150rpx;" :class="{onshow:!flag,noshow:flag}" @click="flag=false"><text  style="font-size:30rpx;">收藏名片</text></view>
 
 		</uni-nav-bar>
 		<view class="titletop">

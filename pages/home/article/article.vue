@@ -1,19 +1,15 @@
 <template>
 	<view class="">
 			<view class="top">
-			<view class="articletop">维基媒体基金会的创立</view>
-			<view class="articleauthor">周春来</view>
-			<view class="articletime">2020/8/15</view>
+			<view class="articletop">{{articledetail.name}}</view>
+			<view class="articleauthor">{{articledetail.writerName}}</view>
+			<view class="articletime">{{time}}</view>
 			</view>
 			<view class="bottom">
 				<view class="articlecontect">
-					文章详情文章详情文章详情文章详情文章详情v文章详情文章详情v文章详情文章详情v文章详情文章详情v文章详情v文章详情vv文章详情v文章详情v文章详情文章详情vv文章详情vv文章详情文章详情vv文章详情文章详情v文章详情文章详情v文章详情文章详情vv文章详情文章详情v文章详情文章详情v文章详情文章详情vvv文章详情
-						文章详情文章详情文章详情文章详情文章详情v文章详情文章详情v文章详情文章详情v文章详情文章详情v文章详情v文章详情vv文章详情v文章详情v文章详情文章详情vv文章详情vv文章详情文章详情vv文章详情文章详情v文章详情文章详情v文章详情文章详情vv文章详情文章详情v文章详情文章详情v文章详情文章详情vvv文章详情
-						文章详情文章详情文章详情文章详情文章详情v文章详情文章详情v文章详情文章详情v文章详情文章详情v文章详情v文章详情vv文章详情v文章详情v文章详情文章详情vv文章详情vv文章详情文章详情vv文章详情文章详情v文章详情文章详情v文章详情文章详情vv文章详情文章详情v文章详情文章详情v文章详情文章详情vvv文章详情
-						文章详情文章详情文章详情文章详情文章详情v文章详情文章详情v文章详情文章详情v文章详情文章详情v文章详情v文章详情vv文章详情v文章详情v文章详情文章详情vv文章详情vv文章详情文章详情vv文章详情文章详情v文章详情文章详情v文章详情文章详情vv文章详情文章详情v文章详情文章详情v文章详情文章详情vvv文章详情
-						文章详情文章详情文章详情文章详情文章详情v文章详情文章详情v文章详情文章详情v文章详情文章详情v文章详情v文章详情vv文章详情v文章详情v文章详情文章详情vv文章详情vv文章详情文章详情vv文章详情文章详情v文章详情文章详情v文章详情文章详情vv文章详情文章详情v文章详情文章详情v文章详情文章详情vvv文章详情
+					{{articledetail.content}}
 				</view>
-				<view class="delartbutton">删除文章</view>
+				<view class="delartbutton" @click="delArticle">删除文章</view>
 			</view>
 			
 			<!-- {{item.titlename}} -->
@@ -21,17 +17,80 @@
 </template>
 
 <script>
+	
+	import  dateChangeFormat  from './change-date.js';
 	export default{
 		data() {
-			return {};
+			return {
+				articleid:'',
+				articledetail:'',
+				time:''
+			};
 		},
-		onLoad() {
+		onLoad(e) {
+			if(e.detail){
+				this.articleid = JSON.parse(e.detail)
+				console.log(this.articleid)
+			};
 			uni.setNavigationBarTitle({
 			    title:'茶馆文摘'
-			})
+			});
+			this.getArticle()
+			// this.changeTime()
+			console.log(dateChangeFormat.dateChangeFormat('YYYY-mm-dd HH:MM:SS', "2021-07-02T14:19:59+08:00"))
 		},
 		// props:['item.titlename']
-		methords(){
+		methods:{
+			getArticle() {
+				uni.request({
+					url:'/api/paper/'+this.articleid,
+					method:'GET',
+					header:{
+						'content-type':"application/json",
+						'authorization':this.$store.state.token,
+					},
+					data: {
+					    id:this.articleid,
+					},
+					success: res => {
+						console.log('文章详细信息如下');
+						this.articledetail = res.data;
+						console.log(this.articledetail)
+						this.time=dateChangeFormat.dateChangeFormat('YYYY-mm-dd HH:MM:SS', this.articledetail.createTime) 
+						console.log(this.time)
+					}
+				});
+			},
+			delArticle(){
+				uni.request({
+					url:'/api/paper/disable/'+this.articleid,
+					method:'POST',
+					header:{
+						'content-type':"application/json",
+						'authorization':this.$store.state.token,
+					},
+					data: {
+					    id:this.articleid,
+					},
+					success: res => {
+						// console.log('删除文章');
+						
+							uni.showToast({
+								icon:'none',
+								title:'删除文章成功'
+							})
+							setTimeout(o => {
+								uni.switchTab({
+								url:'../teaHouse/start'
+							})
+							}, 500);
+						
+						
+						
+					}
+				});
+			}
+			
 			
 		}
 	}

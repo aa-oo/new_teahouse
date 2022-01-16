@@ -202,6 +202,7 @@
 			})
 		},
 		onLoad(option) {
+			this.getteaMes()
 			this.getMsgList();
 			//语音自然播放结束
 			this.AUDIO.onEnded((res)=>{
@@ -220,6 +221,28 @@
 		},
 	
 		methods:{
+			//获取茶屋请求
+			getteaMes(){
+				uni.request({
+					url:'/api/message/getMessages',
+					method:'POST',
+					header:{
+						'content-type':"application/json",
+						'authorization':this.$store.state.token
+					},
+					data: {		    
+						page:1,
+						fromId:24,
+						rows:5,
+						type:0
+					},
+					success: res => {
+						console.log('聊天消息');
+						console.log(res.data);
+					}
+				});
+			},
+			
 			// 接受消息(筛选处理)
 			screenMsg(msg){
 				//从长连接处转发给这个方法，进行筛选处理

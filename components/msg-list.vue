@@ -32,7 +32,8 @@
 		methods:{
 			open(item){
 				uni.navigateTo({
-					url:'../pages/chat/view/pangugle-chat.vue',
+					// url:'../pages/chat/view/pangugle-chat.vue',
+					url: '../chat/view/pangugle-chat'
 				});
 			}
 		}

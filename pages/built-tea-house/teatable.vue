@@ -13,17 +13,21 @@
 	export default{
 		data(){
 			return{
-				tea_name:''
+				tea_name:'',
+				tea_id:0,
+				tab_index:0
 			}
 		},
 		onLoad(opt) {
-			this.tea_name=opt.tea_id;
-			console.log(this.tea_name)
+			console.log(opt)
+			this.tea_name=opt.tea_name;
+			this.tea_id=opt.tea_id
+			this.tab_index=opt.tab_index
 		},
 		methods:{
 			gooption() {
 				uni.navigateTo({
-					url:'./tableoption'
+					url:'./tableoption?tea_id='+this.tea_id+'&tab_index=' +this.tab_index
 				})
 			},
 			goback() {
@@ -48,7 +52,9 @@
 		font-size:35rpx;
 		height:80rpx;
 		line-height:80rpx;
-		margin-left:30%;
+		 left:50%;
+		transform:translate(-50%);
+		/* margin-left:30%; */
 	}
 	.tabtopopt{
 		position: absolute;

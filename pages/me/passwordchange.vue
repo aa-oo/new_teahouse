@@ -1,8 +1,8 @@
 <template>
 	<view>
-		<input class="singinput" style="margin-top:10px" type="text" value="" placeholder="输入旧密码" v-model="oldpassword"/>
-		<input class="singinput" type="text" value="" placeholder="输入新密码" v-model="newpassword"/>
-		<input class="singinput" type="text" value="" placeholder="再次输入新密码" v-model="renewpassword"/>
+		<input class="singinput" style="margin-top:10px" type="password" value="" placeholder="输入旧密码" v-model="oldpassword"/>
+		<input class="singinput" type="password" value="" placeholder="输入新密码" v-model="newpassword"/>
+		<input class="singinput" type="password" value="" placeholder="再次输入新密码" v-model="renewpassword"/>
 		
 		<view class="uni-btn-v">
 		    <button class="passwordch" :disabled="disabled" @click="submit()">设置</button>
@@ -33,6 +33,13 @@
 				if(this.newpassword !== this.renewpassword){
 					uni.showToast({
 						title:'两次密码不一致',
+						icon:'none'
+					})
+					return false;
+				}
+				if(this.newpassword==this.oldpassword){
+					uni.showToast({
+						title:'新旧密码一样',
 						icon:'none'
 					})
 					return false;

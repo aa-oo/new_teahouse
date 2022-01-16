@@ -36,7 +36,8 @@
 			"path": "pages/built-tea-house/investdetail",
 			"style": {
 				"navigationBarTitleText": "投资详情",
-				"navigationBarTextStyle": "white"
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh":true
 			}
 		},
 		{
@@ -47,11 +48,38 @@
 			}
 		},
 		{
-			"path": "pages/built-tea-house/tableoption",
+			"path": "pages/built-tea-house/teasetting",
 			"style": {
-				"navigationBarTitleText": "茶屋信息",
+				"navigationBarTitleText": "编辑茶屋信息",
 				"navigationBarTextStyle": "white"
 			}
+		},
+		{
+			"path": "pages/built-tea-house/teaedit",
+			"style": {
+				"navigationBarTitleText": "编辑茶屋信息",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+		    "path" : "pages/built-tea-house/tableoption",
+		    "style": {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": " 茶屋信息",
+				"navigationBarBackgroundColor": "#81b991",
+				"app-plus":{
+					"titleNView":{
+						"autoBackButton":false,
+						"buttons":[{
+							"type":"menu",
+							"fontWeight":"bold",
+							"width":"47px"
+							// "fontSrc":"pages/built-tea-house/tableoption"
+						}]
+					}
+				}
+		    }
+		    
 		},
 		{
 			"path": "pages/built-tea-house/newarticals",
@@ -73,6 +101,17 @@
 			}
 		},
 		{
+		    "path" : "pages/me/me-buscard",
+		    "style": {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": " 创客茶馆",
+				"navigationBarBackgroundColor": "#81b991",
+		    	"navigationStyle": "custom",
+				"onReachBottomDistance":50
+		    }
+		    
+		},
+		{
 			"path": "pages/me/mesetting",
 			"style": {
 				"navigationBarTitleText": "设置",
@@ -83,6 +122,13 @@
 			"path": "pages/me/passwordchange",
 			"style": {
 				"navigationBarTitleText": "账号与安全",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/me/phonechange",
+			"style": {
+				"navigationBarTitleText": "手机号绑定",
 				"navigationBarTextStyle": "white"
 			}
 		},
@@ -184,16 +230,7 @@
 				"navigationBarTextStyle": "white"
 			}
 		},
-		{
-		    "path" : "pages/me/me-buscard",
-		    "style": {
-				"navigationBarTextStyle": "white",
-				"navigationBarTitleText": " 创客茶馆",
-				"navigationBarBackgroundColor": "#81b991",
-		    	"navigationStyle": "custom"
-		    }
-		    
-		},
+		
 		{
 		    "path" : "pages/chat/view/pangugle-chat",
 		    "style": {
