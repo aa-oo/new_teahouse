@@ -157,7 +157,7 @@ export default {
 				},
 				success: res => {
 					console.log('是否是好友');
-					this.isfriend = res.data;
+					this.isfriend = res.data.obj.isFriend;
 					console.log(this.isfriend)				
 				}
 			});
@@ -176,7 +176,7 @@ export default {
 				},
 				success: res => {
 					console.log('是否已收藏');
-					this.iscollect = res.data;
+					this.iscollect = res.data.obj.isAttention;
 					console.log(this.iscollect)				
 				}
 			});
@@ -197,9 +197,10 @@ export default {
 					},
 					success: res => {
 						this.isfriend = false;
+						console.log(res.data)
 						console.log(this.isfriend)
 						uni.showToast({
-							title: '删除好友成功',
+							title: res.data.msg,
 							icon:'none'
 						});
 					}
@@ -216,12 +217,13 @@ export default {
 					data: {
 					    toId:this.peopleid,
 					    message:'',
-					    name:''
+					    // name:''
 					},
 					success: res => {
 						console.log('添加');
+						console.log(res.data)
 						uni.showToast({
-							title: '已发送好友请求',
+							title: res.data.msg,
 							icon:'none'
 						});
 						// this.isfriend = true;
@@ -242,10 +244,10 @@ export default {
 					},
 					data: {
 					    attentionId:this.peopleid,
-						name:''
 					},
 					success: res => {						
 						this.iscollect = false;
+						console.log(res.data)
 						uni.showToast({
 							title: '取消收藏成功',
 							icon:'none'
@@ -263,12 +265,13 @@ export default {
 					},
 					data: {
 					    attentionId:this.peopleid,
-						name:''
 					},
 					success: res => {
-						this.iscollect = true;	
+						if(res.data.state==200){
+							this.iscollect = true;
+						}
 						uni.showToast({
-							title: '收藏成功',
+							title: res.data.msg,
 							icon:'none'
 						});
 					}

@@ -40,7 +40,7 @@
 						<view><image class="investImg" :src="items.userHeadPhoto"></image></view>
 						<view class="indetailbot2">{{ items.username }}</view>
 						<view class="indetailbot3">+{{ items.money }}</view>
-						<view class="indetailbot4">{{ items.createTime }}</view>
+						<view class="indetailbot4">{{ items.createTime |time}}</view>
 					</view>
 					<!-- 上拉加载 -->
 					<view style="display:flex;align-items: center;justify-content: center;padding:20rpx;">
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+	// import  dateChangeFormat  from '../home/article/change-date.js';
 export default {
 	data() {
 		const currentDate = this.getDate({
@@ -92,6 +93,7 @@ export default {
 		this.getteaInvest();
 		this.getteaPeople();
 		this.getteaPeo();
+			// this.time=dateChangeFormat.dateChangeFormat('YYYY-mm-dd HH:MM:SS', this.articledetail.createTime) 
 		// this.getteaPeo1()
 		// while(this.peopage<=this.totalpage){
 		// 	this.getteaPeo()
@@ -160,7 +162,7 @@ export default {
 					authorization: this.$store.state.token
 				},
 				data: {
-					rid: 8,
+					rid: this.tea_id,
 					page: this.investpage,
 					rows: 4,
 					sort: 0,
@@ -169,7 +171,7 @@ export default {
 				success: res => {
 					console.log('投资信息');
 					this.investList = res.data.items;
-					console.log(this.investList)
+					console.log(res.data)
 					if (res.data.total == 0) {
 						this.loadmsg = '暂无投资';
 					}
@@ -204,6 +206,15 @@ export default {
 				success: res => {
 					console.log('投资记录成功');
 					console.log(res);
+					uni.showToast({
+						title:res.data.msg,
+						icon:'none'
+					})
+					setTimeout(o => {
+						that.getteaInvest()
+					}, 500);
+					
+					
 				}
 			});
 		},
@@ -275,7 +286,18 @@ export default {
 		change(data) {
 			this.value = data.data.join('');
 		}
-	}
+	},
+	filters: {
+		 time:function renderTime(date) {
+		    var dateee = new Date(date).toJSON();
+		    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+		  },
+
+			// time: function time(value) {
+			// 	var d = new Date(parseInt(value) );
+			// 	return (d.getFullYear()) + '-' + (d.getMonth() + 1 > 9 ? d.getMonth() + 1 : '0' + (d.getMonth() + 1)) + '-' + (d.getDate() > 9 ? d.getDate() : '0' + d.getDate());
+			// }
+		}
 };
 </script>
 

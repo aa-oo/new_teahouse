@@ -17,7 +17,7 @@
 					<view><image class="investImg" :src="items.userHeadPhoto"></image></view>
 					<view class="indetailbot2">{{items.username}}</view>
 					<view class="indetailbot3">+{{items.money}}</view>
-					<view class="indetailbot4">{{items.createTime}}</view>
+					<view class="indetailbot4">{{items.createTime|time}}</view>
 				</view>
 				<!-- 上拉加载 -->
 				<view style="display:flex;align-items: center;justify-content: center;padding:20rpx;">
@@ -97,7 +97,7 @@ export default {
 					authorization: this.$store.state.token
 				},
 				data: {
-					rid: 8,
+					rid: this.tea_id,
 					page: this.investpage,
 					rows: 4,
 					sort: 0,
@@ -127,7 +127,13 @@ export default {
 				this.getteaInvest();
 			},2000)
 		},
-	}
+	},
+	filters: {
+		 time:function renderTime(date) {
+		    var dateee = new Date(date).toJSON();
+		    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+		  },
+		}
 };
 </script>
 

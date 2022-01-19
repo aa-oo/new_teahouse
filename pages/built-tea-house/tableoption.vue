@@ -136,18 +136,20 @@ export default {
 		getroomArticle() {
 			uni.request({
 				url: '/api/roomPaper/getPaper',
-				method: 'GET',
+				method: 'POST',
 				header: {
 					'content-type': 'application/json',
 					authorization: this.$store.state.token
 				},
 				data: {
 					page: 0,
+					roomId: this.tea_id,
 					rows: 0,
-					roomId: this.tea_id
+					
 				},
 				success: res => {
 					// console.log(JSON.stringify(res));
+					console.log(res)
 					this.teaArticle = res.data;
 					console.log('文章信息');
 					console.log(this.teaArticle);

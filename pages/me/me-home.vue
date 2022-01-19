@@ -180,6 +180,8 @@
 				teajoinList:[],
 				mepage:1,
 				joinpage:1,
+				meadd:false,
+				joinadd:false,
 				tabs: ['我发起的', '我参与的'],
 				tabbars:[{
 					name:"我发起的",
@@ -255,7 +257,7 @@
 							console.log(res.data)
 							
 							if(this.productList.length==res.data.total){
-								this.mepage--
+								this.meadd=true
 							}
 							else{
 								this.productList=[...this.productList,...res.data.items]
@@ -288,14 +290,17 @@
 						},
 						success: res => {
 							console.log("我加入的茶桌")
-							console.log(res)
+							console.log(res.data)
+							
 							
 							if(this.teajoinList.length==res.data.total){
-								this.joinpage--
+								this.joinadd=true
 							}
 							else{
 								this.teajoinList=[...this.teajoinList,...res.data.items]
 							}
+							console.log(this.joinpage)
+							console.log(this.joinadd)
 							// this.teajoinList = res.data.items;
 							// if(this.teajoinList.length<4){
 							// 	this.joinpage--
@@ -364,11 +369,11 @@
 				setTimeout(() => {
 					this.loadmsg = '上拉更新推荐';
 					// console.log(this.flag)
-					if (this.tabindex==0) {
+					if (this.tabindex==0&&!this.meadd) {
 						this.mepage += 1;
 						this.getteaHouse();
 					} 
-					if(this.tabindex==1) {
+					if(this.tabindex==1&&!this.joinadd) {
 						this.joinpage += 1;
 						this.getteaJoin();
 					}

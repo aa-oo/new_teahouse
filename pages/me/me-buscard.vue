@@ -68,7 +68,7 @@
 
 		<view class="" v-show="!flag">
 			<view class="t-wrap">
-				<t-slide1 ref="slide1" :btnArr="btnArr2" @edit="edit" @del="del1" @itemClick="itemClick">
+				<t-slide1 ref="slide1" :btnArr="btnArr2" @edit="edit" @del1="del1" @itemClick="itemClick">
 					<template v-slot:default="{ item }">
 						<view><manage-friend :friendList="item"></manage-friend></view>
 					</template>
@@ -184,7 +184,6 @@ export default {
 				},
 				data: {
 					key: this.peopleserches,
-					name: '',
 					page: this.fripage,
 					rows: 4
 				},
@@ -211,18 +210,17 @@ export default {
 				},
 				data: {
 					key: this.peopleserches,
-					name: '',
 					page:this.attpage,
 					rows: 4
 				},
 				success: res => {
 					console.log('我的收藏名片');
 					console.log(res);
-					this.attentionList = res.data.items;
-					if (this.attentionList.length < 5) {
+					this.attentionList = res.data.obj.data;
+					if (this.attentionList.length < 4) {
 						this.attpage--;
 					}
-
+						this.fresh()
 					console.log(this.attentionList);
 				}
 			});
@@ -260,11 +258,10 @@ export default {
 				},
 				data: {
 					friendId: data.id,
-					name: ''
 				},
 				success: res => {
 					console.log('删除好友');
-					console.log(res);
+					console.log(res.data);
 					uni.showToast({
 						title: '删除ID--' + data.id,
 						icon: 'none'
@@ -273,49 +270,55 @@ export default {
 			});
 		},
 		del1(data) {
-			console.log('删除', data);
+			console.log('取消收藏', data);
 			uni.request({
-				url: '/api/friend/deleteAttention',
-				method: 'POST',
-				header: {
-					'content-type': 'application/json',
-					authorization: this.$store.state.token
+				url:'/api/friend/deleteAttention',
+				method:'POST',
+				header:{
+					'content-type':"application/json",
+					'authorization':this.$store.state.token,
 				},
 				data: {
-					attentionId: data.id,
-					name: ''
+				    attentionId:data.id,
 				},
-				success: res => {
-					console.log('取消关注好友');
-					console.log(res);
+				success: res => {						
+					this.iscollect = false;
+					console.log(res.data)
 					uni.showToast({
-						title: '取消关注ID--' + data.goods_id,
-						icon: 'none'
+						title: '取消收藏成功',
+						icon:'none'
 					});
+					setTimeout(o=>{
+						this.getteaAttention()
+					},500)
+					
 				}
 			});
 		},
 		//编辑
 		edit(data) {
-			console.log('编辑', data);
+			console.log('添加', data);
 			uni.request({
-				url: '/api/friend/request',
-				method: 'POST',
-				header: {
-					'content-type': 'application/json',
-					authorization: this.$store.state.token
+				url:'/api/friend/request',
+				method:'POST',
+				header:{
+					'content-type':"application/json",
+					'authorization':this.$store.state.token,
 				},
 				data: {
-					toId: this.data.id,
-					message: '',
-					name: ''
+				    toId:data.id,
+				    message:'',
+				    // name:''
 				},
 				success: res => {
 					console.log('添加');
+					console.log(res.data)
 					uni.showToast({
-						title: '添加ID--' + data.id,
-						icon: 'none'
+						title: res.data.msg,
+						icon:'none'
 					});
+					// this.isfriend = true;
+								
 				}
 			});
 		},

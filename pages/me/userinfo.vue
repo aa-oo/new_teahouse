@@ -167,14 +167,9 @@ export default {
 					authorization: this.$store.state.token
 				},
 				data: {
-					accountNonExpired: true,
-					accountNonLocked: true,
+				
 					address: this.userInfo.address,
-					authorities: [
-						{
-							authority: ''
-						}
-					],
+				
 					birthday: this.time,
 					company: this.userInfo.company,
 					credentialsNonExpired: true,
