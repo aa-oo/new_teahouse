@@ -23,6 +23,7 @@
 	export default {
 		data() {
 			return {
+				tea_id:0,
 				tabname: '',
 				textarea: '',
 				teaList:[]
@@ -32,6 +33,12 @@
 			...mapState({
 				user:state=>state.user,
 			})
+		},
+		onLoad(opt) {
+			// this.articleid = JSON.parse(e.detail)
+			this.tea_id = JSON.parse(opt.tea_id)
+			console.log(this.tea_id)
+			
 		},
 		methods: {
 			
@@ -46,16 +53,19 @@
 			submit() {
 				console.log(this.user.name)
 				uni.request({
-					url:'/api/paper/create',
+					url:'/api/roomPaper/create',
 					method:'POST',
 					header:{
 						'content-type':"application/json",
 						'authorization':this.$store.state.token
 					},
 					data: {
+						
 						content:this.textarea,
+						name:this.tabname,
+						roomId:this.tea_id,
 						writerName:this.user.name,
-						name:this.tabname
+					
 					},
 					success: res => {
 						console.log('写文章');

@@ -73,8 +73,8 @@
 					    id:this.articleid,
 					},
 					success: res => {
-						// console.log('删除文章');
-						
+						console.log(res.data);
+						if(res.data.state==200){
 							uni.showToast({
 								icon:'none',
 								title:'删除文章成功'
@@ -84,7 +84,13 @@
 								url:'../teaHouse/start'
 							})
 							}, 500);
-						
+						}else{
+							uni.showToast({
+								icon:'none',
+								title:res.data.msg+',不可删除'
+							})
+						}
+							
 						
 						
 					}

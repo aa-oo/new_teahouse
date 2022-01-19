@@ -103,7 +103,7 @@
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view scroll-y="true" :style="'height:' + scrollH + 'px;'" @scrolltolower="loadmore()">
+				<scroll-view scroll-y="true" :style="'height:' + scrollH + 'px;'" @scrolltolower="loadarticle()">
 					<view>
 						<view class="titletop">
 							<input class="titleinput" type="text" v-model="articleserchs" placeholder="" />
@@ -379,7 +379,7 @@ export default {
 					if (this.articleList.length < 5) {
 						this.articlepage--;
 					}
-					console.log(this.articleList);
+					console.log(res.data);
 				}
 			});
 		},

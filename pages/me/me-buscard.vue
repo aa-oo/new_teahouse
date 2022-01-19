@@ -175,8 +175,8 @@ export default {
 		},
 		getteaFriend() {
 			uni.request({
-				// url:'/api/friend/getFriends',
-				url: '/api/user/list',
+				url:'/api/friend/getFriends',
+				// url: '/api/user/list',
 				method: 'GET',
 				header: {
 					'content-type': 'application/json',
@@ -263,9 +263,12 @@ export default {
 					console.log('删除好友');
 					console.log(res.data);
 					uni.showToast({
-						title: '删除ID--' + data.id,
-						icon: 'none'
+						title: res.data.msg,
+						icon:'none'
 					});
+					setTimeout(o=>{
+						this.getteaFriend()
+					},500)
 				}
 			});
 		},

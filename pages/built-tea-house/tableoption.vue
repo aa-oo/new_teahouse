@@ -39,18 +39,18 @@
 				<text class="optionbottext2" @click="gotonewartical">write+</text>
 			</view>
 			<view class="optionbottom2">
-				<view class="optbotartical" @click="gotoartical">
+				<view v-for="item in teaArticle" class="optbotartical" @click="gotoartical(item)">
+					<text class="optbotartical1">《{{item.name}}》</text>
+					<text class="optbotartical2">作者：{{item.writerName}}</text>
+				</view>
+<!-- 				<view class="optbotartical">
 					<text class="optbotartical1">《创客茶馆》</text>
 					<text class="optbotartical2">作者：李静秋</text>
 				</view>
 				<view class="optbotartical">
 					<text class="optbotartical1">《创客茶馆》</text>
 					<text class="optbotartical2">作者：李静秋</text>
-				</view>
-				<view class="optbotartical">
-					<text class="optbotartical1">《创客茶馆》</text>
-					<text class="optbotartical2">作者：李静秋</text>
-				</view>
+				</view> -->
 			</view>
 		</view>
 		<view class="optionbutton" @click="gotohome">{{teaDel}}</view>
@@ -71,10 +71,11 @@ export default {
 			teadetail: 'wikimedia是一项全球运动，其使命是将免费的教育内容带给世界。wikimedia是一项全球运动，其使命是将免费的教育内容带给世界。'
 		};
 	},
-	// onShow() {
-	// 	console.log('omload');
-	// 	this.getteaMes();
-	// },
+	onShow() {
+		console.log('omload');
+		this.getteaMes();
+		this.getroomArticle()
+	},
 	onNavigationBarButtonTap() {
 		uni.navigateTo({
 			url:'./teaedit?tea_id='+JSON.stringify(this.teaMes.id)
@@ -150,15 +151,16 @@ export default {
 				success: res => {
 					// console.log(JSON.stringify(res));
 					console.log(res)
-					this.teaArticle = res.data;
+					this.teaArticle = res.data.obj;
 					console.log('文章信息');
 					console.log(this.teaArticle);
 				}
 			});
 		},
-		gotoartical() {
+		gotoartical(item) {
+	
 			uni.navigateTo({
-				url: '../home/article/article'
+				url: '../home/article/article?detail='+JSON.stringify(item.id)
 			});
 		},
 		gotohome() {
@@ -250,7 +252,7 @@ export default {
 		},
 		gotonewartical() {
 			uni.navigateTo({
-				url: './newarticals'
+				url: './newarticals?tea_id='+JSON.stringify(this.tea_id)
 			});
 		}
 	},
