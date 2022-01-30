@@ -15,11 +15,11 @@
 			</view>
 		</view>
 		<view style=" display:flex; justify-content: center;">
-			<view class="rounded " style="background-color:#1d1d1f; display: flex; flex-direction:column;align-items: center; justify-content:center; font-size: 28rpx;">
+			<!-- <view class="rounded " style="background-color:#1d1d1f; display: flex; flex-direction:column;align-items: center; justify-content:center; font-size: 28rpx;">
 				<text style="color:#FFFDEF;">Dre@mTech工作组期待您的加入</text>
 				<text style="color:#81b991; padding-top:7px">广告加盟请联系微信Shreeng</text>
-			</view>
-			<!-- <image src="../../static/广告.jpg" mode="aspectFill" class="rounded "></image> -->
+			</view> -->
+			<image src="../../static/new广告.jpg" mode="aspectFill" class="rounded "></image>
 		</view>
 		<!-- 我的选项卡 -->
 		<view class="menextnew">
@@ -367,7 +367,7 @@
 			loadmore() {
 				this.loadmsg = '加载中...';
 				setTimeout(() => {
-					this.loadmsg = '上拉更新推荐';
+					this.loadmsg = '上拉更新信息';
 					// console.log(this.flag)
 					if (this.tabindex==0&&!this.meadd) {
 						this.mepage += 1;

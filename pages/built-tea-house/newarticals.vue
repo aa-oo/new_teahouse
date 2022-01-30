@@ -53,19 +53,16 @@
 			submit() {
 				console.log(this.user.name)
 				uni.request({
-					url:'/api/roomPaper/create',
+					url:'/api/paper/create',
 					method:'POST',
 					header:{
 						'content-type':"application/json",
 						'authorization':this.$store.state.token
 					},
 					data: {
-						
 						content:this.textarea,
 						name:this.tabname,
-						roomId:this.tea_id,
 						writerName:this.user.name,
-					
 					},
 					success: res => {
 						console.log('写文章');
@@ -77,6 +74,9 @@
 							});
 							this.textarea=''
 							this.tabname=''
+							uni.navigateTo({
+								url:'../me/mesetting'
+							})
 						}
 						
 					}
