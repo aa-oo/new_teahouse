@@ -74,9 +74,10 @@
 							});
 							this.textarea=''
 							this.tabname=''
-							uni.navigateTo({
-								url:'../me/mesetting'
-							})
+							setTimeout(o => {
+								uni.navigateBack()
+							}, 500);
+							
 						}
 						
 					}

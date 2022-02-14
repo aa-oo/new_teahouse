@@ -195,7 +195,7 @@ export default {
 					console.log(res);
 					
 					uni.showToast({
-						title: '修改密码成功',
+						title: '修改信息成功',
 						icon: 'none'
 					});
 					// this.productList = res.data.items;

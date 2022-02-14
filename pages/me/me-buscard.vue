@@ -217,11 +217,11 @@ export default {
 					console.log('我的收藏名片');
 					console.log(res);
 					this.attentionList = res.data.obj.data;
-					if (this.attentionList.length < 5) {
+					if (this.attentionList.length < 4) {
 						this.attpage--;
 					}
 						this.fresh()
-					// console.log(this.attentionList);
+					console.log(this.attentionList);
 				}
 			});
 		},
@@ -351,7 +351,7 @@ export default {
 		loadmore() {
 			this.loadmsg = '加载中...';
 			setTimeout(() => {
-				this.loadmsg = '上拉加载更多';
+				this.loadmsg = '上拉更新推荐';
 				console.log(this.flag)
 				if (this.flag) {
 					this.fripage += 1;

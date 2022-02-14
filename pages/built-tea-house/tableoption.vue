@@ -39,6 +39,7 @@
 				<text class="optionbottext2" @click="gotonewartical">write+</text>
 			</view>
 			<view class="optionbottom2">
+				
 				<view v-for="item in teaArticle" class="optbotartical" @click="gotoartical(item)">
 					<text class="optbotartical1">《{{item.name}}》</text>
 					<text class="optbotartical2">作者：{{item.writerName}}</text>
@@ -152,6 +153,7 @@ export default {
 					// console.log(JSON.stringify(res));
 					console.log(res)
 					this.teaArticle = res.data.obj;
+				
 					console.log('文章信息');
 					console.log(this.teaArticle);
 				}
