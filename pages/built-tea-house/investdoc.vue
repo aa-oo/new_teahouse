@@ -339,7 +339,7 @@ export default {
 	width: 90%;
 	border-radius: 20rpx;
 	margin: 3rpx auto;
-	height: 800rpx;
+	height: 720rpx;
 	background-color: #ffffff;
 	padding-top: 26px;
 	overflow: auto;
@@ -350,7 +350,7 @@ export default {
 	height: 60px;
 	/* border:1px solid #222222; */
 	border-bottom: 2px solid #008000;
-	padding: 10px 10px;
+	padding: 15px 10px;
 	position: relative;
 	margin-bottom: 20px;
 }
@@ -385,7 +385,7 @@ export default {
 	font-size: 30rpx;
 	margin-left: 32%;
 	position: absolute;
-	width: 90px;
+	width: 180px;
 	overflow: hidden;
 	margin-top: 35px;
 }

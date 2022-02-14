@@ -7,7 +7,7 @@
 		</view>
 		<view class="teainmid" >联系房主</view>
 		<view class="investbox1" style="height:300rpx ;margin-top: 20rpx;position: relative" >
-			<view class="buscardright"><image class="buscardImg" src="../../static/hm-friend-information-card/images/img_24031_0_1.png"/></view>
+			<view class="buscardright"><image class="buscardImg" :src="hostList.headPhoto"/></view>
 			<view class="buscardleft">
 				<view class="context1">
 					<text class="" style=" border-bottom: 1px solid #81B991;font-size:22px;" @click="gobusCard">{{hostList.name}}</text>
