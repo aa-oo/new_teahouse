@@ -34,10 +34,7 @@
 				user:state=>state.user,
 			})
 		},
-		onLoad(opt) {
-			// this.articleid = JSON.parse(e.detail)
-			this.tea_id = JSON.parse(opt.tea_id)
-			console.log(this.tea_id)
+		onLoad() {
 			
 		},
 		methods: {
@@ -53,7 +50,7 @@
 			submit() {
 				console.log(this.user.name)
 				uni.request({
-					url:'/api/roomPaper/create',
+					url:'/api/paper/create',
 					method:'POST',
 					header:{
 						'content-type':"application/json",
@@ -62,7 +59,6 @@
 					data: {
 						content:this.textarea,
 						name:this.tabname,
-						roomId:this.tea_id,
 						writerName:this.user.name,
 					},
 					success: res => {

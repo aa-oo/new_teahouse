@@ -50,7 +50,7 @@
 			},
 			writein(){
 				uni.navigateTo({
-					url:'../built-tea-house/newarticals'
+					url:'newarticals'
 				})
 			},
 			backout(){

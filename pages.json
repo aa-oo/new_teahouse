@@ -133,6 +133,13 @@
 			}
 		},
 		{
+			"path": "pages/me/newarticals",
+			"style": {
+				"navigationBarTitleText": "写文章",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
 			"path": "pages/me/userinfo",
 			"style": {
 				"navigationBarTitleText": "修改资料",
@@ -251,6 +258,7 @@
 		    }
 		    
 		}
+        
     ],
 	"tabBar": {
 		// "backgroundColor":"#81b991",

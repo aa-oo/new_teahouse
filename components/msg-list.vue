@@ -2,10 +2,10 @@
 	<view>
 		<view style="display:flex;align-items: center;padding:25rpx 20rpx;border-bottom:1px solid #eaeaea;" @click="open(item)">
 			<image style="height:100rpx;width:100rpx;margin-right:20rpx;border-radius: 50%;" 
-			:src="item.userimg"></image>
+			:src="item.headPhoto"></image>
 			<view style="display:flex;flex-direction: column;flex:1;">
 				<view style="display:flex;align-items:center;justify-content: space-between;">
-					<text style="font-size:33rpx">{{item.username}}</text>
+					<text style="font-size:33rpx">{{item.name}}</text>
 					<text style="font-size:27rpx;color:#999999">{{item.updatetime}}</text>
 				</view>
 				<view style="display:flex;align-items:center;justify-content: space-between;margin-top:15rpx;">

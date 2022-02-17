@@ -146,6 +146,7 @@ export default {
 			return true;
 		},
 		submitchange() {
+			console.log("头像")
 			console.log(this.teaMes)
 			uni.request({
 						url: '/api/tearoom/editHeadPhoto',
@@ -157,12 +158,12 @@ export default {
 						data: {
 							roomId:this.tea_id,
 							url:this.teaMes.photo,
-							name:''
 							// photo:this.teaMes.photo
 						
 						},
 						success: res => {
-							console.log(res);	
+							console.log("修改头像信息");	
+							console.log(res)
 							
 						},
 						fail: res => {
@@ -188,7 +189,8 @@ export default {
 					
 					},
 					success: res => {
-						console.log(res);
+						console.log("修改基本信息");
+						console.log(res)
 						if(res.statusCode==500){
 							uni.showToast({
 							title: '只有房主可以进行修改',
@@ -202,9 +204,7 @@ export default {
 							icon: 'none'
 						});
 						setTimeout(o=>{
-							uni.switchTab({
-							url:'../me/me-home'
-						})
+							uni.navigateBack()
 						},500)
 						
 						}

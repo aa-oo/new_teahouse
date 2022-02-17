@@ -218,13 +218,16 @@
 		onShow() {
 			this.getteaHouse();
 			this.getteaJoin();
+			// this.$forceUpdate()
 		},
 		onPullDownRefresh() {},
 		onLoad() {
+		
 			console.log(this.user)
 			// console.log(getApp().globalData.tabindex);
 			console.log(this.$store.state.token);
-			
+			this.getteaHouse();
+			this.getteaJoin();
 			// this.getteaHouse();
 			// this.getteaJoin();
 			

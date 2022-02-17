@@ -20,7 +20,7 @@
 
 		<swiper :duration="150" :current="tabindex" @change="onchangetab" :style="'height:' + scrollH + 'px;'">
 			<swiper-item>
-				<scroll-view scroll-y="true" :style="'height:' + scrollH + 'px;'">
+				<scroll-view scroll-y="true" :style="'height:' + scrollH + 'px;'" >
 					<view>
 						<!-- <view class="uni-list">
 							<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item, index) in dataList" @click="jumpToTargetView(item)">
@@ -41,8 +41,8 @@
 								<view class="hreenglogin" @click="golog">手机登录</view>
 							</view>
 						</view>
-						<template v-if="dataList.length > 0">
-							<block v-for="(item, index) in dataList" :key="index"><msg-list :item="item" :index="index"></msg-list></block>
+						<template v-if="mesList.length > 0">
+							<block v-for="(item, index) in mesList" :key="index"><msg-list :item="item" :index="index"></msg-list></block>
 						</template>
 						<template v-else>
 							<none></none>
@@ -324,7 +324,7 @@ export default {
 					rows: 5
 				},
 				success: res => {
-					this.mesList = res.data;
+					this.mesList = res.data.items;
 					console.log('消息列表如下');
 					console.log(this.mesList);
 				}
