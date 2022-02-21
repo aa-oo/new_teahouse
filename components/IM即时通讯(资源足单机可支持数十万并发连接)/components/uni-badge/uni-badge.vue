@@ -101,7 +101,7 @@
 	}
 
 	.uni-badge--error {
-		color: #fff;
+		color: #dd524d;
 		background-color: #dd524d;
 	}
 

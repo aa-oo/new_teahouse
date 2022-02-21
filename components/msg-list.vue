@@ -10,7 +10,7 @@
 				</view>
 				<view style="display:flex;align-items:center;justify-content: space-between;margin-top:15rpx;">
 					<text style="font-size:27rpx;color:#999999;max-width: 500rpx;" class="text-ellipsis">{{item.message}}</text>
-					<uni-badge class="uni-badge-left-margin" :text="item.noread" type="error" :max-num="maxnum" ></uni-badge>
+					<uni-badge class="uni-badge-left-margin"  :text="item.noread" type="error" :max-num="maxnum" ></uni-badge>
 				</view>
 			</view>
 		</view>

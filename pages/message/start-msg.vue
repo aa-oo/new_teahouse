@@ -42,9 +42,9 @@
 							</view>
 						</view>
 						<template v-if="mesList.length > 0">
-							<block v-for="(item, index) in mesList" :key="index"><msg-list :item="item" :index="index"></msg-list></block>
+							<block v-for="(item, index) in dataList" :key="index"><msg-list :item="item" :index="index"></msg-list></block>
 						</template>
-						<template v-else>
+						<template v-if="loginStatus&&mesList.length <= 0">
 							<none></none>
 						</template>
 					</view>
@@ -83,6 +83,9 @@
 								</view>
 							</view>
 						</div>
+						<template v-if="loginStatus&&friendList.length <= 0">
+							<none></none>
+						</template>
 					</view>
 				</scroll-view>
 			</swiper-item>
@@ -110,6 +113,9 @@
 								</view>
 							</view>
 						</div>
+						<template v-if="loginStatus&&teaList.length <= 0">
+							<none></none>
+						</template>
 					</view>
 				</scroll-view>
 			</swiper-item>
@@ -198,21 +204,21 @@ const demo = [
 		username: '曹怡',
 		updatetime: '16:45',
 		message: '今天下午去万达广场,咱们去唱KTV吧!',
-		noread: 5
+		noread: 1
 	},
 	{
 		userimg: '../../static/img/im/face/face_11.jpg',
 		username: '邓家佳',
 		updatetime: '12:40',
 		message: '今天下午去万达广场,咱们去唱KTV吧!',
-		noread: 3
+		noread: 7
 	},
 	{
 		userimg: '../../static/img/im/face/face_11.jpg',
 		username: '王天怡',
 		updatetime: '7:10',
 		message: 'Flex布局将成为未来布局的首选方案。本文介绍Flex布局的语法。',
-		noread: 7
+		noread: 3
 	},
 	{
 		userimg: '../../static/img/im/face/face_11.jpg',
