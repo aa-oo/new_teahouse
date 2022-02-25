@@ -36,7 +36,7 @@
 				<swiper-item  >
 					<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'"  @scrolltolower="loadmore()"  upper-threshold='50'>
 						<view>
-							<div class="hm-friend-information-card">
+							<div class="hm-friend-information-card" style="margin-bottom: 30rpx;">
 								<view v-for="item in productList">
 									<view class="box1">
 										<view class="title"><text>{{item.name}}</text></view>
@@ -58,17 +58,17 @@
 								</view>
 							</div>
 							<!-- 上拉加载 -->
-							<view style="display:flex;align-items: center;justify-content: center;padding:20rpx;">
+							<!-- <view style="display:flex;align-items: center;justify-content: center;padding:20rpx;">
 								<text style="color:#9e9e9e">{{ loadmsg }}</text>
-							</view>
+							</view> -->
 						</view>
 					</scroll-view>
 				</swiper-item>
 				<swiper-item >
 					
-					<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'"  @scrolltolower="loadmore()"  upper-threshold='100'>
+					<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'"   upper-threshold='100'>
 					<view>
-						<div class="hm-friend-information-card" >
+						<div class="hm-friend-information-card" style="margin-bottom: 30rpx;">
 							<view v-for="item in teajoinList">
 								<view class="box1">
 									<view class="title"><text>{{item.name}}</text></view>
@@ -90,9 +90,9 @@
 							</view>
 						</div>
 						<!-- 上拉加载 -->
-						<view style="display:flex;align-items: center;justify-content: center;padding:20rpx;">
+						<!-- <view style="display:flex;align-items: center;justify-content: center;padding:20rpx;">
 							<text style="color:#9e9e9e">{{ loadmsg }}</text>
-						</view>
+						</view> -->
 					</view>
 					</scroll-view>
 				</swiper-item>
@@ -191,7 +191,7 @@
 				],
 				tabindex:0,
 				tab_current: 0,
-				loadmsg:'上拉加载更多',
+				loadmsg:'',
 				disk_list: [],
 				showPass: false,
 				form_network_disk: {
@@ -252,19 +252,19 @@
 						data: {
 							key:'',
 							name:'',
-							page:this.mepage,
-							rows:4
+							page:0,
+							rows:0
 						},
 						success: res => {
 							console.log("我发起的茶桌")
 							console.log(res.data)
-							
-							if(this.productList.length==res.data.total){
-								this.meadd=true
-							}
-							else{
-								this.productList=[...this.productList,...res.data.items]
-							}
+							this.productList = res.data.items;
+							// if(this.productList.length==res.data.total){
+							// 	this.meadd=true
+							// }
+							// else{
+							// 	this.productList=[...this.productList,...res.data.items]
+							// }
 							
 							// this.productList = res.data.items;
 							// if(this.productList.length<4){
@@ -288,26 +288,23 @@
 						data: {
 							key:'',
 							name:'',
-							page:this.joinpage,
-							rows:4
+							page:0,
+							rows:0
 						},
 						success: res => {
 							console.log("我加入的茶桌")
 							console.log(res.data)
 							
-							
-							if(this.teajoinList.length==res.data.total){
-								this.joinadd=true
-							}
-							else{
-								this.teajoinList=[...this.teajoinList,...res.data.items]
-							}
-							console.log(this.joinpage)
-							console.log(this.joinadd)
-							// this.teajoinList = res.data.items;
-							// if(this.teajoinList.length<4){
-							// 	this.joinpage--
+							this.teajoinList = res.data.items;
+							// if(this.teajoinList.length==res.data.total){
+							// 	this.joinadd=true
 							// }
+							// else{
+							// 	this.teajoinList=[...this.teajoinList,...res.data.items]
+							// }
+							// console.log(this.joinpage)
+							// console.log(this.joinadd)
+							
 							console.log(this.teajoinList)
 							
 							// this.getteaFriend()
@@ -368,19 +365,19 @@
 				},
 			
 			loadmore() {
-				this.loadmsg = '加载中...';
-				setTimeout(() => {
-					this.loadmsg = '上拉更新信息';
-					// console.log(this.flag)
-					if (this.tabindex==0&&!this.meadd) {
-						this.mepage += 1;
-						this.getteaHouse();
-					} 
-					if(this.tabindex==1&&!this.joinadd) {
-						this.joinpage += 1;
-						this.getteaJoin();
-					}
-				}, 2000);
+				// this.loadmsg = '加载中...';
+				// setTimeout(() => {
+				// 	this.loadmsg = '上拉更新信息';
+				
+				// 	if (this.tabindex==0&&!this.meadd) {
+				// 		this.mepage += 1;
+				// 		this.getteaHouse();
+				// 	} 
+				// 	if(this.tabindex==1&&!this.joinadd) {
+				// 		this.joinpage += 1;
+				// 		this.getteaJoin();
+				// 	}
+				// }, 2000);
 			},
 			// loadfront(){
 			// 	console.log("loadfront")

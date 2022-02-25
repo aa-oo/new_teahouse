@@ -42,7 +42,7 @@
 							</view>
 						</view>
 						<template v-if="mesList.length > 0">
-							<block v-for="(item, index) in dataList" :key="index"><msg-list :item="item" :index="index"></msg-list></block>
+							<block v-for="(item, index) in mesList" :key="index"><msg-list :item="item" :index="index"></msg-list></block>
 						</template>
 						<template v-if="loginStatus&&mesList.length <= 0">
 							<none></none>
@@ -326,8 +326,8 @@ export default {
 				},
 				data: {
 				
-					page: 1,
-					rows: 5
+					page: 0,
+					rows: 0
 				},
 				success: res => {
 					this.mesList = res.data.items;
@@ -370,8 +370,8 @@ export default {
 					authorization: this.$store.state.token
 				},
 				data: {
-					page: 1,
-					rows: 5
+					page: 0,
+					rows: 0
 				},
 				success: res => {
 					this.teaList = res.data.items;

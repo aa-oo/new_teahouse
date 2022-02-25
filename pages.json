@@ -89,6 +89,14 @@
 			}
 		},
 		{
+			"path": "pages/built-tea-house/article",
+			"style": {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": " ",
+				"navigationBarBackgroundColor": "#81b991"
+			}
+		},
+		{
 			"path": "pages/me/me-home",
 			"style": {
 				// "navigationBarTitleText": "",

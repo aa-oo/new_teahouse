@@ -159,12 +159,7 @@ export default {
 				}
 			});
 		},
-		gotoartical(item) {
-	
-			uni.navigateTo({
-				url: '../home/article/article?detail='+JSON.stringify(item.id)
-			});
-		},
+		
 		gotohome() {
 			
 			if(this.tab_index==0){
@@ -251,6 +246,11 @@ export default {
 			uni.navigateTo({
 				url:'../home/business-card/business-card?detail='+JSON.stringify(this.peopledetails),
 			})
+		},
+		gotoartical(item) {
+			uni.navigateTo({
+				url: './article?detail='+JSON.stringify(item)+'&host_id='+JSON.stringify(this.teaMes.hostId)
+			});
 		},
 		gotonewartical() {
 			uni.navigateTo({
