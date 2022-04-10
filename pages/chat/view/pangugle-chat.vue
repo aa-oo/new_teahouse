@@ -149,6 +149,7 @@
 	export default {
 		data() {
 			return {
+				mesdetail :'',
 				//文字消息
 				textMsg:'',
 				//消息列表
@@ -198,10 +199,17 @@
 		},
 		onNavigationBarButtonTap() {
 			uni.navigateTo({
-				url:'../../home/business-card/business-card'
+				url:'../../home/business-card/business-card?detail=' + JSON.stringify(this.mesdetail.userId)
 			})
 		},
+		onShow(){
+			console.log("1111")
+			this.getteaMes()
+		},
 		onLoad(option) {
+			this.mesdetail = JSON.parse(option.mesdetail)
+			console.log(this.mesdetail)
+			console.log("11")
 			this.getteaMes()
 			this.getMsgList();
 			//语音自然播放结束
@@ -232,12 +240,12 @@
 					},
 					data: {		    
 						page:1,
-						fromId:24,
+						fromId:this.mesdetail.userId,
 						rows:5,
-						type:0
+						type:this.mesdetail.type
 					},
 					success: res => {
-						console.log('聊天消息');
+						console.log('聊天消息111');
 						console.log(res.data);
 					}
 				});

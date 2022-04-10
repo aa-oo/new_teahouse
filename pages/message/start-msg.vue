@@ -20,7 +20,7 @@
 
 		<swiper :duration="150" :current="tabindex" @change="onchangetab" :style="'height:' + scrollH + 'px;'">
 			<swiper-item>
-				<scroll-view scroll-y="true" :style="'height:' + scrollH + 'px;'" >
+				<scroll-view scroll-y="true" :style="'height:' + scrollH + 'px;'" @scrolltolower="loadmore()" >
 					<view>
 						<!-- <view class="uni-list">
 							<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item, index) in dataList" @click="jumpToTargetView(item)">
@@ -51,7 +51,7 @@
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view scroll-y="true" :style="'height:' + scrollH + 'px;'">
+				<scroll-view scroll-y="true" :style="'height:' + scrollH + 'px;'" @scrolltolower="loadmore()">
 					<view>
 						<view class="metop">
 							<view class="hreeng1" v-if="!loginStatus">
@@ -90,7 +90,7 @@
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view scroll-y="true" :style="'height:' + scrollH + 'px;'">
+				<scroll-view scroll-y="true" :style="'height:' + scrollH + 'px;'" @scrolltolower="loadmore()">
 					<view>
 						<view class="metop">
 							<view class="hreeng1" v-if="!loginStatus">
@@ -194,6 +194,7 @@
 	</view>
 </template>
 <script>
+
 import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue';
 import msgList from '@/components/msg-list.vue';
 import none from '@/components/none.vue';
@@ -545,7 +546,10 @@ export default {
 		},
 		onchangetab(e) {
 			this.changtab(e.detail.current);
-		}
+		},
+		loadmore() {
+			
+		},
 	},
 	filters: {
 		fontNumber(date) {

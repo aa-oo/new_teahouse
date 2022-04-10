@@ -317,9 +317,10 @@ export default {
 				},
 				data: {
 					key: this.teaserches,
+					name:'',
 					page: this.teapage,
-					rows: 5,
-					name:''
+					rows: 5
+					
 				},
 				success: res => {
 					// console.log(JSON.stringify(res));
@@ -343,7 +344,7 @@ export default {
 				},
 				data: {
 					key: this.peopleserches,
-					name: '',
+					// name: '',
 					page: this.peopage,
 					rows: 5
 				},

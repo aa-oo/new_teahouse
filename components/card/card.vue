@@ -31,20 +31,6 @@
 		data() {
 			return {
 				articledetails:''
-				// msg:[
-				// 	{
-				// 		titlename:"维基媒体基金会",
-				// 		contentguild:"容器默认存在两根轴交叉轴的开始位置叫做cross start，结束位置叫做cross end,结束位置叫做cross end,结束位置叫做cross end,结束位置叫做cross end"
-				// 	},
-				// 	{
-				// 		titlename:"维基媒体基金会",
-				// 		contentguild:"容器默认存在两根轴交叉轴的开始位置叫做cross start，结束位置叫做cross end,结束位置叫做cross end开始位置叫做cross start，结束位置叫做cross end,结束位置"
-				// 	},
-				// 	{
-				// 		titlename:"维基媒体基金会",
-				// 		contentguild:"容器默认存在两根轴交叉轴的开始位置叫做cross start，结束位置叫做cross end"
-				// 	}	
-				// ]
 			};
 		},
 		methods:{

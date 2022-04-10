@@ -72,21 +72,21 @@
     "mp-toutiao" : {
         "usingComponents" : true
     },
-	"h5" : {
-	        "devServer" : {
-	            "port" : 80,
-	            "disableHostCheck" : true,
-	            "proxy" : {
-	                "/api" : {
-	                    "target" : "http://101.34.137.197",
-	                    "changeOrigin" : true,
-	                    "secure" : false,
-						 "pathRewrite":{
-							 "^/api":""
-							 }
-	                }
-	            }
-	        }
-	    }
-
+    "h5" : {
+        "devServer" : {
+			// "https":false,
+            "port" : 8899,
+            "disableHostCheck" : true,
+            "proxy" : {
+                "/api" : {
+                    "target" : "http://101.34.137.197",
+                    "changeOrigin" : true,
+                    "secure" : false,
+                    "pathRewrite" : {
+                        "^/api" : ""
+                    }
+                }
+            }
+        }
+    }
 }

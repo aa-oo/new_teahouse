@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import  dateChangeFormat  from '../home/article/change-date.js';
 export default {
 	data() {
 		return {
@@ -154,7 +155,7 @@ export default {
 					console.log(res)
 					this.teaArticle = res.data.obj;
 				
-					console.log('文章信息');
+					console.log('文章信息111');
 					console.log(this.teaArticle);
 				}
 			});
@@ -248,6 +249,7 @@ export default {
 			})
 		},
 		gotoartical(item) {
+			item.createTime=dateChangeFormat.dateChangeFormat('YYYY-mm-dd HH:MM:SS', item.createTime) 
 			uni.navigateTo({
 				url: './article?detail='+JSON.stringify(item)+'&host_id='+JSON.stringify(this.teaMes.hostId)
 			});

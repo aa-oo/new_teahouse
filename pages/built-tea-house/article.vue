@@ -3,7 +3,7 @@
 			<view class="top">
 			<view class="articletop">{{articledetail.name}}</view>
 			<view class="articleauthor">{{articledetail.writerName}}</view>
-			<view class="articletime">{{time}}</view>
+			<view class="articletime">{{articledetail.createTime}}</view>
 			</view>
 			<view class="bottom">
 				<view class="articlecontect">
@@ -17,8 +17,7 @@
 </template>
 
 <script>
-	
-	import  dateChangeFormat  from '../home/article/change-date.js';
+
 	import {mapState} from 'vuex';
 	export default{
 		data() {
@@ -48,9 +47,7 @@
 					this.own=true;
 				}
 				console.log(this.own)
-				console.log(this.articledetail.createTime)
-				this.time=dateChangeFormat.dateChangeFormat('YYYY-mm-dd HH:MM:SS', this.articledetail.createTime) 
-				console.log(this.time)
+			
 			};
 			
 			uni.setNavigationBarTitle({
