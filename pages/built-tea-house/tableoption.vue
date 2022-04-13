@@ -254,14 +254,15 @@ export default {
 		},
 		gotonewartical() {
 			uni.navigateTo({
-				url: './newarticals?tea_id='+JSON.stringify(this.tea_id)
+				url: './houseartical?tea_id='+JSON.stringify(this.tea_id)
 			});
 		}
 	},
 	filters: {
 		fontNumber(date) {
-			const length = date.length;
-			if (length > 50) {
+			var lengths = date.length;
+			console.log("zhelishi "+lengths)
+			if (lengths > 50) {
 				var str = '';
 				str = date.substring(0, 35) + '...';
 				return str;

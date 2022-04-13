@@ -1,8 +1,5 @@
 <template>
 	<view>
-		<!-- <view class="newarticaltop">
-			
-		</view> -->
 		<view class="newarticaltop">
 		    <input class="newartical1" v-model="tabname" name="input"maxlength="15" @input="onInput($event, 'tabname')" placeholder="请输入标题"  />
 		</view> 
@@ -53,7 +50,7 @@
 			submit() {
 				console.log(this.user.name)
 				uni.request({
-					url:'/api/paper/create',
+					url:'/api/roomPaper/create',
 					method:'POST',
 					header:{
 						'content-type':"application/json",
@@ -62,6 +59,7 @@
 					data: {
 						content:this.textarea,
 						name:this.tabname,
+						roomId:this.tea_id,
 						writerName:this.user.name,
 					},
 					success: res => {
@@ -84,8 +82,7 @@
 				});
 			}
 		}
-	};
-	
+	}
 </script>
 
 <style scoped>

@@ -202,6 +202,7 @@
 			})
 		},
 		onLoad(option) {
+			console.log("这是onload加载事件")
 			this.getteaMes()
 			this.getMsgList();
 			//语音自然播放结束

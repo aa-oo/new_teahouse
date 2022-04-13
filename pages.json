@@ -251,6 +251,13 @@
 		    }
 		    
 		}
+        ,{
+			"path": "pages/built-tea-house/houseartical",
+			"style": {
+				"navigationBarTitleText": "写文章",
+				"navigationBarTextStyle": "white"
+			}
+        }
     ],
 	"tabBar": {
 		// "backgroundColor":"#81b991",

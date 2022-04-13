@@ -35,32 +35,47 @@
 								</view>
 							</view>
 						</view> -->
-						<view class="metop">
-							<view class="hreeng1" v-if="!loginStatus">
+						<view class="metop" v-if="!loginStatus">
+							<view>
+								<image class="notloginmsg" src="../../static/choiceicon/暂无消息.png"></image>
+							</view>
+							<view class="hreeng1" >
 								<view class="hreengtext">您还未登录，请点击登录</view>
-								<view class="hreenglogin" @click="golog">手机登录</view>
+								<!-- <view class="hreenglogin" @click="golog">手机登录</view> -->
 							</view>
 						</view>
+						<view v-if="loginStatus">
+							
 						<template v-if="dataList.length > 0">
 							<block v-for="(item, index) in dataList" :key="index"><msg-list :item="item" :index="index"></msg-list></block>
 						</template>
 						<template v-else>
-							<none></none>
+							<view>
+								<image class="notloginmsg" src="../../static/choiceicon/暂无消息.png"></image>
+							</view>
+							<view class="hreeng1" >
+								<view class="notaskmsg" style="padding-left:200rpx;">暂时还没有收到消息哦</view>
+							</view>
 						</template>
+						</view>
 					</view>
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
 				<scroll-view scroll-y="true" :style="'height:' + scrollH + 'px;'">
 					<view>
-						<view class="metop">
-							<view class="hreeng1" v-if="!loginStatus">
+						<view class="metop" v-if="!loginStatus">
+							<view>
+								<image class="notloginmsg" src="../../static/choiceicon/暂无消息.png"></image>
+							</view>
+							<view class="hreeng1" >
 								<view class="hreengtext">您还未登录，请点击登录</view>
-								<view class="hreenglogin" @click="golog">手机登录</view>
+								<!-- <view class="hreenglogin" @click="golog">手机登录</view> -->
 							</view>
 						</view>
 						<div v-if="loginStatus" class="hm-friend-information-card">
-							<view v-for="item in friendList">
+							<view v-if="friendList.length>0">
+							<view v-for="item in friendList" >
 								<view class="box1" style="height:250rpx ;margin-top: 30rpx;position: relative">
 									<view class="buscardright"><button class="msgadd" type="default" @click="addfriend(item)">添加</button></view>
 									<view class="buscardleft">
@@ -81,6 +96,14 @@
 										</view>
 									</view>
 								</view>
+							</view></view>
+							<view v-else>
+								<view>
+									<image class="notloginmsg" src="../../static/choiceicon/暂无消息.png"></image>
+								</view>
+								<view class="hreeng1" >
+									<view class="notaskmsg">暂时还没有收到好友请求哦</view>
+								</view>
 							</view>
 						</div>
 					</view>
@@ -89,13 +112,17 @@
 			<swiper-item>
 				<scroll-view scroll-y="true" :style="'height:' + scrollH + 'px;'">
 					<view>
-						<view class="metop">
-							<view class="hreeng1" v-if="!loginStatus">
+						<view class="metop" v-if="!loginStatus">
+							<view>
+								<image class="notloginmsg" src="../../static/choiceicon/暂无消息.png"></image>
+							</view>
+							<view class="hreeng1" >
 								<view class="hreengtext">您还未登录，请点击登录</view>
-								<view class="hreenglogin" @click="golog">手机登录</view>
+								<!-- <view class="hreenglogin" @click="golog">手机登录</view> -->
 							</view>
 						</view>
 						<div v-if="loginStatus" class="hm-friend-information-card">
+							<view v-if="teaList.length>0">
 							<view v-for="item in teaList">
 								<view class="box1" style="height:230rpx ;margin-top: 30rpx;position: relative">
 									<view class="buscardright"><button class="msgadd" type="default" @click="addtea(item)">同意</button></view>
@@ -107,6 +134,14 @@
 											<text class="titletext" style="margin-left: 0;">请求加入：{{ item.roomName }}</text>
 										</view>
 									</view>
+								</view>
+							</view></view>
+							<view v-else>
+								<view>
+									<image class="notloginmsg" src="../../static/choiceicon/暂无消息.png"></image>
+								</view>
+								<view class="hreeng1" >
+									<view class="notaskmsg">暂时还没有收到茶屋请求哦</view>
 								</view>
 							</view>
 						</div>
@@ -565,7 +600,7 @@ export default {
 	}
 };
 </script>
-<style>
+<style scoped>
 @import '../home/teaHouse/start.response.css';
 @import '../home/teaHouse/business-card.css';
 .metop {
@@ -581,21 +616,26 @@ export default {
 	position: absolute;
 	/* float:left; */
 	width: 100%;
-	/* height:280rpx; */
-	height: 100%;
+	height:280rpx;
+	/* height: 100%; */
 	/* margin-top:100rpx; */
 }
 .hreengtext {
-	margin-top: 50%;
+	/* margin-top: 50%; */
 	text-align: center;
-	margin-bottom: 100rpx;
+	/* margin-bottom: 100rpx; */
 	/* 	font-size:38rpx;
 		color:#4dbc5d;
 		width:100%;
 		position:absolute;
 		border-radius:50px; */
 }
-
+.notaskmsg {
+	/* text-align: center; */
+		padding-left:100rpx;
+		width:100%;
+		position:absolute;
+}
 .hreenglogin {
 	font-size: 38rpx;
 	color: #4dbc5d;
@@ -803,5 +843,15 @@ export default {
 	/* #ifdef APP-PLUS-NVUE	 */
 	lines: 1;
 	/* #endif */
+}
+.notloginmsg{
+	width:600rpx;
+	height:600rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top:20%;
+	margin-left:50%;
+	transform: translateX(-50%);
 }
 </style>
