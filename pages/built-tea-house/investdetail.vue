@@ -121,7 +121,7 @@ export default {
 		loadmore(){
 			this.loadmsg="加载中...";
 			setTimeout(()=>{
-				this.loadmsg="上拉更新推荐";
+				this.loadmsg="上拉加载更多";
 				
 				this.investpage += 1;
 				this.getteaInvest();

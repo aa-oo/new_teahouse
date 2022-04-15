@@ -78,7 +78,7 @@
 					</view>
 				</div>
 			</view>
-			<view class="buscardBombutton">
+			<view class="buscardBombutton" v-if="user.id!=this.peopleid">
 				<view class="buttonadd" @click="addFriend" v-show="!isfriend">添加好友</view>
 				<view class="buttonadd" style="background-color:#F95454 ;" @click="addFriend" v-show="isfriend">删除好友</text></view>
 				<view class="buttonadd" style="background-color:#F0AD4E ;"@click="collectCard" v-show="!iscollect">收藏名片</view>
@@ -89,6 +89,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
 	data() {
 		return {
@@ -116,6 +117,11 @@ export default {
 		// uni.setNavigationBarTitle({
 		//     title:'个人信息'
 		// })
+	},
+	computed:{
+		...mapState({
+			user:state=>state.user,
+		})
 	},
 	methods: {
 		getbusinessCard() {

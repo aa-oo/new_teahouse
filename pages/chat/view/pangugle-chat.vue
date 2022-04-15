@@ -207,9 +207,13 @@
 			this.getteaMes()
 		},
 		onLoad(option) {
+<<<<<<< HEAD
 			this.mesdetail = JSON.parse(option.mesdetail)
 			console.log(this.mesdetail)
 			console.log("11")
+=======
+			console.log("这是onload加载事件")
+>>>>>>> 7c915f39c8fff637549cfb1d2950a47fe852ea90
 			this.getteaMes()
 			this.getMsgList();
 			//语音自然播放结束

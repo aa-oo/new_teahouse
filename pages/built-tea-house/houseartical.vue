@@ -1,8 +1,5 @@
 <template>
 	<view>
-		<!-- <view class="newarticaltop">
-			
-		</view> -->
 		<view class="newarticaltop">
 		    <input class="newartical1" v-model="tabname" name="input"maxlength="15" @input="onInput($event, 'tabname')" placeholder="请输入标题"  />
 		</view> 
@@ -85,8 +82,7 @@
 				});
 			}
 		}
-	};
-	
+	}
 </script>
 
 <style scoped>
