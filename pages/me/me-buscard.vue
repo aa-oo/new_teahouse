@@ -175,7 +175,7 @@ export default {
 		},
 		getteaFriend() {
 			uni.request({
-				url:'/api/friend/getFriends',
+				url:'http://101.34.137.197/friend/getFriends',
 				// url: '/api/user/list',
 				method: 'GET',
 				header: {
@@ -202,7 +202,7 @@ export default {
 		},
 		getteaAttention() {
 			uni.request({
-				url: '/api/friend/getAttention',
+				url: 'http://101.34.137.197/friend/getAttention',
 				method: 'GET',
 				header: {
 					'content-type': 'application/json',
@@ -250,7 +250,7 @@ export default {
 		del(data) {
 			console.log('删除', data);
 			uni.request({
-				url: '/api/friend/endFriend',
+				url: 'http://101.34.137.197/friend/endFriend',
 				method: 'POST',
 				header: {
 					'content-type': 'application/json',
@@ -272,10 +272,13 @@ export default {
 				}
 			});
 		},
+		send(data){
+			// url: '../chat/view/pangugle-chat?mesdetail='+JSON.stringify(data.id)
+		},
 		del1(data) {
 			console.log('取消收藏', data);
 			uni.request({
-				url:'/api/friend/deleteAttention',
+				url:'http://101.34.137.197/friend/deleteAttention',
 				method:'POST',
 				header:{
 					'content-type':"application/json",
@@ -302,7 +305,7 @@ export default {
 		edit(data) {
 			console.log('添加', data);
 			uni.request({
-				url:'/api/friend/request',
+				url:'http://101.34.137.197/friend/request',
 				method:'POST',
 				header:{
 					'content-type':"application/json",

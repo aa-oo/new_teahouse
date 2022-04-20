@@ -90,7 +90,7 @@ export default {
 					this.item = res.tempFilePaths[0];
 					console.log(this.item)
 					uni.uploadFile({
-						url:'/api/upload',
+						url:'http://101.34.137.197/upload',
 						header:{
 							// 'content-type':"application/json",
 							'authorization':that.$store.state.token
@@ -156,7 +156,7 @@ export default {
 		teaCreat(){
 
 			uni.request({
-				url:'/api/tearoom/create',
+				url:'http://101.34.137.197/tearoom/create',
 				method:'POST',
 				header:{
 					'content-type':"application/json",

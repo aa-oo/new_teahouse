@@ -3,9 +3,11 @@
 		onLaunch: function() {  
 			// console.log('App Lanch')
 			this.$store.commit('initUser')
+			this.$store.commit('onMessage')
 		},
 		// onShow: function() {
 		// 	console.log('App Show')
+		// 	this.$store.commit('onMessage')
 		// },
 		// onHide: function() {
 		// 	console.log('App Hide')

@@ -47,7 +47,7 @@
 											<text class="" style="font-size:22px;" >{{item.name}}</text>
 											<text class="titletext" style="font-size:16px;padding:0.1px 10px;">{{item.address}}</text>
 											<image v-if="item.gender ==='男'" class="buscardicon" style="width:50rpx;height:50rpx" src="../../static/icon/nan.png" />
-											<image  v-if="item.gender ==='女'" class="buscardicon" src="../../static/icon/女.png" />
+											<image  v-if="item.gender ==='女'" class="buscardicon" src="../../static/icon/newnv.png" />
 										</view>
 										<view class="context"><text class="titletext" style="margin-left: 0;">行业：{{item.work}}</text></view>
 										<view class="context2">
@@ -277,7 +277,7 @@ export default {
 		//获取好友请求
 		getteaFriend(){
 			uni.request({
-				url:'/api/friend/getRequest',
+				url:'http://101.34.137.197/friend/getRequest',
 				method:'GET',
 				header:{
 					'content-type':"application/json",
@@ -296,7 +296,7 @@ export default {
 		//获取茶屋请求
 		getteaHouse(){
 			uni.request({
-				url:'/api/tearoom/getRequester',
+				url:'http://101.34.137.197/tearoom/getRequester',
 				method:'POST',
 				header:{
 					'content-type':"application/json",
@@ -337,7 +337,7 @@ export default {
 		},
 		getRequest(statu){
 			uni.request({
-				url:'/api/friend/modify',
+				url:'http://101.34.137.197/friend/modify',
 				method:'POST',
 				header:{
 					'content-type':"application/json",

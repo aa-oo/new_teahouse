@@ -71,7 +71,7 @@ export default {
 	methods: {
 		getteaPeople() {
 			uni.request({
-				url: '/api/user/info',
+				url: 'http://101.34.137.197/user/info',
 				method: 'POST',
 				header: {
 					'content-type': 'application/json',
@@ -90,7 +90,7 @@ export default {
 		},
 		getteaInvest() {
 			uni.request({
-				url: '/api/invest/query',
+				url: 'http://101.34.137.197/invest/query',
 				method: 'GET',
 				header: {
 					'content-type': 'application/json',

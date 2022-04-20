@@ -13,7 +13,7 @@
 								<text class="" style=" font-size:38rpx;">{{friendList.name}}</text>
 								<text class="titletext" style="font-size:28rpx;padding:0.1px 10px;">{{friendList.address}}</text>
 								<image v-if="friendList.gender ==='男'" class="buscardicon" style="width:50rpx;height:50rpx" src="../static/icon/nv1.png" />
-								<image  v-if="friendList.gender ==='女'" class="buscardicon" src="../static/icon/女.png" />
+								<image  v-if="friendList.gender ==='女'" class="buscardicon" src="../static/icon/newnv.png" />
 							</view>
 							<view class="context" style="margin-top: 5rpx;margin-left: 5rpx;" >
 								<image class="buscardicon" style="margin-left: 0;" src="../static/icon/company.png" />
@@ -24,7 +24,7 @@
 							</view>
 							<view class="context2" style="margin-top: 0;margin-left: 5rpx;line-height:40rpx;">
 								<text class="titletext" style="margin-left: 0;font-size:28rpx;">
-									需求：
+									<span>需求：</span>
 									<span>{{ friendList.need | fontxuqiu }}</span>
 								</text>
 							</view>

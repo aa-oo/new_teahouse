@@ -160,7 +160,7 @@ export default {
 			}
 			console.log(this.userInfo.privatePhone)
 			uni.request({
-				url: '/api/user/edit',
+				url: 'http://101.34.137.197/user/edit',
 				method: 'POST',
 				header: {
 					'content-type': 'application/json',
@@ -219,7 +219,7 @@ export default {
 					// console.log(res);
 					this.userInfo.headPhoto = res.tempFilePaths[0];
 					uni.uploadFile({
-						url: '/api/upload',
+						url: 'http://101.34.137.197/upload',
 						header: {
 							// 'content-type':"application/json",
 							authorization: that.$store.state.token
@@ -285,7 +285,7 @@ export default {
 				// }
 			} else {
 				uni.request({
-					url: '/api/user/checkPhone',
+					url: 'http://101.34.137.197/user/checkPhone',
 					method: 'GET',
 					header: {
 						'content-type': 'application/json',
@@ -365,7 +365,7 @@ export default {
 				return false;
 			} else {
 				uni.request({
-					url: '/api/user/checkEmail',
+					url: 'http://101.34.137.197/user/checkEmail',
 					method: 'GET',
 					header: {
 						'content-type': 'application/json',

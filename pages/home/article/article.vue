@@ -50,7 +50,7 @@
 		methods:{
 			getArticle() {
 				uni.request({
-					url:'/api/paper/'+this.articleid,
+					url:'http://101.34.137.197/paper/'+this.articleid,
 					method:'GET',
 					header:{
 						'content-type':"application/json",
@@ -73,7 +73,7 @@
 			},
 			delArticle(){
 				uni.request({
-					url:'/api/paper/deletePaper/'+this.articleid,
+					url:'http://101.34.137.197/paper/deletePaper/'+this.articleid,
 					method:'GET',
 					header:{
 						'content-type':"application/json",

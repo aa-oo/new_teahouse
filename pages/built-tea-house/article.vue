@@ -61,7 +61,7 @@
 		methods:{
 			delArticle(){
 				uni.request({
-					url:'/api/roomPaper/deletePaper',
+					url:'http://101.34.137.197/roomPaper/deletePaper',
 					method:'POST',
 					header:{
 						'content-type':"application/json",

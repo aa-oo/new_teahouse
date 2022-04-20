@@ -45,7 +45,7 @@
 										<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">{{ item.invest}}</text>
 										<text class="bottext">
 											<span>&yen</span>
-											，来自
+											<span>，来自</span>
 										</text>
 										<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;">{{ item.investNum  }}</text>
 										<text class="bottext">茶友</text>
@@ -77,7 +77,7 @@
 											<text style=" border-bottom: 1px solid #81B991;font-size:22px;" @click="gobusCard(item)">{{ item.name }}</text>
 											<text class="titletext" style="font-size:16px;padding:0.1px 10px;">{{ item.address }}</text>
 											<image v-if="item.gender === '男'" class="buscardicon" style="width:50rpx;height:50rpx" src="../../../static/icon/nv1.png" />
-											<image v-if="item.gender === '女'" class="buscardicon" src="../../../static/icon/女.png" />
+											<image v-if="item.gender === '女'" class="buscardicon" src="../../../static/icon/newnv.png" />
 										</view>
 										<view class="context">
 											<image class="buscardicon" style="margin-left: 0;" src="../../../static/icon/company.png" />
@@ -88,7 +88,7 @@
 										</view>
 										<view class="context2">
 											<text class="titletext" style="margin-left: 0;">
-												需求：
+												<span>需求：</span>
 												<span>{{ item.need | fontxuqiu }}</span>
 											</text>
 										</view>
@@ -280,7 +280,7 @@ export default {
 	onLoad() {
 		// console.log(getApp().globalData.tabindex);
 		// this.$store.commit('changeLoginStatus',123)
-		console.log(this.$store.state.loginStatus);
+		// console.log(this.$store.state.loginStatus);
 
 		uni.getSystemInfo({
 			success: res => {
@@ -309,7 +309,7 @@ export default {
 		getteaHouse() {
 			uni.request({
 				// url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',this.$store.state.ip+
-				url: '/api/tearoom/list',
+				url: 'http://101.34.137.197/tearoom/list',
 				method: 'GET',
 				header: {
 					'content-type': 'application/json',
@@ -336,7 +336,7 @@ export default {
 		},
 		getteaPeople() {
 			uni.request({
-				url: '/api/user/list',
+				url: 'http://101.34.137.197/user/list',
 				method: 'GET',
 				header: {
 					'content-type': 'application/json',
@@ -361,7 +361,7 @@ export default {
 		},
 		getteaArticle() {
 			uni.request({
-				url: '/api/paper/list',
+				url: 'http://101.34.137.197/paper/list',
 				method: 'GET',
 				header: {
 					'content-type': 'application/json',
@@ -448,7 +448,7 @@ export default {
 					// } else {
 						// console.log('不在内');
 						uni.request({
-							url: ' /api/tearoom/request',
+							url: ' http://101.34.137.197/tearoom/request',
 							method: 'POST',
 							header: {
 								'content-type': 'application/json',
@@ -474,7 +474,8 @@ export default {
 									console.log('ishost'+ishost)
 									setTimeout(o=>{
 										uni.navigateTo({
-										url:'../../built-tea-house/teatable?tea_id='+item.id +'&tea_name=' +item.name+'&tab_index=' +ishost
+											url:'../../built-tea-house/pangugle-chat?tea_id='+item.id +'&tea_name=' +item.name+'&tab_index=' +ishost
+										// url:'../../built-tea-house/teatable?tea_id='+item.id +'&tea_name=' +item.name+'&tab_index=' +ishost
 									})
 									},700)
 									

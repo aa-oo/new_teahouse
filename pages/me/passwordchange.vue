@@ -51,7 +51,7 @@
 					return;
 				}
 				uni.request({
-					url:'/api/user/changePassword',
+					url:'http://101.34.137.197/user/changePassword',
 					method:'POST',
 					header:{
 						'content-type':"application/json",

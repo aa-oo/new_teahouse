@@ -13,7 +13,7 @@
 							<text class="titletext"style="font-size:16px;padding:0.1px 10px;">{{peopledetail.address}}</text>
 							<!-- <image class="buscardicon" src="../../../static/icon/nv1.png" /> -->
 							<image v-if="peopledetail.gender ==='男'" class="buscardicon" style="width:50rpx;height:50rpx" src="../../../static/icon/nv1.png" />
-							<image  v-if="peopledetail.gender ==='女'" class="buscardicon" src="../../../static/icon/女.png" />
+							<image  v-if="peopledetail.gender ==='女'" class="buscardicon" src="../../../static/icon/newnv.png" />
 							<!-- <image class="buscardicon" src="../../../static/icon/nv.png" /> -->
 						</view>
 						<view class="context">
@@ -126,7 +126,7 @@ export default {
 	methods: {
 		getbusinessCard() {
 			uni.request({
-				url:'/api/user/info',
+				url:'http://101.34.137.197/user/info',
 				method:'POST',
 				header:{
 					'content-type':"application/json",
@@ -152,7 +152,7 @@ export default {
 		},
 		isfriends(){
 			uni.request({
-				url:'/api/friend/isFriend',
+				url:'http://101.34.137.197/friend/isFriend',
 				method:'POST',
 				header:{
 					'content-type':"application/json",
@@ -171,7 +171,7 @@ export default {
 		
 		isAttention(){
 			uni.request({
-				url:'/api/friend/isAttention',
+				url:'http://101.34.137.197/friend/isAttention',
 				method:'POST',
 				header:{
 					'content-type':"application/json",
@@ -190,7 +190,7 @@ export default {
 		addFriend(){
 			if(this.isfriend==true){
 				uni.request({
-					url:'/api/friend/endFriend',
+					url:'http://101.34.137.197/friend/endFriend',
 					method:'POST',
 					header:{
 						'content-type':"application/json",
@@ -214,7 +214,7 @@ export default {
 			}
 			else{
 				uni.request({
-					url:'/api/friend/request',
+					url:'http://101.34.137.197/friend/request',
 					method:'POST',
 					header:{
 						'content-type':"application/json",
@@ -242,7 +242,7 @@ export default {
 		// this.collected=true
 			if(this.iscollect==true){
 				uni.request({
-					url:'/api/friend/deleteAttention',
+					url:'http://101.34.137.197/friend/deleteAttention',
 					method:'POST',
 					header:{
 						'content-type':"application/json",
@@ -263,7 +263,7 @@ export default {
 			}
 			else{
 				uni.request({
-					url:'/api/friend/attention',
+					url:'http://101.34.137.197/friend/attention',
 					method:'POST',
 					header:{
 						'content-type':"application/json",

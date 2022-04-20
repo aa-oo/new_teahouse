@@ -129,34 +129,113 @@ export default new Vuex.Store({
 			 //      "skill": "法定三分类",
 			 //      "account": 932765
 		},
+		// Socket链接状态
+		IsOpen:false,
+		//SocketTask
+		socketTask:false,
+		//是否上线（会员id绑定客户id，验证用户身份，通过则绑定）
+		IsOnline:false,
+		msgconnect:{}
 	},
 	mutations:{
 		Login(state,user){
 			state.loginStatus = true;
 			state.user=user;
-			uni.setStorageSync('user',JSON.stringify());
+			// uni.setStorageSync('user',JSON.stringify());
+			uni.setStorageSync('user',user);
 		},
 		Token(state,token){
 			state.token=token;
 			uni.setStorageSync('token',token);
 		},
+		SocketTask(state,socketTask){
+			state.IsOpen=true
+			state.socketTask=socketTask;
+			uni.setStorageSync('SocketTask',socketTask);
+		},
 			// 登录初始化状态 
 		initUser(state){
 			let user = uni.getStorageSync('user');
 			let token = uni.getStorageSync('token');
+			let socketTask = uni.getStorageSync('socketTask');
 			if(user){
 				state.loginStatus = true;
 				state.user = JSON.parse(user);
 				state.token = token;
+				state.socketTask=socketTask
 			}
 		},
 		logout(state){
 			state.loginStatus = false;
 			state.user={};
 			state.token='';
+			state.socketTask=false
 			uni.removeStorageSync('user');
 			uni.removeStorageSync('token');
+			uni.removeStorageSync('socketTask');
+		},
+		onMessage(state){
+			if(state.socketTask==false){
+				return
+			}
+			state.socketTask.onMessage(res=>{
+				console.log('zzz')
+				console.log(res.data)
+				if(res.data!=null){
+					uni.showToast({
+						title:"你收到了一条消息",
+						icon:'none'
+					})
+				}
+			})
 		}
-	}
+	},
+	// actions:{
+	// 	//打开socket
+	// 	openSocket({state,dispatch}){
+	// 		//防止重复链接
+	// 		if(state.IsOpen) return
+	// 		//链接
+	// 		state.SocketTask = uni.connectSocket({
+	// 			url: 'ws://101.34.137.197/connection/', //仅为示例，并非真实接口地址。
+	// 			complete: ()=> {}
+	// 		});
+	// 		if(!state.SocketTask) return
+	// 		//监听开启
+	// 		state.SocketTask.onOpen(()=>{
+	// 			//将链接状态设为已连接
+	// 			console.log('将链接状态设为已连接')
+	// 			state.IsOpen=true
+	// 		})
+	// 		//监听关闭
+	// 		state.SocketTask.onClose(()=>{
+				
+	// 			console.log('链接已关闭')
+	// 			state.IsOpen=false;
+	// 			state.SocketTask=false
+	// 			//清空会话列表
+	// 			//更新未读提示
+				
+	// 		})
+	// 		//监听错误
+	// 		state.SocketTask.onError(()=>{
+				
+	// 			console.log('链接错误')
+	// 			state.IsOpen=false;
+	// 			state.SocketTask=false
+				
+	// 		})
+	// 		//监听接受消息
+	// 		state.SocketTask.onMessage((e)=>{
+				
+	// 			console.log('接受消息',e)
+	// 			state.IsOpen=false;
+	// 			state.SocketTask=false
+	// 			//清空会话列表
+	// 			//更新未读提示
+				
+	// 		})
+	// 	}
+	// }
 	
 })

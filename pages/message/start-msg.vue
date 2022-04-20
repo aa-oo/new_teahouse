@@ -37,20 +37,21 @@
 						</view> -->
 						<view class="metop" v-if="!loginStatus">
 							<view>
-								<image class="notloginmsg" src="../../static/choiceicon/暂无消息.png"></image>
+								<image class="notloginmsg" src="../../static/choiceicon/nomes.png"></image>
 							</view>
 							<view class="hreeng1" >
-								<view class="hreengtext">您还未登录，请点击登录</view>
+								<view class="hreengtext" style="font-size:35rpx;color:#aaaaaa">您还未登录，请点击登录</view>
 								<!-- <view class="hreenglogin" @click="golog">手机登录</view> -->
 							</view>
 						</view>
-<<<<<<< HEAD
+
 						<template v-if="mesList.length > 0">
 							<block v-for="(item, index) in mesList" :key="index"><msg-list :item="item" :index="index"></msg-list></block>
 						</template>
 						<template v-if="loginStatus&&mesList.length <= 0">
 							<none></none>
-=======
+						</template>
+<!-- 
 						<view v-if="loginStatus">
 							
 						<template v-if="dataList.length > 0">
@@ -61,11 +62,10 @@
 								<image class="notloginmsg" src="../../static/choiceicon/暂无消息.png"></image>
 							</view>
 							<view class="hreeng1" >
-								<view class="notaskmsg" style="padding-left:200rpx;">暂时还没有收到消息哦</view>
+								<view class="notaskmsg" style="padding-left:200rpx;font-size:35rpx;color:#aaaaaa">暂时还没有收到消息哦</view>
 							</view>
->>>>>>> 7c915f39c8fff637549cfb1d2950a47fe852ea90
 						</template>
-						</view>
+						</view> -->
 					</view>
 				</scroll-view>
 			</swiper-item>
@@ -74,10 +74,10 @@
 					<view>
 						<view class="metop" v-if="!loginStatus">
 							<view>
-								<image class="notloginmsg" src="../../static/choiceicon/暂无消息.png"></image>
+								<image class="notloginmsg" src="../../static/choiceicon/nomes.png"></image>
 							</view>
 							<view class="hreeng1" >
-								<view class="hreengtext">您还未登录，请点击登录</view>
+								<view class="hreengtext"  style="font-size:35rpx;color:#aaaaaa">您还未登录，请点击登录</view>
 								<!-- <view class="hreenglogin" @click="golog">手机登录</view> -->
 							</view>
 						</view>
@@ -91,7 +91,7 @@
 											<text class="" style="font-size:22px;">{{ item.name }}</text>
 											<text class="titletext" style="font-size:16px;padding:0.1px 10px;">{{ item.address }}</text>
 											<image v-if="item.gender === '男'" class="buscardicon" style="width:50rpx;height:50rpx" src="../../static/icon/nan.png" />
-											<image v-if="item.gender === '女'" class="buscardicon" src="../../static/icon/女.png" />
+											<image v-if="item.gender === '女'" class="buscardicon" src="../../static/icon/newnv.png" />
 										</view>
 										<view class="context">
 											<text class="titletext" style="margin-left: 0;">行业：{{ item.work }}</text>
@@ -105,17 +105,17 @@
 									</view>
 								</view>
 							</view></view>
-							<view v-else>
+<!-- 							<view v-else>
 								<view>
 									<image class="notloginmsg" src="../../static/choiceicon/暂无消息.png"></image>
 								</view>
 								<view class="hreeng1" >
-									<view class="notaskmsg">暂时还没有收到好友请求哦</view>
+									<view class="notaskmsg" style="font-size:35rpx;color:#aaaaaa">暂时还没有收到好友请求哦</view>
 								</view>
-							</view>
+							</view> -->
 						</div>
 						<template v-if="loginStatus&&friendList.length <= 0">
-							<none></none>
+							<none :msg='msgfriend'></none>
 						</template>
 					</view>
 				</scroll-view>
@@ -125,10 +125,10 @@
 					<view>
 						<view class="metop" v-if="!loginStatus">
 							<view>
-								<image class="notloginmsg" src="../../static/choiceicon/暂无消息.png"></image>
+								<image class="notloginmsg" src="../../static/choiceicon/nomes.png"></image>
 							</view>
 							<view class="hreeng1" >
-								<view class="hreengtext">您还未登录，请点击登录</view>
+								<view class="hreengtext" style="font-size:35rpx;color:#aaaaaa">您还未登录，请点击登录</view>
 								<!-- <view class="hreenglogin" @click="golog">手机登录</view> -->
 							</view>
 						</view>
@@ -147,17 +147,17 @@
 									</view>
 								</view>
 							</view></view>
-							<view v-else>
+					<!-- 		<view v-else>
 								<view>
 									<image class="notloginmsg" src="../../static/choiceicon/暂无消息.png"></image>
 								</view>
 								<view class="hreeng1" >
 									<view class="notaskmsg">暂时还没有收到茶屋请求哦</view>
 								</view>
-							</view>
+							</view> -->
 						</div>
 						<template v-if="loginStatus&&teaList.length <= 0">
-							<none></none>
+							<none :msg="msgtea"></none>
 						</template>
 					</view>
 				</scroll-view>
@@ -242,36 +242,36 @@ import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmente
 import msgList from '@/components/msg-list.vue';
 import none from '@/components/none.vue';
 import { mapState } from 'vuex';
-const demo = [
-	{
-		userimg: '../../static/img/im/face/face_11.jpg',
-		username: '曹怡',
-		updatetime: '16:45',
-		message: '今天下午去万达广场,咱们去唱KTV吧!',
-		noread: 1
-	},
-	{
-		userimg: '../../static/img/im/face/face_11.jpg',
-		username: '邓家佳',
-		updatetime: '12:40',
-		message: '今天下午去万达广场,咱们去唱KTV吧!',
-		noread: 7
-	},
-	{
-		userimg: '../../static/img/im/face/face_11.jpg',
-		username: '王天怡',
-		updatetime: '7:10',
-		message: 'Flex布局将成为未来布局的首选方案。本文介绍Flex布局的语法。',
-		noread: 3
-	},
-	{
-		userimg: '../../static/img/im/face/face_11.jpg',
-		username: '李毅佳',
-		updatetime: '1:20',
-		message: '今天下午去万达广场,咱们去唱KTV吧!',
-		noread: 0
-	}
-];
+// const demo = [
+// 	{
+// 		userimg: '../../static/img/im/face/face_11.jpg',
+// 		username: '曹怡',
+// 		updatetime: '16:45',
+// 		message: '今天下午去万达广场,咱们去唱KTV吧!',
+// 		noread: 1
+// 	},
+// 	{
+// 		userimg: '../../static/img/im/face/face_11.jpg',
+// 		username: '邓家佳',
+// 		updatetime: '12:40',
+// 		message: '今天下午去万达广场,咱们去唱KTV吧!',
+// 		noread: 7
+// 	},
+// 	{
+// 		userimg: '../../static/img/im/face/face_11.jpg',
+// 		username: '王天怡',
+// 		updatetime: '7:10',
+// 		message: 'Flex布局将成为未来布局的首选方案。本文介绍Flex布局的语法。',
+// 		noread: 3
+// 	},
+// 	{
+// 		userimg: '../../static/img/im/face/face_11.jpg',
+// 		username: '李毅佳',
+// 		updatetime: '1:20',
+// 		message: '今天下午去万达广场,咱们去唱KTV吧!',
+// 		noread: 0
+// 	}
+// ];
 export default {
 	components: {
 		uniSegmentedControl,
@@ -310,13 +310,16 @@ export default {
 			mesList: [],
 			friendId: '',
 			friendStatus: -1,
-			teaStatus: -1
+			teaStatus: -1,
+			msgfriend:"暂时还没有收到好友请求哦",
+			msgtea:"暂时还没有收到茶屋请求哦"
 		};
 	},
 	computed: {
 		...mapState({
 			loginStatus: state => state.loginStatus,
-			user: state => state.user
+			user: state => state.user,
+			socketTask: state => state.socketTask,
 			//写法二
 			// user:function(state){
 			// 	return this.str+':'+state.user;
@@ -341,10 +344,22 @@ export default {
 				console.log(this.scrollH);
 			}
 		});
-		console.log(this.loginStatus);
+		// console.log(this.loginStatus);
 		this.getteaFriend();
 		this.getteaHouse();
 		this.getteaMessage();
+		// this.$store.commit('onMessage')
+		this.socketTask.onMessage(res=>{
+			console.log("data")
+			console.log(res)
+			// JSON.parse(res)
+			this.recmsglist=JSON.parse(res.data)
+			if(res.data!=null){
+				this.getteaMessage()
+			}
+		})
+		// this.$store.commit('onMessage')
+		// setInterval((),1000)
 		// 好友请求和茶屋请求
 		// uni.request({
 		// 	url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
@@ -353,7 +368,7 @@ export default {
 		// 		console.log(this.productList);
 		// 	}
 		// });
-		this.dataList = demo;
+		// this.dataList = demo;
 	},
 	onPullDownRefresh() {
 		this.refresh();
@@ -362,7 +377,7 @@ export default {
 		//获取消息列表
 		getteaMessage() {
 			uni.request({
-				url: '/api/message/getUsers',
+				url: 'http://101.34.137.197/message/getUsers',
 				method: 'GET',
 				header: {
 					'content-type': 'application/json',
@@ -388,7 +403,7 @@ export default {
 		//获取好友请求
 		getteaFriend() {
 			uni.request({
-				url: '/api/friend/getRequest',
+				url: 'http://101.34.137.197/friend/getRequest',
 				method: 'GET',
 				header: {
 					'content-type': 'application/json',
@@ -407,7 +422,7 @@ export default {
 		//获取茶屋请求
 		getteaHouse() {
 			uni.request({
-				url: '/api/tearoom/getRequester',
+				url: 'http://101.34.137.197/tearoom/getRequester',
 				method: 'POST',
 				header: {
 					'content-type': 'application/json',
@@ -438,7 +453,7 @@ export default {
 						console.log('this');
 						console.log(this);
 						uni.request({
-							url: '/api/friend/modify',
+							url: 'http://101.34.137.197/friend/modify',
 							method: 'POST',
 							header: {
 								'content-type': 'application/json',
@@ -464,7 +479,7 @@ export default {
 						console.log('this');
 						console.log(this);
 						uni.request({
-							url: '/api/friend/modify',
+							url: 'http://101.34.137.197/friend/modify',
 							method: 'POST',
 							header: {
 								'content-type': 'application/json',
@@ -532,7 +547,7 @@ export default {
 						console.log('this');
 						console.log(this);
 						uni.request({
-							url: '/api/tearoom/modifyRequest',
+							url: 'http://101.34.137.197/tearoom/modifyRequest',
 							method: 'POST',
 							header: {
 								'content-type': 'application/json',

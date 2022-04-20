@@ -19,7 +19,7 @@
 				<text style="color:#FFFDEF;">Dre@mTech工作组期待您的加入</text>
 				<text style="color:#81b991; padding-top:7px">广告加盟请联系微信Shreeng</text>
 			</view> -->
-			<image src="../../static/new广告.jpg" mode="aspectFill" class="rounded "></image>
+			<image src="../../static/newguanggao.jpg" mode="aspectFill" class="rounded "></image>
 		</view>
 		<!-- 我的选项卡 -->
 		<view class="menextnew">
@@ -212,7 +212,7 @@
 				// }
 			}),
 			avator(){
-				return this.user.headPhoto ? this.user.headPhoto : '../../static/默认头像.png'
+				return this.user.headPhoto ? this.user.headPhoto : '../../static/staticphoto.png'
 			}
 		},
 		onShow() {
@@ -243,7 +243,7 @@
 				getteaHouse(){
 					console.log("jinlai")
 					uni.request({
-						url:'/api/tearoom/getCreate',
+						url:'http://101.34.137.197/tearoom/getCreate',
 						method:'GET',
 						header:{
 							'content-type':"application/json",
@@ -279,7 +279,7 @@
 				},
 				getteaJoin(){
 					uni.request({
-						url:'/api/tearoom/join',
+						url:'http://101.34.137.197/tearoom/join',
 						method:'GET',
 						header:{
 							'content-type':"application/json",
@@ -334,7 +334,8 @@
 				addtea(item){
 					console.log(this.tabindex)
 					uni.navigateTo({
-						url:'../built-tea-house/teatable?tea_id='+item.id +'&tea_name=' +item.name+'&tab_index=' +this.tabindex
+						url:'../built-tea-house/pangugle-chat?tea_id='+item.id +'&tea_name=' +item.name+'&tab_index=' +this.tabindex
+						// url:'../built-tea-house/teatable?tea_id='+item.id +'&tea_name=' +item.name+'&tab_index=' +this.tabindex
 					})
 				},
 				gobuscard(){

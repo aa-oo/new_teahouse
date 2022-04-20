@@ -50,7 +50,7 @@
 			submit() {
 				console.log(this.user.name)
 				uni.request({
-					url:'/api/roomPaper/create',
+					url:'http://101.34.137.197/roomPaper/create',
 					method:'POST',
 					header:{
 						'content-type':"application/json",

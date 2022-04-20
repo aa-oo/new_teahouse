@@ -70,7 +70,7 @@ export default {
 	methods: {
 		getteaMes() {
 			uni.request({
-				url: '/api/tearoom/info',
+				url: 'http://101.34.137.197/tearoom/info',
 				method: 'POST',
 				header: {
 					'content-type': 'application/json',
@@ -105,7 +105,7 @@ export default {
 					// console.log(res);
 					this.teaMes.photo = res.tempFilePaths[0];
 					uni.uploadFile({
-						url: '/api/upload',
+						url: 'http://101.34.137.197/upload',
 						header: {
 							// 'content-type':"application/json",
 							authorization: that.$store.state.token
@@ -149,7 +149,7 @@ export default {
 			console.log("头像")
 			console.log(this.teaMes)
 			uni.request({
-						url: '/api/tearoom/editHeadPhoto',
+						url: 'http://101.34.137.197/tearoom/editHeadPhoto',
 						method: 'POST',
 						header: {
 							'content-type': 'application/json',
@@ -174,7 +174,7 @@ export default {
 						}
 					});
 			uni.request({
-					url: '/api/tearoom/edit',
+					url: 'http://101.34.137.197/tearoom/edit',
 					method: 'POST',
 					header: {
 						'content-type': 'application/json',

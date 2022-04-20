@@ -25,7 +25,8 @@
 				<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;margin-left: 10rpx;">{{teaMes.invest}}</text>
 				<text class="bottext" style="margin-left: 10rpx;">
 					<span> &yen</span>
-					，来自 
+					<span>，来自</span>
+					 
 				</text>
 				<text class="bottext" style="border-bottom:1px solid #81B991 ;color: #81B991;margin-left: 10rpx;">{{teaMes.investNum}}</text>
 				<text class="bottext" style="margin-left: 10rpx;"> 茶友</text>
@@ -98,7 +99,7 @@ export default {
 	methods: {
 		getteaPeo() {
 			uni.request({
-				url: '/api/tearoom/getPartners',
+				url: 'http://101.34.137.197/tearoom/getPartners',
 				method: 'POST',
 				header: {
 					'content-type': 'application/json',
@@ -119,7 +120,7 @@ export default {
 		},
 		getteaMes() {
 			uni.request({
-				url: '/api/tearoom/info',
+				url: 'http://101.34.137.197/tearoom/info',
 				method: 'POST',
 				header: {
 					'content-type': 'application/json',
@@ -138,7 +139,7 @@ export default {
 		},
 		getroomArticle() {
 			uni.request({
-				url: '/api/roomPaper/getPaper',
+				url: 'http://101.34.137.197/roomPaper/getPaper',
 				method: 'POST',
 				header: {
 					'content-type': 'application/json',
@@ -165,7 +166,7 @@ export default {
 			
 			if(this.tab_index==0){
 				uni.request({
-					url: '/api/tearoom/delete',
+					url: 'http://101.34.137.197/tearoom/delete',
 					method: 'POST',
 					header: {
 						'content-type': 'application/json',
@@ -192,7 +193,7 @@ export default {
 				});
 			}else{
 				uni.request({
-					url: '/api/tearoom/exit',
+					url: 'http://101.34.137.197/tearoom/exit',
 					method: 'POST',
 					header: {
 						'content-type': 'application/json',
