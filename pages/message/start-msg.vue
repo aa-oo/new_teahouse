@@ -98,8 +98,8 @@
 										</view>
 										<view class="context2">
 											<text class="titletext" style="margin-left: 0;">
-												需求：
-												<span>{{ xvqiu | fontNumber }}</span>
+												<span>需求：</span>
+												<span>{{ item.need | fontNumber }}</span>
 											</text>
 										</view>
 									</view>
@@ -443,10 +443,14 @@ export default {
 			console.log(e);
 			var mes = e.messageId;
 			var that = this;
+			console.log(mes);
+			console.log(this)
+			console.log(that);
 			uni.showModal({
-				title: '是否同意添加其为好友',
-				content: '',
+				// title: '提示',
+				content: '是否同意添加其为好友',
 				success: function(res) {
+					console.log("111")
 					if (res.confirm) {
 						this.friendStatus = 1;
 						console.log(this.friendStatus);
@@ -510,8 +514,8 @@ export default {
 			var roomid = e.roomId;
 			var that = this;
 			uni.showModal({
-				title: '是否同意其加入茶桌',
-				content: '',
+				// title: '是否同意其加入茶桌',
+				content: '是否同意其加入茶桌',
 				success: function(res) {
 					if (res.confirm) {
 						this.teaStatus = 1;

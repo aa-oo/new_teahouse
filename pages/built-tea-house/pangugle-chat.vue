@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="content">
-			<scroll-view class="msg-list" scroll-y="true" :scroll-with-animation="scrollAnimation" :scroll-top="scrollTop" :scroll-into-view="scrollToView" upper-threshold="50">
+			<scroll-view class="msg-list" scroll-y="true" :scroll-with-animation="scrollAnimation" :scroll-top="scrollTop" :scroll-into-view="scrollToView"   @scrolltoupper="loadHistory" upper-threshold="50">
 				<!-- 加载历史数据waitingUI -->
 				<!-- 				<view class="loading">
 					<view class="spinner">
@@ -104,6 +104,8 @@ export default {
 			getteamesid: 0,
 			isHistoryLoading: false,
 			scrollAnimation: false,
+			pageid:1,
+			loadhis:true,
 			scrollTop: 0,
 			scrollToView: '',
 			msgList: [],
@@ -232,7 +234,7 @@ export default {
 					authorization: this.$store.state.token
 				},
 				data: {
-					page: 1,
+					page: this.pageid,
 					fromId: this.tea_id,
 					rows: 10,
 					type: 2
@@ -240,18 +242,36 @@ export default {
 				success: res => {
 					console.log('聊天消息111');
 					console.log(res);
-					this.msglist = res.data.obj.items;
-					console.log(this.msglist);
-					this.msglist=this.msglist.reverse()
+					var meslisttemp;
+					meslisttemp = res.data.obj.items;
+					// this.msglist = res.data.obj.items;
+					console.log(meslisttemp);
+					// this.msglist=this.msglist.reverse()
+					// if (this.articleList.length < 5) {
+					// 	this.articlepage--;
+					// }
+					if(this.msglist.length==res.data.obj.total){
+						this.loadhis=false
+						this.isHistoryLoading = true;
+						this.scrollAnimation = false;
+					}
+					else{
+						this.msglist=[...meslisttemp.reverse(),...this.msglist]
+						// this.msglist.push(meslisttemp.reverse())
+						this.isHistoryLoading = false;
+						this.$nextTick(function() {
+							//进入页面滚动到底部
+							this.scrollTop = 9999;
+							this.$nextTick(function() {
+								this.scrollAnimation = true;
+							});
+						});
+					}
+					
 					// for (i = 0; i < this.m)
 					console.log(this.msglist)
-					this.$nextTick(function() {
-						//进入页面滚动到底部
-						this.scrollTop = 9999;
-						this.$nextTick(function() {
-							this.scrollAnimation = true;
-						});
-					});
+					
+				
 				}
 			});
 		},
@@ -330,7 +350,18 @@ export default {
 					console.log(res);
 				}
 			});
-			this.getteaMes()
+			setTimeout(o=>{
+				this.pageid=1
+				this.msglist=[]
+				this.getteaMes()
+				this.$nextTick(function() {
+					//进入页面滚动到底部
+					this.scrollTop = 9999;
+					this.$nextTick(function() {
+						this.scrollAnimation = true;
+					});
+				});
+			},1000)
 
 			// var nowDate = new Date();
 			// let lastid = this.msgList[this.msgList.length-1].msg.id;
@@ -347,6 +378,24 @@ export default {
 			// 	this.screenMsg(msg);
 			// },3000)
 		},
+		loadHistory(){
+			// this.pageid+=1
+			// this.getteaMes()
+			if(this.isHistoryLoading){
+				
+				return ;
+				
+			}
+			if(this.loadhis){
+				this.isHistoryLoading = true;//参数作为进入请求标识，防止重复请求
+				this.scrollAnimation = false;//关闭滑动动画
+				this.pageid+=1
+				this.getteaMes()
+			}
+		
+		
+		},
+		
 
 		// 添加文字消息到列表
 		addTextMsg(msg) {
